@@ -2,6 +2,7 @@ import { ColorSchemeProvider, MantineProvider } from "@mantine/core";
 import { Notifications } from "@mantine/notifications";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+
 import { useAuth } from "../../utils/auth/AuthProvider";
 import { useTheme } from "../../utils/theme/ThemeProvider";
 
