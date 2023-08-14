@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800;900;1000&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  position: relative;
+}
+* {
+  font-family: 'Cairo', sans-serif;
+}
+.react-date-picker__wrapper {
+  padding: 5px !important;
+  border-radius: 5px;
+}
+
+.mantine-Input-input,
+.mantine-TextInput-input {
+  height: 50px;
+}
+.mantine-fmk95p {
+  margin-right: unset;
+  margin-left: unset;
+  max-width: inherit;
+}
+.react-date-picker.react-date-picker--closed.react-date-picker--enabled {
+  width: 100%;
+}
+.react-date-picker__wrapper {
+  padding: 10px !important;
+  border: thin solid #ced4da;
+}
+
+.swiper,
+.swiper-initialized,
+.swiper-horizontal,
+.mySwiper,
+.wiper-backface-hidden {
+  height: 38rem !important;
+}
+.header {
+  @apply mb-16 text-4xl font-bold text-center;
+}
+.counter {
+  @apply flex flex-col items-center justify-center col-span-3 sm:col-span-1;
+}
+.modalFormBtn{
+  @apply border-none text-mainGray text-2xl font-bold
+}
+.modalFormBtnActive{
+  @apply border-b-2 border-b-mainGray text-mainBlue text-2xl font-bold
+}
+.sidebarBtn{
+  @apply flex flex-col md:flex-row items-center md:items-start text-sm justify-center gap-x-2 md:translate-x-12 duration-300 text-mainBlue
+}
+.sideBar{
+@apply  md:p-4 text-black flex md:flex-col justify-center items-center md:gap-8 gap-2 border md:border-b-0  border-l-0 border-t-0 md:border-r-2 border-r-0 border-b-lightGray md:w-1/6 overflow-hidden hover:w-full duration-300
+}
+.findingCar {
+  background: url("./assets/images/background/1.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.scroll_btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+}
+.popular {
+  background: url("./assets/images/background/home7_mailchimp_bg.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  border: none;
+}
+.card {
+  border: solid 1px #ddd;
+  padding: 3rem 2rem;
+  border-radius: 10px;
+}
+.companyBg {
+  background: url("./assets/images/background/inner-pagebg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.carBg {
+  background: url("./assets/images/background/inner-pagebg.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+.mainShadow{
+  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+}
+.subLi{
+  border-bottom:solid 1px #ddd;
+  margin: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.eggWrapper:hover .eggImg{
+  transform: rotate(45deg);
+  transition:  all .2s ease-in-out;
+}
+.faqBG{
+  background: url("./assets//images/about/sidebar-vichel.jpg");
+  background-repeat: no-repeat;
+  background-position: top center;
+  background-size: cover;
+}
+.overlay::after {
+  position: absolute;
+  content: '';
+  background: #132A55;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 10px;
+}
+.sideBar:hover .sidebarBtn{
+  transform:  translateX(0px);
+  transition: all .3s;
+}
+.mantine-rlfeir{
+  padding: 5px;
+}
+.navbar_background{
+  background: linear-gradient(0deg, rgba(34,193,195,0) 0%, rgba(253,187,45,1) 51%);
+}
+
+.mantine-1xudrbj , .mantine-15vtssg{
+  height: calc(3.25rem - 0.125rem)  !important;
+}
