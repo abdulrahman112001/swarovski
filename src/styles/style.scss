@@ -1,0 +1,95 @@
+@import 'animation';
+
+@font-face {
+  font-family: nimbus;
+  src: url('../assets/fonts/nimbus-roman.otf');
+}
+
+.header {
+  .nav-link {
+    font-weight: normal;
+    font-size: 16px;
+    a {
+      &.active {
+        font-weight: bold !important;
+      }
+    }
+  }
+}
+
+.newin-section {
+  grid-area: content;
+}
+
+.newin-cards {
+  & > div {
+    padding: 1rem;
+    position: relative;
+
+    &::before {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      inset: 0px;
+      z-index: 1;
+      background-color: rgba(34, 34, 34, 0.04);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0px;
+      background-image: var(--custom-background-image);
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: center center;
+      opacity: 0;
+      cursor: pointer;
+      transition: cubic-bezier(0.66, 0, 0.2, 1);
+    }
+
+    &:hover {
+      &::after {
+        content: '';
+
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.card-favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+
+  svg {
+    width: 24px;
+    height: 24px;
+    &:first-child {
+      position: absolute;
+    }
+    &:last-child {
+      opacity: 0;
+    }
+  }
+
+  &:hover {
+    svg {
+      &:first-child {
+        opacity: 0;
+      }
+      &:last-child {
+        opacity: 1;
+      }
+    }
+  }
+}
+// media query
+@import 'media';

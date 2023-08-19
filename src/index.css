@@ -5,9 +5,13 @@
 
 body {
   position: relative;
+  height: 5000px;
 }
 * {
   font-family: 'Cairo', sans-serif;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
 }
 .react-date-picker__wrapper {
   padding: 5px !important;
@@ -39,25 +43,25 @@ body {
   height: 38rem !important;
 }
 .header {
-  @apply mb-16 text-4xl font-bold text-center;
+  line-height: 2.5rem /* 40px */;
 }
 .counter {
   @apply flex flex-col items-center justify-center col-span-3 sm:col-span-1;
 }
-.modalFormBtn{
-  @apply border-none text-mainGray text-2xl font-bold
+.modalFormBtn {
+  @apply border-none text-mainGray text-2xl font-bold;
 }
-.modalFormBtnActive{
-  @apply border-b-2 border-b-mainGray text-mainBlue text-2xl font-bold
+.modalFormBtnActive {
+  @apply border-b-2 border-b-mainGray text-mainBlue text-2xl font-bold;
 }
-.sidebarBtn{
-  @apply flex flex-col md:flex-row items-center md:items-start text-sm justify-center gap-x-2 md:translate-x-12 duration-300 text-mainBlue
+.sidebarBtn {
+  @apply flex flex-col md:flex-row items-center md:items-start text-sm justify-center gap-x-2 md:translate-x-12 duration-300 text-mainBlue;
 }
-.sideBar{
-@apply  md:p-4 text-black flex md:flex-col justify-center items-center md:gap-8 gap-2 border md:border-b-0  border-l-0 border-t-0 md:border-r-2 border-r-0 border-b-lightGray md:w-1/6 overflow-hidden hover:w-full duration-300
+.sideBar {
+  @apply md:p-4 text-black flex md:flex-col justify-center items-center md:gap-8 gap-2 border md:border-b-0  border-l-0 border-t-0 md:border-r-2 border-r-0 border-b-lightGray md:w-1/6 overflow-hidden hover:w-full duration-300;
 }
 .findingCar {
-  background: url("./assets/images/background/1.jpg");
+  background: url('./assets/images/background/1.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-attachment: fixed;
@@ -69,7 +73,7 @@ body {
   right: 20px;
 }
 .popular {
-  background: url("./assets/images/background/home7_mailchimp_bg.png");
+  background: url('./assets/images/background/home7_mailchimp_bg.png');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -81,32 +85,32 @@ body {
   border-radius: 10px;
 }
 .companyBg {
-  background: url("./assets/images/background/inner-pagebg.jpg");
+  background: url('./assets/images/background/inner-pagebg.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 .carBg {
-  background: url("./assets/images/background/inner-pagebg.jpg");
+  background: url('./assets/images/background/inner-pagebg.jpg');
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
-.mainShadow{
-  box-shadow: 0 .5rem 1rem rgba(0,0,0,.15);
+.mainShadow {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
 }
-.subLi{
-  border-bottom:solid 1px #ddd;
+.subLi {
+  border-bottom: solid 1px #ddd;
   margin: 10px;
   font-size: 14px;
   font-weight: bold;
 }
-.eggWrapper:hover .eggImg{
+.eggWrapper:hover .eggImg {
   transform: rotate(45deg);
-  transition:  all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
-.faqBG{
-  background: url("./assets//images/about/sidebar-vichel.jpg");
+.faqBG {
+  background: url('./assets//images/about/sidebar-vichel.jpg');
   background-repeat: no-repeat;
   background-position: top center;
   background-size: cover;
@@ -114,27 +118,37 @@ body {
 .overlay::after {
   position: absolute;
   content: '';
-  background: #132A55;
+  background: #132a55;
   width: 100%;
   height: 100%;
-  opacity: .5;
+  opacity: 0.5;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   border-radius: 10px;
 }
-.sideBar:hover .sidebarBtn{
-  transform:  translateX(0px);
-  transition: all .3s;
+.sideBar:hover .sidebarBtn {
+  transform: translateX(0px);
+  transition: all 0.3s;
 }
-.mantine-rlfeir{
+.mantine-rlfeir {
   padding: 5px;
 }
-.navbar_background{
-  background: linear-gradient(0deg, rgba(34,193,195,0) 0%, rgba(253,187,45,1) 51%);
+.navbar_background {
+  background: linear-gradient(
+    0deg,
+    rgba(34, 193, 195, 0) 0%,
+    rgba(253, 187, 45, 1) 51%
+  );
 }
 
-.mantine-1xudrbj , .mantine-15vtssg{
-  height: calc(3.25rem - 0.125rem)  !important;
+.mantine-1xudrbj,
+.mantine-15vtssg {
+  height: calc(3.25rem - 0.125rem) !important;
+}
+
+.mantine-wpd9go {
+  border: none;
+  margin-bottom: 0 !important;
 }

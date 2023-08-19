@@ -1,9 +1,17 @@
+import FirstSection from '../components/sections/FirstSection';
+import NewIn from '../components/sections/NewIn';
+import TrendingWeek from '../components/sections/TrendingWeek';
+
 const Home = () => {
   return (
     <>
-     Hi Front End
+      <div className='container mx-auto px-4'>
+        <FirstSection />
+        <NewIn />
+        <TrendingWeek />
+      </div>
     </>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

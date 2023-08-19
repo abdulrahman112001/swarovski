@@ -1,0 +1,71 @@
+@font-face {
+  font-family: nimbus;
+  src: url("../assets/fonts/nimbus-roman.otf");
+}
+.header .nav-link {
+  font-weight: normal;
+  font-size: 16px;
+}
+.header .nav-link a.active {
+  font-weight: bold !important;
+}
+
+.newin-section {
+  grid-area: content;
+}
+
+.newin-cards > div {
+  padding: 1rem;
+  position: relative;
+}
+.newin-cards > div::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0px;
+  z-index: 1;
+  background-color: rgba(34, 34, 34, 0.04);
+}
+.newin-cards > div::after {
+  content: "";
+  position: absolute;
+  inset: 0px;
+  background-image: var(--custom-background-image);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  opacity: 0;
+  cursor: pointer;
+  transition: cubic-bezier(0.66, 0, 0.2, 1);
+}
+.newin-cards > div:hover::after {
+  content: "";
+  opacity: 1;
+}
+
+.card-favorite {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+}
+.card-favorite svg {
+  width: 24px;
+  height: 24px;
+}
+.card-favorite svg:first-child {
+  position: absolute;
+}
+.card-favorite svg:last-child {
+  opacity: 0;
+}
+.card-favorite:hover svg:first-child {
+  opacity: 0;
+}
+.card-favorite:hover svg:last-child {
+  opacity: 1;
+}/*# sourceMappingURL=style.css.map */

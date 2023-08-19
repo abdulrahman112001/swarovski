@@ -1,8 +1,13 @@
-import Home from "./Home"
+import Navbar from '../components/layout/navbar';
+import Home from './Home';
 
 const UnAuthHome = () => {
+  return (
+    <>
+      <Navbar links={[]} />
+      <Home />
+    </>
+  );
+};
 
-  return <Home/>
-}
-
-export default UnAuthHome
+export default UnAuthHome;
