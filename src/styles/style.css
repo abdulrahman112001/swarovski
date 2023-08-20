@@ -68,4 +68,17 @@
 }
 .card-favorite:hover svg:last-child {
   opacity: 1;
+}
+
+.New-input-checked input[type=checkbox]:checked ~ svg[data-icon=false] {
+  display: none;
+}
+.New-input-checked input[type=checkbox]:checked ~ svg[data-icon=true] {
+  display: block;
+}
+.New-input-checked input[type=checkbox]:not(:checked) ~ svg[data-icon=false] {
+  display: block;
+}
+.New-input-checked input[type=checkbox]:not(:checked) ~ svg[data-icon=true] {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

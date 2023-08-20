@@ -1,7 +1,7 @@
 import Images from '../../assets/images/data.jpeg';
 const FirstSection = () => {
   return (
-    <>
+    <div className='container mx-auto px-4'>
       <div className='grid grid-cols-2 my-[4.5rem]'>
         <div className='flex items-center col-span-1 mx-[4.8rem]'>
           <div>
@@ -61,7 +61,7 @@ const FirstSection = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

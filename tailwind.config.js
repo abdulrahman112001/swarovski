@@ -9,7 +9,7 @@ export default {
       colors: {
         mainBlue: '#1A3760',
         hoverGray: '#f5f5f5',
-        mainYellow: '#F5C34B',
+        bgGray: '#e6e6e6',
         subYellow: '#E6AA1B',
         backBlue: '#0A2357',
         backSkyBlue: '#cff4fc',

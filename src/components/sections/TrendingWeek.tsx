@@ -1,8 +1,8 @@
-import CardTrending from '../elements/cardTrending';
+import CardTrending from '../organisms/cardTrending';
 
 const TrendingWeek = () => {
   return (
-    <>
+    <div className='container mx-auto px-4'>
       <section>
         <h2 className='text-center text-[2rem] mt-12 mb-8'>
           Trending this week
@@ -25,7 +25,7 @@ const TrendingWeek = () => {
           />
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

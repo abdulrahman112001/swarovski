@@ -91,5 +91,28 @@
     }
   }
 }
+
+.New-input-checked {
+  input[type='checkbox']:checked {
+    & ~ svg[data-icon='false'] {
+      display: none;
+    }
+
+    & ~ svg[data-icon='true'] {
+      display: block;
+    }
+  }
+
+  input[type='checkbox']:not(:checked) {
+    & ~ svg[data-icon='false'] {
+      display: block;
+    }
+
+    & ~ svg[data-icon='true'] {
+      display: none;
+    }
+  }
+}
+
 // media query
 @import 'media';
