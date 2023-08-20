@@ -1,7 +1,7 @@
 import HeartUnFill from '../atoms/icons/HeartUnFill';
 import HeartFill from '../atoms/icons/HeartFill';
 
-const ProductCard = ({ imageUrl }: never) => {
+const ProductCard = ({ imageUrl }) => {
   const afterStyles = {
     '--custom-background-image': `url(${imageUrl})`,
   };

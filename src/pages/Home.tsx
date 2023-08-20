@@ -1,4 +1,6 @@
+import FineArt from '../components/sections/FineArt';
 import FirstSection from '../components/sections/FirstSection';
+import HelpBar from '../components/sections/HelpBar';
 import NewIn from '../components/sections/NewIn';
 import TrendingWeek from '../components/sections/TrendingWeek';
 
@@ -9,6 +11,8 @@ const Home = () => {
         <FirstSection />
         <NewIn />
         <TrendingWeek />
+        <FineArt />
+        <HelpBar />
       </div>
     </>
   );

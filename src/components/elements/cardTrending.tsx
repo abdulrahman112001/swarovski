@@ -1,8 +1,8 @@
-const CardTrending = ({ title, desc, image }) => {
+const CardTrending = ({ title, desc, image }: unknown) => {
   return (
     <>
       <div className='card-trending'>
-        <div className='max-h-[535px] max-w-[401px]'>
+        <div className='max-h-[640px] max-w-[480px]'>
           <img src={image} alt='trend1' />
         </div>
         <div className='mt-4'>
