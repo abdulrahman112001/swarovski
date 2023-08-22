@@ -5,6 +5,13 @@
   src: url('../assets/fonts/nimbus-roman.otf');
 }
 
+body[scrolling='true'] {
+  .header {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 8px;
+  }
+}
+
 .header {
   .nav-link {
     font-weight: normal;

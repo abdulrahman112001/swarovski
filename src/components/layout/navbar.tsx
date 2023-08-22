@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+
 import {
   createStyles,
   Header,
@@ -21,6 +22,7 @@ import HeartSVG from '../atoms/icons/Heart';
 import PersonSVG from '../atoms/icons/Person';
 import ShopSVG from '../atoms/icons/Shop';
 import { IconSearch } from '@tabler/icons-react';
+import DropDownNavBar from '../organisms/dropDownNavBar';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -72,9 +74,35 @@ interface HeaderSearchProps {
   }[];
 }
 
+// function Check the scrolling position
+const setScrollingAttribute = () => {
+  const scrolling = window.scrollY >= 10;
+
+  if (scrolling) {
+    document.body.setAttribute('scrolling', 'true');
+  } else {
+    document.body.removeAttribute('scrolling');
+  }
+};
+
 const NavbarSection = ({ links }: HeaderSearchProps) => {
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
+
+  // Check the scrolling position when entering the page
+  useEffect(() => {
+    setScrollingAttribute();
+
+    const handleScroll = () => {
+      setScrollingAttribute();
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -88,6 +116,8 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           trigger='hover'
           transitionProps={{ exitDuration: 0 }}
           withinPortal
+          openDelay={200}
+          closeDelay={230}
         >
           <Menu.Target>
             <a
@@ -101,7 +131,9 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               </Center>
             </a>
           </Menu.Target>
-          <Menu.Dropdown>{menuItems}</Menu.Dropdown>
+          <Menu.Dropdown>
+            <DropDownNavBar />
+          </Menu.Dropdown>
         </Menu>
       );
     }
