@@ -1,9 +1,15 @@
+import useFetch from '../../hooks/UseFetch';
 import ProductCard from '../elements/cardProduct';
 
 const NewIn = () => {
+  const { data: products } = useFetch({
+    endpoint: `products`,
+    queryKey: [`all-products`],
+  });
+  console.log("🚀 ~ file: NewIn.tsx:9 ~ NewIn ~ products:", products)
   return (
     <>
-      <section className='gap-4 flex flex-col'>
+      <section className='flex flex-col gap-4'>
         <div className='flex justify-between'>
           {/* title */}
           <div>
@@ -24,11 +30,14 @@ const NewIn = () => {
           </div>
         </div>
         {/* content product */}
-        <div className='newin-section grid grid-cols-4 gap-x-12 '>
-          <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
-          <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
-          <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
-          <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
+        <div className='grid grid-cols-4 newin-section gap-x-12 '>
+          {
+            products?.data?.map((item)=>(
+              
+              <ProductCard imageUrl={item?.images[0]?.original} item={item}/>
+            ))
+          }
+
         </div>
       </section>
     </>

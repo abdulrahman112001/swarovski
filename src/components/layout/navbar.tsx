@@ -1,26 +1,21 @@
-import { useState } from 'react';
 import {
-  createStyles,
+  Autocomplete,
+  Center,
+  Group,
   Header,
   Menu,
-  Group,
-  Center,
-  Burger,
-  Container,
-  rem,
-  Autocomplete,
+  createStyles,
+  rem
 } from '@mantine/core';
-
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
 // Icon
+import { IconSearch } from '@tabler/icons-react';
 import LogoSVG from '../atoms/Logo';
 import GlobalSVG from '../atoms/icons/Global';
 import HeartSVG from '../atoms/icons/Heart';
 import PersonSVG from '../atoms/icons/Person';
 import ShopSVG from '../atoms/icons/Shop';
-import { IconSearch } from '@tabler/icons-react';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -110,7 +105,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
   return (
     <>
       <header className='header sticky bg-white top-0 left-0 z-[500]'>
-        <div className='container mx-auto px-4'>
+        <div className='container px-4 mx-auto'>
           <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
             {/* category */}
             {/* Drop Down */}
@@ -130,7 +125,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </div>
 
             <a href='/' className='w-[12rem] h-6 grid items-center col-[2]'>
-              <LogoSVG />
+              {/* <LogoSVG /> */}
             </a>
 
             <div className='flex justify-end items-center me-[-0.4rem]'>
@@ -156,8 +151,8 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           </nav>
         </div>
 
-        <Header height={56} className={classes.header} mb={120}>
-          <div className='container mx-auto px-4'>
+        <Header height={56} className={classes?.header} mb={120}>
+          <div className='container px-4 mx-auto'>
             <div className={classes.inner}>
               <Group spacing={5} className={classes.links}>
                 {items}
