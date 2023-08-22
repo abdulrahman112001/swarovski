@@ -6,6 +6,7 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../utils/auth/AuthProvider';
 import { useTheme } from '../../utils/theme/ThemeProvider';
 import NavbarSection from '../layout/navbar';
+import FooterSection from '../layout/footer';
 
 const RootLayout = () => {
   const { user } = useAuth();
@@ -125,6 +126,8 @@ const RootLayout = () => {
           <Outlet />
         </MantineProvider>
       </ColorSchemeProvider>
+
+      <FooterSection />
     </>
   );
 };

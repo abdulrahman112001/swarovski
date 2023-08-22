@@ -8,7 +8,7 @@ const NewIn = () => {
   });
   console.log("🚀 ~ file: NewIn.tsx:9 ~ NewIn ~ products:", products)
   return (
-    <>
+    <div className='container px-4 mx-auto'>
       <section className='flex flex-col gap-4'>
         <div className='flex justify-between'>
           {/* title */}
@@ -40,7 +40,7 @@ const NewIn = () => {
 
         </div>
       </section>
-    </>
+    </div>
   );
 };
 

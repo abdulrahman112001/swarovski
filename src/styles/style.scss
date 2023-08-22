@@ -5,6 +5,13 @@
   src: url('../assets/fonts/nimbus-roman.otf');
 }
 
+body[scrolling='true'] {
+  .header {
+    border-bottom: 1px solid #e6e6e6;
+    padding-bottom: 8px;
+  }
+}
+
 .header {
   .nav-link {
     font-weight: normal;
@@ -91,5 +98,28 @@
     }
   }
 }
+
+.New-input-checked {
+  input[type='checkbox']:checked {
+    & ~ svg[data-icon='false'] {
+      display: none;
+    }
+
+    & ~ svg[data-icon='true'] {
+      display: block;
+    }
+  }
+
+  input[type='checkbox']:not(:checked) {
+    & ~ svg[data-icon='false'] {
+      display: block;
+    }
+
+    & ~ svg[data-icon='true'] {
+      display: none;
+    }
+  }
+}
+
 // media query
 @import 'media';

@@ -1,8 +1,8 @@
-import ProductCard from '../elements/cardProduct';
+import ProductCard from '../organisms/cardProduct';
 
 const FineArt = () => {
   return (
-    <>
+    <div className='container mx-auto px-4'>
       <section className='gap-4 flex flex-col my-20'>
         <div className='flex justify-between'>
           {/* title */}
@@ -28,7 +28,7 @@ const FineArt = () => {
           <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
         </div>
       </section>
-    </>
+    </div>
   );
 };
 
