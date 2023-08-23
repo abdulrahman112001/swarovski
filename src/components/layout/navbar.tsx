@@ -1,26 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 import {
-  createStyles,
+  Autocomplete,
+  Center,
+  Group,
   Header,
   Menu,
-  Group,
-  Center,
   Drawer,
+  createStyles,
   rem,
-  Autocomplete,
 } from '@mantine/core';
-
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
-import { MantineLogo } from '@mantine/ds';
 // Icon
-import LogoSVG from '../atoms/Logo';
+import { IconSearch } from '@tabler/icons-react';
 import GlobalSVG from '../atoms/icons/Global';
 import HeartSVG from '../atoms/icons/Heart';
 import PersonSVG from '../atoms/icons/Person';
 import ShopSVG from '../atoms/icons/Shop';
-import { IconSearch } from '@tabler/icons-react';
 import DropDownNavBar from '../organisms/dropDownNavBar';
 import Hamburger_ic from '../atoms/icons/hamburger';
 import Search_IC from '../atoms/icons/search';
@@ -204,7 +201,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </div>
 
             <a href='/' className='w-[12rem] h-6 grid items-center col-[2]'>
-              <LogoSVG />
+              {/* <LogoSVG /> */}
             </a>
 
             <div className='flex justify-end items-center me-[-0.4rem]'>
@@ -236,7 +233,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         </div>
         {/* hide navbar in > 1010px */}
         {shouldShowButton || (
-          <Header height={56} className={classes.header} mb={120}>
+          <Header height={56} className={classes?.header} mb={120}>
             <div className='container mx-auto px-4'>
               <div className={classes.inner}>
                 <Group spacing={5} className={classes.links}>

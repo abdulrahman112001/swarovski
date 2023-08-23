@@ -1,7 +1,7 @@
 import HeartUnFill from '../atoms/icons/HeartUnFill';
 import HeartFill from '../atoms/icons/HeartFill';
 
-const ProductCard = ({ imageUrl }) => {
+const ProductCard = ({ imageUrl , item }:any) => {
   const afterStyles = {
     '--custom-background-image': `url(${imageUrl})`,
   };
@@ -10,9 +10,12 @@ const ProductCard = ({ imageUrl }) => {
       <div className='relative'>
         <a href='#'>
           <div className='newin-cards'>
-            <div className='mw-[370px]' style={afterStyles}>
+            <div className='mw-[370px]' 
+            //@ts-ignore
+            style={afterStyles}>
+              {/* show */}
               <img
-                src='https://cdn-images.farfetch-contents.com/21/22/88/13/21228813_51103618_600.jpg'
+                src={item?.images[1]?.original}
                 alt='product1'
               />
             </div>
