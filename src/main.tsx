@@ -17,6 +17,7 @@ import Home from './pages/Home.tsx';
 import UnAuthorized from './pages/UnAuthorized.tsx';
 import { AuthLayout } from './utils/auth/AuthLayout.tsx';
 import { ThemeProvider } from './utils/theme/ThemeProvider.tsx';
+import ViewProduct from './components/sections/product-details/viewProduct.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -24,6 +25,7 @@ const router = createBrowserRouter(
       <Route element={<AuthLayout />}>
         <Route element={<RootLayout />}>
           <Route path='/' element={<Home />} />
+          <Route path='/product-detail' element={<ViewProduct />} />
         </Route>
 
         <Route path='*' element={<UnAuthorized />} />

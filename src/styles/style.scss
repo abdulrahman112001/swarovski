@@ -121,5 +121,25 @@ body[scrolling='true'] {
   }
 }
 
+// start product container
+.view-product {
+  .product-container {
+    & > div {
+      &:nth-of-type(n + 1) {
+        grid-column: span 6;
+      }
+
+      &:nth-of-type(n + 3) {
+        grid-column: span 4;
+      }
+    }
+  }
+
+  .product-details-right {
+    position: sticky;
+    top: 124px;
+  }
+}
+
 // media query
 @import 'media';
