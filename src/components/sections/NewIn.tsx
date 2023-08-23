@@ -1,5 +1,5 @@
 import useFetch from '../../hooks/UseFetch';
-import ProductCard from '../elements/cardProduct';
+import ProductCard from '../organisms/cardProduct';
 
 const NewIn = () => {
   const { data: products } = useFetch({
