@@ -308,7 +308,7 @@ const ViewProduct = () => {
                 </div>
 
                 <h4 className='font-bold mb-3'>Highlights</h4>
-                <ul className='grid gap-[8px]'>
+                <ul className='grid gap-[8px] pl-4'>
                   <li className='list-[square]'>
                     <p>black</p>
                   </li>
