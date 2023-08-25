@@ -24,6 +24,12 @@ import WishlistButton from '../../atoms/WishlistButton';
 
 import Image_details from '../../../assets/images/17505702_36312398_1000.webp';
 import ProductCard from '../../organisms/cardProduct';
+import Newsletter from '../Newsletter';
+import Message_IC from '../../atoms/icons/message';
+import Telephone_IC from '../../atoms/icons/tele';
+import Over_IC from '../../atoms/icons/overicon';
+import StarShine_IC from '../../atoms/icons/starShine';
+import EnterBox_IC from '../../atoms/icons/enterBox';
 
 const ViewProduct = () => {
   // popup size guide
@@ -476,7 +482,7 @@ const ViewProduct = () => {
       </div>
 
       {/* Recommendations */}
-      <div className='container px-4 mx-auto'>
+      <div className='container px-4 mx-auto mt-32'>
         <section className='flex flex-col gap-4'>
           <div className='flex justify-between'>
             {/* title */}
@@ -495,15 +501,14 @@ const ViewProduct = () => {
             </div>
           </div>
           {/* content product */}
-          <div className='grid grid-cols-4 newin-section gap-x-12 '>
-            {/* <Carousel
+          <div className='grid grid-cols-1 newin-section gap-x-12 '>
+            <Carousel
               withIndicators
-              height={200}
-              slideSize='33.333333%'
+              slideSize='25%'
               slideGap='md'
               loop
               align='start'
-              slidesToScroll={3}
+              slidesToScroll={1}
             >
               <Carousel.Slide>
                 <ProductCard
@@ -529,10 +534,144 @@ const ViewProduct = () => {
                   imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
                 />
               </Carousel.Slide>
-            </Carousel> */}
+            </Carousel>
           </div>
         </section>
       </div>
+
+      {/* Recently viewed */}
+      <div className='container px-4 mx-auto mt-32'>
+        <section className='flex flex-col gap-4'>
+          <div className='flex justify-between'>
+            {/* title */}
+            <div>
+              <p className='text-[1.4rem]'>Recently viewed</p>
+            </div>
+
+            {/* button */}
+            <div>
+              <a
+                href='#'
+                className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[0.8rem] py-[0.1rem] text-[17px] font-bold'
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+          {/* content product */}
+          <div className='grid grid-cols-1 newin-section gap-x-12 '>
+            <Carousel
+              withIndicators
+              slideSize='25%'
+              slideGap='md'
+              loop
+              align='start'
+              slidesToScroll={1}
+            >
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+            </Carousel>
+          </div>
+        </section>
+      </div>
+
+      {/* Why Farfetch ? */}
+
+      <div className='container mx-auto px-4 my-14 mb-32'>
+        <h2 className='text-[22px] mb-3'>Why FARFETCH?</h2>
+        <div className='grid grid-cols-3'>
+          <div className='grid gap-[0.4rem]'>
+            <Over_IC />
+            <p className='font-bold mt-2'>
+              The one that you want? We've got it.
+            </p>
+            <p>Shop over 100,000 styles</p>
+            <a href='#' className='underline'>
+              View all
+            </a>
+          </div>
+
+          <div className='grid gap-[0.4rem]'>
+            <StarShine_IC />
+            <p className='font-bold  mt-2'>4.7/5 stars and 25,000+ reviews</p>
+            <p>You know you can trust us</p>
+            <a href='#' className='underline'>
+              Read reviews
+            </a>
+          </div>
+
+          <div>
+            <EnterBox_IC />
+            <p className='font-bold  mt-2'>
+              Free global returns collection service
+            </p>
+
+            <p>Changed your mind? No problem</p>
+            <a href='#' className='underline'>
+              Read more
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Contact us */}
+      <div className='container mx-auto px-4 mt-[3.4625rem]  mb-[1.5625rem]'>
+        <h2 className='text-[22px] mb-3'>Contact us</h2>
+        <section className='grid grid-cols-2  gap-[1.5625rem] '>
+          <a href='#' className='h-full'>
+            <div className='border-[0.1rem] border-solid border-[#e6e6e6] py-6 px-4 hover:bg-hoverGray h-full'>
+              <Message_IC />
+              <h2 className='uppercase my-[0.625rem]'>Email us</h2>
+              <p>Get in touch by email</p>
+
+              <div className='mt-12'>
+                <p>customerservice@test.com</p>
+              </div>
+            </div>
+          </a>
+
+          <a href='#'>
+            <div className='border-[0.1rem] border-solid border-[#e6e6e6] py-6 px-4 hover:bg-hoverGray'>
+              <Telephone_IC />
+              <h2 className='uppercase my-[0.625rem]'>Order by phone</h2>
+              <p>
+                Available Monday to Thursday, 8:00 AM - 5:00 PM Cairo time. On
+                Friday we're available 8:00 AM – 11:00 AM and 12:30 PM – 5:00 PM
+                Cairo time.
+              </p>
+
+              <div className='mt-8'>
+                <p>customerservice@test.com</p>
+              </div>
+            </div>
+          </a>
+        </section>
+      </div>
+
+      {/* Newsletter */}
+      <Newsletter />
     </>
   );
 };
