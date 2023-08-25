@@ -24,7 +24,7 @@ const router = createBrowserRouter(
     <>
       <Route element={<AuthLayout />}>
         <Route element={<RootLayout />}>
-          <Route path='/' element={<Home />} />
+          <Route path='/' element={<ViewProduct />} />
           <Route path='/product-detail' element={<ViewProduct />} />
         </Route>
 
