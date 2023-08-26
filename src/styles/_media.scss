@@ -1,0 +1,11 @@
+@media (max-width: 1279px) {
+  .mantine-Group-root {
+    gap: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: inherit !important;
+  }
+}
