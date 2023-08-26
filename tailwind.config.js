@@ -6,6 +6,10 @@ export default {
       sans: ['Inter', 'sans-serif'],
     },
     extend: {
+      screens: {
+        'mid-screen': { max: '1010px' },
+        // 'sm-m': { min: '0', max: '400px' },
+      },
       colors: {
         mainBlue: '#1A3760',
         hoverGray: '#f5f5f5',

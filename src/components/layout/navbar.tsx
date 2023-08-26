@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import {
   Autocomplete,
@@ -6,8 +6,9 @@ import {
   Group,
   Header,
   Menu,
+  Drawer,
   createStyles,
-  rem
+  rem,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
@@ -18,6 +19,8 @@ import HeartSVG from '../atoms/icons/Heart';
 import PersonSVG from '../atoms/icons/Person';
 import ShopSVG from '../atoms/icons/Shop';
 import DropDownNavBar from '../organisms/dropDownNavBar';
+import Hamburger_ic from '../atoms/icons/hamburger';
+import Search_IC from '../atoms/icons/search';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -81,6 +84,10 @@ const setScrollingAttribute = () => {
 };
 
 const NavbarSection = ({ links }: HeaderSearchProps) => {
+  // show sidebar in mid screen
+  const [openedSideBar, { open, close }] = useDisclosure(false);
+  // show and hide items in page
+  const [shouldShowButton, setShouldShowButton] = useState(true);
   const [opened, { toggle }] = useDisclosure(false);
   const { classes } = useStyles();
 
@@ -98,6 +105,27 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // hide and show items in screens ⭐➡️ hide item in screens > 1010px
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1011) {
+        setShouldShowButton(false);
+      } else {
+        setShouldShowButton(true);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  //  ⭐➡️End hide item in screens > 1010px
 
   const items = links.map((link) => {
     const menuItems = link.links?.map((item) => (
@@ -136,24 +164,40 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   return (
     <>
-      <header className='header sticky bg-white top-0 left-0 z-[500]'>
-        <div className='container px-4 mx-auto'>
+      <div className='header sticky bg-white top-0 left-0 z-[100] mt-4'>
+        <div className='container mx-auto px-4'>
           <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
             {/* category */}
             {/* Drop Down */}
             <div className='flex items-center nav-link ms-[-0.3rem]'>
-              <a href='#' className='my-4 mx-[1.2rem] active'>
-                Wonan
-              </a>
-              <a href='#' className='my-4 mx-[1.2rem]'>
-                Men
-              </a>
-              <a href='#' className='my-4 mx-[1.2rem]'>
-                Kids
-              </a>
-              <a href='#' className='my-4 mx-[1.2rem]'>
-                Beauty
-              </a>
+              {shouldShowButton || (
+                <>
+                  <a href='#' className=' mx-[1.2rem]  active'>
+                    Wonan
+                  </a>
+                  <a href='#' className=' mx-[1.2rem]'>
+                    Men
+                  </a>
+                  <a href='#' className=' mx-[1.2rem]'>
+                    Kids
+                  </a>
+                  <a href='#' className=' mx-[1.2rem]'>
+                    Beauty
+                  </a>
+                </>
+              )}
+
+              {!shouldShowButton || (
+                <div className='flex gap-4 '>
+                  <button className='w-6 h-6 ' onClick={open}>
+                    <Hamburger_ic />
+                  </button>
+
+                  <button className='w-6 h-6 '>
+                    <Search_IC />
+                  </button>
+                </div>
+              )}
             </div>
 
             <a href='/' className='w-[12rem] h-6 grid items-center col-[2]'>
@@ -161,12 +205,17 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </a>
 
             <div className='flex justify-end items-center me-[-0.4rem]'>
-              <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
-                <GlobalSVG />
-              </button>
-              <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
-                <PersonSVG />
-              </button>
+              {shouldShowButton || (
+                <>
+                  <button className='w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
+                    <GlobalSVG />
+                  </button>
+                  <button className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                    <PersonSVG />
+                  </button>
+                </>
+              )}
+
               <a
                 href='#'
                 className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
@@ -182,32 +231,38 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </div>
           </nav>
         </div>
-
-        <Header height={56} className={classes?.header} mb={120}>
-          <div className='container px-4 mx-auto'>
-            <div className={classes.inner}>
-              <Group spacing={5} className={classes.links}>
-                {items}
-              </Group>
-              {/* search */}
-              <Autocomplete
-                className={classes.search}
-                placeholder='Search'
-                icon={<IconSearch size='1rem' stroke={1.5} />}
-                data={[
-                  'React',
-                  'Angular',
-                  'Vue',
-                  'Next.js',
-                  'Riot.js',
-                  'Svelte',
-                  'Blitz.js',
-                ]}
-              />
+        {/* hide navbar in > 1010px */}
+        {shouldShowButton || (
+          <Header height={56} className={classes?.header} mb={120}>
+            <div className='container mx-auto px-4'>
+              <div className={classes.inner}>
+                <Group spacing={5} className={classes.links}>
+                  {items}
+                </Group>
+                {/* search */}
+                <Autocomplete
+                  className={classes.search}
+                  placeholder='Search'
+                  icon={<IconSearch size='1rem' stroke={1.5} />}
+                  data={[
+                    'React',
+                    'Angular',
+                    'Vue',
+                    'Next.js',
+                    'Riot.js',
+                    'Svelte',
+                    'Blitz.js',
+                  ]}
+                />
+              </div>
             </div>
-          </div>
-        </Header>
-      </header>
+          </Header>
+        )}
+
+        <Drawer opened={openedSideBar} onClose={close} title='Authentication'>
+          hello
+        </Drawer>
+      </div>
     </>
   );
 };

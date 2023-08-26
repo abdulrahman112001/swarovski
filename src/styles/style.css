@@ -86,4 +86,49 @@ body[scrolling=true] .header {
 }
 .New-input-checked input[type=checkbox]:not(:checked) ~ svg[data-icon=true] {
   display: none;
+}
+
+.view-product .product-container > div:nth-of-type(n + 1) {
+  grid-column: span 6;
+}
+.view-product .product-container > div:nth-of-type(n + 3) {
+  grid-column: span 4;
+}
+.view-product .product-details-right {
+  position: sticky;
+  top: 135px;
+}
+
+.details-product-available div {
+  width: 33.333%;
+}
+.details-product-available div:last-child {
+  justify-content: start !important;
+}
+
+.bread-crumbs-style div,
+.bread-crumbs-style a {
+  color: #222;
+  font-size: 14px;
+}
+
+.wishlist-button .icon-hide {
+  display: none;
+}
+.wishlist-button:hover .icon-show {
+  display: none;
+}
+.wishlist-button:hover .icon-hide {
+  display: block;
+}
+
+@media (max-width: 1279px) {
+  .mantine-Group-root {
+    gap: 0 !important;
+  }
+}
+@media (max-width: 768px) {
+  .container {
+    max-width: inherit !important;
+  }
 }/*# sourceMappingURL=style.css.map */

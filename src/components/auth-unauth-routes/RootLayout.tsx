@@ -93,19 +93,6 @@ const RootLayout = () => {
         { link: '/homeware/furniture', label: 'Furniture' },
       ],
     },
-    {
-      link: '/pre-owned',
-      label: 'Pre-owned',
-      links: [
-        { link: '/pre-owned/clothing', label: 'Clothing' },
-        { link: '/pre-owned/accessories', label: 'Accessories' },
-        { link: '/pre-owned/shoes', label: 'Shoes' },
-      ],
-    },
-    {
-      link: '/sale',
-      label: 'Sale',
-    },
   ];
 
   return (

@@ -6,7 +6,7 @@ const NewIn = () => {
     endpoint: `products`,
     queryKey: [`all-products`],
   });
-  console.log("🚀 ~ file: NewIn.tsx:9 ~ NewIn ~ products:", products)
+  console.log('🚀 ~ file: NewIn.tsx:9 ~ NewIn ~ products:', products);
   return (
     <div className='container px-4 mx-auto'>
       <section className='flex flex-col gap-4'>
@@ -31,13 +31,9 @@ const NewIn = () => {
         </div>
         {/* content product */}
         <div className='grid grid-cols-4 newin-section gap-x-12 '>
-          {
-            products?.data?.map((item)=>(
-              
-              <ProductCard imageUrl={item?.images[0]?.original} item={item}/>
-            ))
-          }
-
+          {products?.data?.map((item) => (
+            <ProductCard imageUrl={item?.images[0]?.original} item={item} />
+          ))}
         </div>
       </section>
     </div>
