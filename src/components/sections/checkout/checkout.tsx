@@ -6,6 +6,12 @@ import { IconChevronDown } from '@tabler/icons-react';
 import HeartFill from '../../atoms/icons/HeartFill';
 import HeartUnFill from '../../atoms/icons/HeartUnFill';
 import MainButton from '../../atoms/mainButton';
+import Recommendation from './recommendation';
+import ContactUsBlock from './contactUs';
+import { Carousel } from '@mantine/carousel';
+import ProductCard from '../../organisms/cardProduct';
+import HelpBar from '../HelpBar';
+import Newsletter from '../Newsletter';
 
 const CheckOutProduct = () => {
   const [opened, { close, open }] = useDisclosure(false);
@@ -45,7 +51,7 @@ const CheckOutProduct = () => {
 
               {/* hover info icon => i */}
               <Popover
-                width={200}
+                width={300}
                 position='left'
                 withArrow
                 shadow='md'
@@ -211,6 +217,174 @@ const CheckOutProduct = () => {
           </div>
         </div>
       </section>
+
+      <Recommendation />
+
+      {/* Recommendations */}
+      <div className='container px-4 mx-auto mt-24'>
+        <section className='flex flex-col gap-4'>
+          <div className='flex justify-between'>
+            {/* title */}
+            <div>
+              <p className='text-[1.4rem]'>Recommendations</p>
+            </div>
+
+            {/* button */}
+            <div>
+              <a
+                href='#'
+                className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[0.8rem] py-[0.1rem] text-[17px] font-bold'
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+          {/* content product */}
+          <div className='grid grid-cols-1 newin-section gap-x-12 '>
+            <Carousel
+              slideSize='25%'
+              slideGap='md'
+              loop
+              align='start'
+              slidesToScroll={1}
+            >
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+            </Carousel>
+          </div>
+        </section>
+      </div>
+
+      {/* Recently viewed */}
+      <div className='container px-4 mx-auto mt-24'>
+        <section className='flex flex-col gap-4'>
+          <div className='flex justify-between'>
+            {/* title */}
+            <div>
+              <p className='text-[1.4rem]'>Recently viewed</p>
+            </div>
+
+            {/* button */}
+            <div>
+              <a
+                href='#'
+                className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[0.8rem] py-[0.1rem] text-[17px] font-bold'
+              >
+                Shop Now
+              </a>
+            </div>
+          </div>
+          {/* content product */}
+          <div className='grid grid-cols-1 newin-section gap-x-12 '>
+            <Carousel
+              slideSize='25%'
+              slideGap='sm'
+              loop
+              align='start'
+              slidesToScroll={1}
+            >
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+              <Carousel.Slide>
+                <ProductCard
+                  item='https://cdn-images.farfetch-contents.com/19/36/15/60/19361560_44363153_480.jpg'
+                  imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg'
+                />
+              </Carousel.Slide>
+            </Carousel>
+          </div>
+        </section>
+      </div>
+
+      <ContactUsBlock />
+
+      <Newsletter />
     </>
   );
 };
