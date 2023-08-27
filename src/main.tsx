@@ -18,14 +18,16 @@ import UnAuthorized from './pages/UnAuthorized.tsx';
 import { AuthLayout } from './utils/auth/AuthLayout.tsx';
 import { ThemeProvider } from './utils/theme/ThemeProvider.tsx';
 import ViewProduct from './components/sections/product-details/viewProduct.tsx';
+import CheckOutProduct from './components/sections/checkout/checkout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
       <Route element={<AuthLayout />}>
         <Route element={<RootLayout />}>
-          <Route path='/' element={<ViewProduct />} />
+          <Route path='/' element={<CheckOutProduct />} />
           <Route path='/product-detail' element={<ViewProduct />} />
+          <Route path='/checkout' element={<CheckOutProduct />} />
         </Route>
 
         <Route path='*' element={<UnAuthorized />} />
