@@ -166,3 +166,15 @@ body {
 .mantine-1nmvwx4 {
   width: 1.15rem !important;
 }
+
+.mantine-Modal-header h2 {
+  font-size: 22px;
+}
+
+.mantine-x1pc2p {
+  border: none;
+}
+.mantine-x1pc2p:hover,
+.mantine-w37pz:hover {
+  background-color: transparent !important;
+}
