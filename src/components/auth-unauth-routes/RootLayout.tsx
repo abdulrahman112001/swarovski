@@ -14,12 +14,12 @@ const RootLayout = () => {
   const navigate = useNavigate();
   const [showSignupState, setShowSignupState] = useState(false);
 
-  useEffect(() => {
-    if (user) {
-      navigate('/');
-      setShowSignupState(false);
-    } else setShowSignupState(true);
-  }, [user]);
+  // useEffect(() => {
+  //   if (user) {
+  //     navigate('/');
+  //     setShowSignupState(false);
+  //   } else setShowSignupState(true);
+  // }, [user]);
 
   const linksData = [
     {
@@ -109,7 +109,7 @@ const RootLayout = () => {
           withNormalizeCSS
           theme={{ colorScheme: colorScheme }}
         >
-          <Notifications />
+          <Notifications position='top-right' />
           <Outlet />
         </MantineProvider>
       </ColorSchemeProvider>

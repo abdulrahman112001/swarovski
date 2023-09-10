@@ -29,6 +29,8 @@ export const notify = (
                 "&:hover": { backgroundColor: theme.colors.green[9] },
               },
             }),
+            autoClose: 1500,
+
           })
       break
     }

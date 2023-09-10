@@ -21,6 +21,7 @@ import ShopSVG from '../atoms/icons/Shop';
 import DropDownNavBar from '../organisms/dropDownNavBar';
 import Hamburger_ic from '../atoms/icons/hamburger';
 import Search_IC from '../atoms/icons/search';
+import useProductStore from '../../store/productStore';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -161,11 +162,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       );
     }
   });
+  const { products } = useProductStore();
 
   return (
     <>
       <div className='header sticky bg-white top-0 left-0 z-[100] mt-4'>
-        <div className='container mx-auto px-4'>
+        <div className='container px-4 mx-auto'>
           <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
             {/* category */}
             {/* Drop Down */}
@@ -227,6 +229,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                 className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
               >
                 <ShopSVG />
+                {products.length}
               </a>
             </div>
           </nav>
@@ -234,7 +237,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         {/* hide navbar in > 1010px */}
         {shouldShowButton || (
           <Header height={56} className={classes?.header} mb={120}>
-            <div className='container mx-auto px-4'>
+            <div className='container px-4 mx-auto'>
               <div className={classes.inner}>
                 <Group spacing={5} className={classes.links}>
                   {items}
