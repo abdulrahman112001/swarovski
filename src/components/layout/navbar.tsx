@@ -5,32 +5,23 @@ import {
   Group,
   Header,
   Menu,
-  Modal,
-  PasswordInput,
-  Tabs,
-  TextInput,
   createStyles,
   rem,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { IconChevronDown } from "@tabler/icons-react";
+import { IconChevronDown, IconSearch } from "@tabler/icons-react";
 import { useEffect, useState } from "react";
-import { IconSearch } from "@tabler/icons-react";
 import { Link } from "react-router-dom";
 import useProductStore from "../../store/productStore";
 import GlobalSVG from "../atoms/icons/Global";
 import HeartSVG from "../atoms/icons/Heart";
 import PersonSVG from "../atoms/icons/Person";
 import ShopSVG from "../atoms/icons/Shop";
-import CheckFalse from "../atoms/icons/checkFalse";
-import CheckTrue from "../atoms/icons/checkTrue";
-import MainButton from "../atoms/mainButton";
-import SecondaryButton from "../atoms/secondaryButton";
-import PasswordRequirementInput from "../molecules/PasswordRequirement";
-import DropDownNavBar from "../organisms/dropDownNavBar";
 import Hamburger_ic from "../atoms/icons/hamburger";
 import Search_IC from "../atoms/icons/search";
+import DropDownNavBar from "../organisms/dropDownNavBar";
 import DynamicNavbar from "./DynamicNavbar";
+import AuthinticationForm from "../../auth/AuthinticationForm";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -81,7 +72,6 @@ interface HeaderSearchProps {
     links: { link: string; label: string }[];
   }[];
 }
-
 // function Check the scrolling position
 const setScrollingAttribute = () => {
   const scrolling = window.scrollY >= 10;
@@ -94,27 +84,6 @@ const setScrollingAttribute = () => {
 };
 
 const NavbarSection = ({ links }: HeaderSearchProps) => {
-  // handle Email
-  const [emailValue, setEmailValue] = useState("");
-  // handle Password
-  const [handlePassword, setHandlePassword] = useState("");
-
-  // handle Name Register
-  const [registerName, setRegisterName] = useState("");
-
-  // handle Email Register
-  const [registerEmail, setRegisterEmail] = useState("");
-
-  // Forgot Password
-  const [forgotPassword, setForgotPassword] = useState("");
-
-  // ChangeState When Click Forget => hide item
-  const [forgotTab, setForgotTab] = useState(false);
-
-  const HandleForgotPassword = () => {
-    setForgotTab(true);
-  };
-
   // show sidebar in mid screen
   const [openedSideBar, { open, close }] = useDisclosure(false);
   // show and hide items in page
@@ -129,10 +98,6 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
   const { classes } = useStyles();
 
   const [isChecked, setIsChecked] = useState(true);
-
-  const handleCheckboxChange = (event: any) => {
-    setIsChecked(event.target.checked);
-  };
 
   useEffect(() => {
     if (isChecked) {
@@ -223,7 +188,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             <div className="flex items-center nav-link ms-[-0.3rem]">
               {shouldShowButton || (
                 <>
-                  <DynamicNavbar/>
+                  <DynamicNavbar />
                 </>
               )}
 
@@ -306,190 +271,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         <Drawer opened={openedSideBar} onClose={close} title="Authentication">
           hello
         </Drawer>
-
-        <Modal
-          opened={openedLogin}
-          onClose={closeLogin}
-          title={forgotTab ? "Forgot your password?" : `Come on in`}
-          centered
-          size="md"
-        >
-          <Tabs color="dark" defaultValue="sign in">
-            {forgotTab || (
-              <Tabs.List>
-                <Tabs.Tab value="sign in">
-                  <h2 className="uppercase text-[17px]">sign in</h2>
-                </Tabs.Tab>
-                <Tabs.Tab value="im new here">
-                  <h2 className="uppercase text-[17px]">i&#39;m new here</h2>
-                </Tabs.Tab>
-              </Tabs.List>
-            )}
-
-            <Tabs.Panel value="sign in" pt="xs">
-              <div className="grid gap-2">
-                <TextInput
-                  placeholder="Email address"
-                  label="Email address"
-                  value={emailValue}
-                  onChange={(event) => setEmailValue(event.currentTarget.value)}
-                />
-                <PasswordInput
-                  placeholder="Password"
-                  label="Password"
-                  value={handlePassword}
-                  onChange={(event) =>
-                    setHandlePassword(event.currentTarget.value)
-                  }
-                />
-
-                <div className="relative flex w-fit New-input-checked">
-                  <input
-                    type="checkbox"
-                    className="absolute opacity-0 cursor-pointer"
-                    onChange={handleCheckboxChange}
-                  />
-                  <CheckFalse />
-                  <CheckTrue />
-
-                  <p>Keep me signed in.</p>
-                </div>
-
-                <div>
-                  <Tabs.Tab value="forgot password" pt="xs">
-                    <p className="underline" onClick={HandleForgotPassword}>
-                      Forgot your password?
-                    </p>
-                  </Tabs.Tab>
-
-                  <MainButton title="Sign In" className="w-full" />
-                </div>
-
-                <p className="text-center uppercase">or</p>
-
-                <SecondaryButton
-                  title="Continue With Google"
-                  className="w-full"
-                />
-                <SecondaryButton
-                  title="Continue With Apple"
-                  className="w-full"
-                />
-                <SecondaryButton
-                  title="Continue With Facebook"
-                  className="w-full"
-                />
-
-                <Tabs.Tab value="im new here">
-                  <h2 className="uppercase text-[17px] underline">
-                    New to FarFETCH? Register.
-                  </h2>
-                </Tabs.Tab>
-              </div>
-            </Tabs.Panel>
-
-            <Tabs.Panel value="im new here" pt="xs">
-              <div className="grid gap-2">
-                <TextInput
-                  placeholder="Your Name"
-                  label="Name"
-                  onChange={(event) =>
-                    setRegisterName(event.currentTarget.value)
-                  }
-                />
-                <TextInput
-                  placeholder="Email address"
-                  label="Email address"
-                  onChange={(event) =>
-                    setRegisterEmail(event.currentTarget.value)
-                  }
-                />
-
-                <PasswordRequirementInput />
-
-                <div>
-                  <p className="text-[14px]">
-                    By registering, you agree to our{" "}
-                    <a href="#" className="underline">
-                      Terms & Conditions, Privacy and Cookie Policy,
-                    </a>
-                    and to join our loyalty programme
-                  </p>
-                </div>
-
-                <div className="flex">
-                  <div className="relative flex w-fit New-input-checked">
-                    <input
-                      type="checkbox"
-                      className="absolute opacity-0 cursor-pointer"
-                      onChange={handleCheckboxChange}
-                    />
-                    <CheckFalse />
-                    <CheckTrue />
-                  </div>
-
-                  <p className="text-[14px]">
-                    Sign up and never miss out on exclusive member rewards,
-                    tailored new arrivals and new launches. Unsubscribe at the
-                    bottom of our emails.
-                  </p>
-                </div>
-
-                <div>
-                  <MainButton title="Rigister" className="w-full" />
-                </div>
-
-                <p className="text-center uppercase">or</p>
-
-                <SecondaryButton
-                  title="Continue With Google"
-                  className="w-full"
-                />
-                <SecondaryButton
-                  title="Continue With Apple"
-                  className="w-full"
-                />
-                <SecondaryButton
-                  title="Continue With Facebook"
-                  className="w-full"
-                />
-              </div>
-            </Tabs.Panel>
-
-            <Tabs.Panel value="forgot password" pt="xs">
-              <div className="grid gap-6">
-                <div>
-                  <p>
-                    Enter your email address and we'll send you a link to reset
-                    your password
-                  </p>
-                </div>
-
-                <div>
-                  <TextInput
-                    placeholder="Email address"
-                    label="Email address"
-                    onChange={(event) =>
-                      setForgotPassword(event.currentTarget.value)
-                    }
-                  />
-                </div>
-
-                <div className="grid gap-4">
-                  <MainButton title="Reset Password" className="w-full" />
-                  <Tabs.Tab value="sign in" className="w-full border-none">
-                    <h2
-                      className="uppercase text-[17px]"
-                      onClick={() => setForgotTab(false)}
-                    >
-                      Back to Sigh In
-                    </h2>
-                  </Tabs.Tab>
-                </div>
-              </div>
-            </Tabs.Panel>
-          </Tabs>
-        </Modal>
+        <AuthinticationForm openedLogin={openedLogin} closeLogin={closeLogin} />
       </div>
     </>
   );

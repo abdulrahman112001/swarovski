@@ -254,6 +254,9 @@ const ViewProduct = () => {
                       name: Detailsproducts?.data?.name,
                       price: Detailsproducts?.data?.price,
                       count: 1,
+                      image:Detailsproducts?.data?.main_image,
+                      desc:Detailsproducts?.data?.description
+
                     });
                     notify(
                       "success",

@@ -38,7 +38,7 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
   };
   const { products, addProduct } = useProductStore();
   console.log(
-    "🚀 ~ file: cardProduct.tsx:39 ~ ProductCard ~ products:",
+    "🚀 ~ file: cardProduct.tsx:40 ~ ProductCard ~ products:",
     products
   );
 
@@ -65,7 +65,7 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
               <h3 className="font-bold">{item?.name}</h3>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: item?.description.slice(0,30),
+                  __html: item?.description?.slice(0, 30),
                 }}
               ></p>
               <p className="mt-4">{item?.price} €</p>
@@ -104,6 +104,8 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
                       name: item?.name,
                       price: item?.price,
                       count: 1,
+                      image: item?.hover_image,
+                      desc: item?.description,
                     });
                     notify(
                       "success",
