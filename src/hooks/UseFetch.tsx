@@ -24,7 +24,7 @@ type useFetchPops_TP = {
   const query = useQuery<T>({
     queryKey,
     queryFn: () =>
-      axios.get(`http://127.0.0.1:8000/api/${endpoint}${localization ? '&localization=en' : ''}` ,config)
+      axios.get(`https://revlis.tech/api/${endpoint}${localization ? '&localization=en' : ''}` ,config)
         .then((res) => res.data),
     enabled,
     select,

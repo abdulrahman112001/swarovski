@@ -65,7 +65,7 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
               <h3 className="font-bold">{item?.name}</h3>
               <p
                 dangerouslySetInnerHTML={{
-                  __html: item?.description,
+                  __html: item?.description.slice(0,30),
                 }}
               ></p>
               <p className="mt-4">{item?.price} €</p>

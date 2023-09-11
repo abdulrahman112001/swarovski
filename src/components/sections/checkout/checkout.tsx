@@ -1,17 +1,16 @@
-import { useState } from 'react';
+import { Carousel } from '@mantine/carousel';
+import { CloseButton, Input, Popover } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { Popover, Input, CloseButton } from '@mantine/core';
-import Info_IC from '../../atoms/icons/info';
 import { IconChevronDown } from '@tabler/icons-react';
+import { useState } from 'react';
 import HeartFill from '../../atoms/icons/HeartFill';
 import HeartUnFill from '../../atoms/icons/HeartUnFill';
+import Info_IC from '../../atoms/icons/info';
 import MainButton from '../../atoms/mainButton';
-import Recommendation from './recommendation';
-import ContactUsBlock from './contactUs';
-import { Carousel } from '@mantine/carousel';
 import ProductCard from '../../organisms/cardProduct';
-import HelpBar from '../HelpBar';
 import Newsletter from '../Newsletter';
+import ContactUsBlock from './contactUs';
+import Recommendation from './recommendation';
 
 const CheckOutProduct = () => {
   const [opened, { close, open }] = useDisclosure(false);
@@ -28,7 +27,7 @@ const CheckOutProduct = () => {
 
   return (
     <>
-      <section className='container mx-auto px-4'>
+      <section className='container px-4 mx-auto'>
         <div className='grid grid-cols-2 py-8'>
           <h1 className='font-[nimbus,sans-serif] font-extrabold uppercase'>
             Shopping Bag
@@ -42,11 +41,11 @@ const CheckOutProduct = () => {
         </div>
 
         <div className='grid grid-cols-12 gap-8 pb-12'>
-          <div className='grid grid-cols-12 col-span-8  '>
+          <div className='grid grid-cols-12 col-span-8 '>
             <div className='col-span-8'>
               <h2>Sending from Italy</h2>
             </div>
-            <div className='col-span-4 flex justify-between'>
+            <div className='flex justify-between col-span-4'>
               <span>SImport duties are included</span>
 
               {/* hover info icon => i */}
@@ -105,7 +104,7 @@ const CheckOutProduct = () => {
               </div>
 
               {/* product details */}
-              <div className='col-span-4 grid gap-4'>
+              <div className='grid col-span-4 gap-4'>
                 <div>
                   <p>Size</p>
                   <div className='flex gap-2'>
@@ -204,7 +203,7 @@ const CheckOutProduct = () => {
               <span className='font-bold'>Total</span>
               <div>
                 <p className='flex justify-end'>
-                  USD <span className='font-bold mx-2'> $8,101.00</span>
+                  USD <span className='mx-2 font-bold'> $8,101.00</span>
                 </p>
                 <span>Import duties included</span>
               </div>

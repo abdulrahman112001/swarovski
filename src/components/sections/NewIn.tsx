@@ -31,7 +31,7 @@ const NewIn = () => {
         </div>
         {/* content product */}
         <div className='grid grid-cols-4 newin-section gap-x-12 '>
-          {products?.data?.map((item) => (
+          {products?.data?.products?.map((item) => (
             <ProductCard imageUrl={item?.main_image} item={item} />
           ))}
         </div>

@@ -24,7 +24,7 @@ export function useMutate<response_T>({ endpoint, mutationKey, onError, onSucces
     mutationFn: (values) => {
             return axios({
                 method: "post",
-                url: `https://www.ezcariq.com/api/v1/${endpoint}`,
+                url: `http://revlis.tech/api/${endpoint}`,
                 data: values,
                 headers: formData ? {
                     "Content-Type": "multipart/form-data",

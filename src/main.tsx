@@ -8,17 +8,18 @@ import {
   RouterProvider,
   createBrowserRouter,
   createRoutesFromElements,
-} from 'react-router-dom';
-import RootLayout from './components/auth-unauth-routes/RootLayout.tsx';
-import './i18n.ts';
-import './index.css';
-import './styles/style.css';
-import Home from './pages/Home.tsx';
-import UnAuthorized from './pages/UnAuthorized.tsx';
-import { AuthLayout } from './utils/auth/AuthLayout.tsx';
-import { ThemeProvider } from './utils/theme/ThemeProvider.tsx';
-import ViewProduct from './components/sections/product-details/viewProduct.tsx';
-import CheckOutProduct from './components/sections/checkout/checkout.tsx';
+} from "react-router-dom";
+import RootLayout from "./components/auth-unauth-routes/RootLayout.tsx";
+import "./i18n.ts";
+import "./index.css";
+import "./styles/style.css";
+import Home from "./pages/Home.tsx";
+import UnAuthorized from "./pages/UnAuthorized.tsx";
+import { AuthLayout } from "./utils/auth/AuthLayout.tsx";
+import { ThemeProvider } from "./utils/theme/ThemeProvider.tsx";
+import ViewProduct from "./components/sections/product-details/viewProduct.tsx";
+import CheckOutProduct from "./components/sections/checkout/checkout.tsx";
+import Pages from "./pages/Pages.tsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -26,12 +27,12 @@ const router = createBrowserRouter(
       <Route element={<AuthLayout />}>
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/page/:id" element={<Pages />} />
           <Route path="/product-details/:id" element={<ViewProduct />} />
-          <Route path='/' element={<CheckOutProduct />} />
-          <Route path='/product-detail' element={<ViewProduct />} />
-          <Route path='/checkout' element={<CheckOutProduct />} />
+          <Route path="/" element={<CheckOutProduct />} />
+          <Route path="/product-detail" element={<ViewProduct />} />
+          <Route path="/checkout" element={<CheckOutProduct />} />
         </Route>
-
         <Route path="*" element={<UnAuthorized />} />
       </Route>
     </>
