@@ -5,10 +5,12 @@ import {
   Group,
   Header,
   Menu,
+  Popover,
   createStyles,
   rem,
 } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import Cookies from 'js-cookie';
 import { IconChevronDown, IconSearch } from '@tabler/icons-react';
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -23,6 +25,8 @@ import DropDownNavBar from '../organisms/dropDownNavBar';
 import DynamicNavbar from './DynamicNavbar';
 import AuthinticationForm from '../../auth/AuthinticationForm';
 import LogoSite_IC from '../atoms/image/LogoSite';
+import CloseX_IC from '../atoms/icons/closeX';
+import MainButton from '../atoms/mainButton';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -91,6 +95,11 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
   const [shouldShowButton, setShouldShowButton] = useState(true);
 
   const [opened, { toggle }] = useDisclosure(false);
+
+  const [openUserInfo, setOpenUserInfo] = useState(false);
+
+  // get cookie
+  const user_token = Cookies.get('user_token');
 
   // login
   const [openedLogin, { open: openLogin, close: closeLogin }] =
@@ -226,12 +235,75 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                   <button className='w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
                     <GlobalSVG />
                   </button>
-                  <button
-                    onClick={openLogin}
-                    className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
-                  >
-                    <PersonSVG />
-                  </button>
+
+                  {/* start after login */}
+
+                  {user_token && (
+                    <Popover
+                      width={300}
+                      position='bottom'
+                      withArrow
+                      shadow='md'
+                      opened={openUserInfo}
+                      onChange={setOpenUserInfo}
+                    >
+                      <Popover.Target>
+                        <div
+                          className='flex  justify-center items-center cursor-pointer rounded-[0.8rem] hover:bg-hoverGray'
+                          onClick={() => setOpenUserInfo((o) => !o)}
+                        >
+                          <button className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                            <PersonSVG />
+                          </button>
+                          <span> Abdo elsk...</span>
+                        </div>
+                      </Popover.Target>
+                      <Popover.Dropdown>
+                        <div className='flex justify-between'>
+                          <h2 className='text-[20px] font-medium'>
+                            Abdo elsheikh
+                          </h2>
+                          <button
+                            className='w-8 h-8 p-[6px] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+                            onClick={() => setOpenUserInfo(false)}
+                          >
+                            <CloseX_IC />
+                          </button>
+                        </div>
+
+                        <ul className='w-full'>
+                          <li>
+                            <a href='#'> My Profile </a>
+                          </li>
+                          <li>
+                            <a href='#'> Store Credits </a>
+                          </li>
+                          <li>
+                            <a href='#'> My Orders </a>
+                          </li>
+                          <li>
+                            <a href='#'> Returns </a>
+                          </li>
+                        </ul>
+
+                        <div className='flex justify-end'>
+                          <MainButton title='Sign Out' />
+                        </div>
+                      </Popover.Dropdown>
+                    </Popover>
+                  )}
+                  {/* end after login */}
+
+                  {/* start before login */}
+                  {!user_token && (
+                    <button
+                      onClick={openLogin}
+                      className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    >
+                      <PersonSVG />
+                    </button>
+                  )}
+                  {/* end before login */}
                 </>
               )}
 
