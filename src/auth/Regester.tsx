@@ -1,7 +1,6 @@
 import { PasswordInput, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import { t } from "i18next";
-import Cookies from "js-cookie";
 import CheckFalse from "../components/atoms/icons/checkFalse";
 import CheckTrue from "../components/atoms/icons/checkTrue";
 import MainButton from "../components/atoms/mainButton";
@@ -29,9 +28,8 @@ export default function Regester() {
     mutationKey: ["login"],
     onSuccess: (data: any) => {
 
-      const token = data.data.data.token;
-
-      Cookies.set("user_token", token, { expires: 7 });
+      // const token = data.data.data.token;
+      // Cookies.set("user_token", token, { expires: 7 });
 
       notify("success", "_", `${t("Welcome")}`);
       login(form.values);
