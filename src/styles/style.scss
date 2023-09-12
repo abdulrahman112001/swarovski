@@ -209,5 +209,14 @@ body[scrolling='true'] {
   }
 }
 
+.mantine-Menu-dropdown {
+  top: 70px !important;
+}
+
+.drop-down-menu-navbar {
+  .mantine-1tob3vr {
+    padding: 0;
+  }
+}
 // media query
 @import 'media';

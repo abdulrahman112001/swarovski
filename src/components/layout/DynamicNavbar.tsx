@@ -9,10 +9,6 @@ export default function DynamicNavbar() {
   console.log('🚀 ~ file: DynamicNavbar.tsx:9 ~ DynamicNavbar ~ Navs:', Navs);
   return (
     <>
-      <Link to={`/`} className='mx-2 font-bold'>
-        Home
-      </Link>
-
       {Navs?.data?.map((nav: any) => (
         <Link to={`/page/${nav?.id}`} className='mx-2'>
           {nav?.name}

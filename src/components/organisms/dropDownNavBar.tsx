@@ -2,7 +2,7 @@ import ImageProduct from '../atoms/image/datatest.webp';
 const DropDownNavBar = () => {
   return (
     <>
-      <div className='container mx-auto px-7 mt-4 mb-5'>
+      <div className='container mx-auto px-7 mt-5 mb-5'>
         <div className='grid grid-cols-4 py-[1.875rem]'>
           <div className='col-span-1'>
             <h2 className='text-[#222] uppercase mb-[15px]'>Bags</h2>

@@ -153,40 +153,6 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   //  ⭐➡️End hide item in screens > 1010px
 
-  const items = links.map((link) => {
-    const menuItems = link.links?.map((item) => (
-      <Menu.Item key={item.link}>{item.label}</Menu.Item>
-    ));
-
-    if (menuItems) {
-      return (
-        <Menu
-          key={link.label}
-          trigger='hover'
-          transitionProps={{ exitDuration: 0 }}
-          withinPortal
-          openDelay={200}
-          closeDelay={230}
-        >
-          <Menu.Target>
-            <a
-              href={link.link}
-              className={classes.link}
-              onClick={(event) => event.preventDefault()}
-            >
-              <Center>
-                <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size='0.9rem' stroke={1.5} />
-              </Center>
-            </a>
-          </Menu.Target>
-          <Menu.Dropdown>
-            <DropDownNavBar />
-          </Menu.Dropdown>
-        </Menu>
-      );
-    }
-  });
   const { products } = useProductStore();
 
   return (
@@ -195,10 +161,36 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         <div className='container px-4 mx-auto'>
           <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
             {/* dynamic navigation */}
-            <div className='flex items-center nav-link ms-[-0.3rem]'>
+            <div className='flex items-center nav-link ms-[-0.3rem] drop-down-menu-navbar'>
+              <Link to={`/`} className='mx-2 font-bold'>
+                Home
+              </Link>
               {shouldShowButton || (
                 <>
-                  <DynamicNavbar />
+                  <Menu
+                    key={''}
+                    trigger='hover'
+                    transitionProps={{ exitDuration: 0 }}
+                    withinPortal
+                    openDelay={200}
+                    closeDelay={230}
+                  >
+                    <Menu.Target>
+                      <a
+                        href='#'
+                        className={classes.link}
+                        onClick={(event) => event.preventDefault()}
+                      >
+                        <Center>
+                          <DynamicNavbar />
+                          {/* <IconChevronDown size='0.9rem' stroke={1.5} /> */}
+                        </Center>
+                      </a>
+                    </Menu.Target>
+                    <Menu.Dropdown>
+                      <DropDownNavBar />
+                    </Menu.Dropdown>
+                  </Menu>
                 </>
               )}
 
@@ -324,14 +316,17 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           </nav>
         </div>
         {/* hide navbar in > 1010px */}
+        {/*
+         */}
+
+        {/* header and search */}
+        {/*          
         {shouldShowButton || (
           <Header height={56} className={classes?.header} mb={120}>
             <div className='container px-4 mx-auto'>
               <div className={classes.inner}>
-                <Group spacing={5} className={classes.links}>
-                  {/* {items} */}
-                </Group>
-                {/* search */}
+                <Group spacing={1} className={classes.links}></Group>
+                
                 <Autocomplete
                   className={classes.search}
                   placeholder='Search'
@@ -349,7 +344,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               </div>
             </div>
           </Header>
-        )}
+        )} */}
 
         <Drawer
           opened={openedSideBar}

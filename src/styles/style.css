@@ -152,6 +152,14 @@ body[scrolling=true] .header {
   display: block;
 }
 
+.mantine-Menu-dropdown {
+  top: 70px !important;
+}
+
+.drop-down-menu-navbar .mantine-1tob3vr {
+  padding: 0;
+}
+
 @media (max-width: 1279px) {
   .mantine-Group-root {
     gap: 0 !important;
