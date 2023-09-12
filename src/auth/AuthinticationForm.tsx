@@ -1,11 +1,8 @@
-import { Modal, PasswordInput, Tabs, TextInput } from "@mantine/core";
-import { useState } from "react";
-import CheckFalse from "../components/atoms/icons/checkFalse";
-import CheckTrue from "../components/atoms/icons/checkTrue";
-import MainButton from "../components/atoms/mainButton";
-import SecondaryButton from "../components/atoms/secondaryButton";
-import Login from "./Login";
+import { Modal, Tabs, TextInput } from "@mantine/core";
 import { useForm } from "@mantine/form";
+import { useState } from "react";
+import MainButton from "../components/atoms/mainButton";
+import Login from "./Login";
 import Regester from "./Regester";
 
 export default function AuthinticationForm({ openedLogin, closeLogin }: any) {

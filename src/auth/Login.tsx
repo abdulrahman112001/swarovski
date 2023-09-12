@@ -9,6 +9,7 @@ import SecondaryButton from "../components/atoms/secondaryButton";
 import { useMutate } from "../hooks/useMutate";
 import { useAuth } from "../utils/auth/AuthProvider";
 import { notify } from "../utils/notify";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const form = useForm({
@@ -23,12 +24,14 @@ export default function Login() {
   });
 
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   const { mutate: postData, data } = useMutate({
     endpoint: "auth/login",
     formData: true,
     mutationKey: ["login"],
     onSuccess: (data: any) => {
+      console.log("🚀 ~ file: Login.tsx:34 ~ Login ~ data:", data)
       const token = data.data.data.token;
       console.log("🚀 ~ file: Login.tsx:37 ~ Login ~ token:", token);
 
@@ -36,17 +39,12 @@ export default function Login() {
 
       notify("success", "_", `${t("Welcome")}`);
       login(form.values);
-      //   Navigate('/')
+      navigate("/");
       //   if (toggleModal)
       //     toggleModal()
     },
     onError: (err) => {
-      notify(
-        "error",
-        err?.response?.data?.message,
-        "الشركه غير مفعلة بعد",
-        err?.response?.data?.message
-      );
+      notify("error");
     },
   });
 
