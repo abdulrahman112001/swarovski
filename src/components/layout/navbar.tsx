@@ -7,54 +7,55 @@ import {
   Menu,
   createStyles,
   rem,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { IconChevronDown, IconSearch } from "@tabler/icons-react";
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import useProductStore from "../../store/productStore";
-import GlobalSVG from "../atoms/icons/Global";
-import HeartSVG from "../atoms/icons/Heart";
-import PersonSVG from "../atoms/icons/Person";
-import ShopSVG from "../atoms/icons/Shop";
-import Hamburger_ic from "../atoms/icons/hamburger";
-import Search_IC from "../atoms/icons/search";
-import DropDownNavBar from "../organisms/dropDownNavBar";
-import DynamicNavbar from "./DynamicNavbar";
-import AuthinticationForm from "../../auth/AuthinticationForm";
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconChevronDown, IconSearch } from '@tabler/icons-react';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import useProductStore from '../../store/productStore';
+import GlobalSVG from '../atoms/icons/Global';
+import HeartSVG from '../atoms/icons/Heart';
+import PersonSVG from '../atoms/icons/Person';
+import ShopSVG from '../atoms/icons/Shop';
+import Hamburger_ic from '../atoms/icons/hamburger';
+import Search_IC from '../atoms/icons/search';
+import DropDownNavBar from '../organisms/dropDownNavBar';
+import DynamicNavbar from './DynamicNavbar';
+import AuthinticationForm from '../../auth/AuthinticationForm';
+import LogoSite_IC from '../atoms/image/LogoSite';
 
 const useStyles = createStyles((theme) => ({
   inner: {
     height: rem(56),
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
 
   links: {
-    [theme.fn.smallerThan("sm")]: {
-      display: "none",
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
     },
   },
 
   burger: {
-    [theme.fn.largerThan("sm")]: {
-      display: "none",
+    [theme.fn.largerThan('sm')]: {
+      display: 'none',
     },
   },
 
   search: {
-    [theme.fn.smallerThan("xs")]: {
-      display: "none",
+    [theme.fn.smallerThan('xs')]: {
+      display: 'none',
     },
   },
 
   link: {
-    display: "block",
+    display: 'block',
     lineHeight: 1,
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
-    textDecoration: "none",
+    textDecoration: 'none',
     color: theme.black,
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
@@ -77,9 +78,9 @@ const setScrollingAttribute = () => {
   const scrolling = window.scrollY >= 10;
 
   if (scrolling) {
-    document.body.setAttribute("scrolling", "true");
+    document.body.setAttribute('scrolling', 'true');
   } else {
-    document.body.removeAttribute("scrolling");
+    document.body.removeAttribute('scrolling');
   }
 };
 
@@ -101,9 +102,9 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   useEffect(() => {
     if (isChecked) {
-      document.body.setAttribute("input-check", "true");
+      document.body.setAttribute('input-check', 'true');
     } else {
-      document.body.removeAttribute("input-check");
+      document.body.removeAttribute('input-check');
     }
   }, [isChecked]);
 
@@ -115,10 +116,10 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       setScrollingAttribute();
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener('scroll', handleScroll);
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener('scroll', handleScroll);
     };
   }, []);
 
@@ -132,12 +133,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       }
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     handleResize();
 
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener('resize', handleResize);
     };
   }, []);
 
@@ -152,7 +153,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       return (
         <Menu
           key={link.label}
-          trigger="hover"
+          trigger='hover'
           transitionProps={{ exitDuration: 0 }}
           withinPortal
           openDelay={200}
@@ -166,7 +167,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             >
               <Center>
                 <span className={classes.linkLabel}>{link.label}</span>
-                <IconChevronDown size="0.9rem" stroke={1.5} />
+                <IconChevronDown size='0.9rem' stroke={1.5} />
               </Center>
             </a>
           </Menu.Target>
@@ -181,11 +182,11 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   return (
     <>
-      <div className="header sticky bg-white top-0 left-0 z-[100] mt-4">
-        <div className="container px-4 mx-auto">
-          <nav className="grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0">
+      <div className='header sticky bg-white top-0 left-0 z-[100] mt-4'>
+        <div className='container px-4 mx-auto'>
+          <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
             {/* dynamic navigation */}
-            <div className="flex items-center nav-link ms-[-0.3rem]">
+            <div className='flex items-center nav-link ms-[-0.3rem]'>
               {shouldShowButton || (
                 <>
                   <DynamicNavbar />
@@ -193,31 +194,41 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               )}
 
               {!shouldShowButton || (
-                <div className="flex gap-4 ">
-                  <button className="w-6 h-6 " onClick={open}>
+                <div className='flex gap-4 '>
+                  <button
+                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    onClick={open}
+                  >
                     <Hamburger_ic />
                   </button>
 
-                  <button className="w-6 h-6 ">
+                  <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
                     <Search_IC />
                   </button>
                 </div>
               )}
             </div>
 
-            <a href="/" className="w-[12rem] h-6 grid items-center col-[2]">
-              {/* <LogoSVG /> */}
+            <a
+              href='/'
+              className='w-[12rem] max-h-18 grid items-center col-[2]'
+            >
+              <LogoSite_IC />
             </a>
 
-            <div className="flex justify-end items-center me-[-0.4rem]">
+            <div className='flex justify-end items-center me-[-0.4rem]'>
               {shouldShowButton || (
                 <>
-                  <button className="w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray ">
+                  <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                    <Search_IC />
+                  </button>
+
+                  <button className='w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
                     <GlobalSVG />
                   </button>
                   <button
                     onClick={openLogin}
-                    className="w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
+                    className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
                   >
                     <PersonSVG />
                   </button>
@@ -225,14 +236,14 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               )}
 
               <a
-                href="#"
-                className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
+                href='#'
+                className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
               >
                 <HeartSVG />
               </a>
               <Link
-                to="/checkout"
-                className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
+                to='/checkout'
+                className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
               >
                 <ShopSVG />
                 {products.length}
@@ -243,7 +254,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         {/* hide navbar in > 1010px */}
         {shouldShowButton || (
           <Header height={56} className={classes?.header} mb={120}>
-            <div className="container px-4 mx-auto">
+            <div className='container px-4 mx-auto'>
               <div className={classes.inner}>
                 <Group spacing={5} className={classes.links}>
                   {/* {items} */}
@@ -251,16 +262,16 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                 {/* search */}
                 <Autocomplete
                   className={classes.search}
-                  placeholder="Search"
-                  icon={<IconSearch size="1rem" stroke={1.5} />}
+                  placeholder='Search'
+                  icon={<IconSearch size='1rem' stroke={1.5} />}
                   data={[
-                    "React",
-                    "Angular",
-                    "Vue",
-                    "Next.js",
-                    "Riot.js",
-                    "Svelte",
-                    "Blitz.js",
+                    'React',
+                    'Angular',
+                    'Vue',
+                    'Next.js',
+                    'Riot.js',
+                    'Svelte',
+                    'Blitz.js',
                   ]}
                 />
               </div>
@@ -268,7 +279,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           </Header>
         )}
 
-        <Drawer opened={openedSideBar} onClose={close} title="Authentication">
+        <Drawer
+          opened={openedSideBar}
+          onClose={close}
+          position='left'
+          size='100%'
+        >
           hello
         </Drawer>
         <AuthinticationForm openedLogin={openedLogin} closeLogin={closeLogin} />

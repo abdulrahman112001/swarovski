@@ -2,6 +2,36 @@
   font-family: nimbus;
   src: url("../assets/fonts/nimbus-roman.otf");
 }
+@font-face {
+  font-family: "Nimbus Sans Extended D";
+  src: url(../assets/fonts/NimbusSansExtD-Bold.woff2) format("woff2"), url(../assets/fonts/NimbusSansExtD-Bold.woff) format("woff");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Nimbus Roman D";
+  src: url(../assets/fonts/NimbusSansExtD-Bold.woff) format("woff2"), url(../assets/fonts/NimbusRomanD-Regular.woff) format("woff");
+  font-display: swap;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Farfetch Basis";
+  src: url(../assets/fonts/FarfetchBasis-Regular.woff2) format("woff2"), url(../assets/fonts/FarfetchBasis-Regular.woff) format("woff");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Farfetch Basis";
+  src: url(../assets/fonts/FarfetchBasis-Bold.woff2) format("woff2"), url(../assets/fonts/FarfetchBasis-Bold.woff) format("woff");
+  font-display: swap;
+  font-weight: 700;
+  font-style: normal;
+}
+:root {
+  --fontNormal: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
+}
+
 body[scrolling=true] .header {
   border-bottom: 1px solid #e6e6e6;
   padding-bottom: 8px;

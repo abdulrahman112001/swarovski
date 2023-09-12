@@ -23,7 +23,7 @@ const NewIn = () => {
           <div>
             <a
               href='#'
-              className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[0.8rem] py-[0.1rem] text-[17px] font-bold'
+              className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[0.8rem] py-[0.4rem] text-[17px] font-bold'
             >
               Shop Now
             </a>
