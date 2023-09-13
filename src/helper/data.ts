@@ -45,3 +45,33 @@ export const select_size = [
     available: '',
   },
 ];
+
+export const cartegorys = [
+  {
+    id: 'z1',
+    name: 'Jewelry',
+    category: ['Necklaces', 'Rings', 'Earrings', 'Bracelets', 'Jewelry Sets'],
+  },
+  {
+    id: 'z2',
+    name: 'Silver',
+    available: [
+      'Rings',
+      'Bracelets',
+      'Necklaces',
+      'Silver Set',
+      'Accessories',
+      'Rosary',
+    ],
+  },
+  {
+    id: 'z3',
+    name: 'Gifts',
+    available: [
+      'Anniversary jewels',
+      'Kids Jewels',
+      'Engagement Rings',
+      'Wedding Jewelry',
+    ],
+  },
+];

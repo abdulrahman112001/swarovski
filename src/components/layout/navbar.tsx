@@ -4,6 +4,7 @@ import {
   Drawer,
   Group,
   Header,
+  HoverCard,
   Menu,
   Popover,
   createStyles,
@@ -165,7 +166,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               <Link to={`/`} className='mx-2 font-bold'>
                 Home
               </Link>
-              {shouldShowButton || (
+              {/* {shouldShowButton || (
                 <>
                   <Menu
                     key={''}
@@ -183,7 +184,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                       >
                         <Center>
                           <DynamicNavbar />
-                          {/* <IconChevronDown size='0.9rem' stroke={1.5} /> */}
+                       
                         </Center>
                       </a>
                     </Menu.Target>
@@ -192,7 +193,9 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                     </Menu.Dropdown>
                   </Menu>
                 </>
-              )}
+              )} */}
+
+              <DynamicNavbar />
 
               {!shouldShowButton || (
                 <div className='flex gap-4 '>
