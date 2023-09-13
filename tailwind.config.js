@@ -7,8 +7,9 @@ export default {
     },
     extend: {
       screens: {
+        'phone-screen': { max: '480px' },
         'mid-screen': { max: '1010px' },
-        // 'sm-m': { min: '0', max: '400px' },
+        'sm-m': { min: '0', max: '400px' },
       },
       colors: {
         mainBlue: '#1A3760',

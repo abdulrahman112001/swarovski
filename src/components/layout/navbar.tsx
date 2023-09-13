@@ -140,7 +140,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
   // hide and show items in screens ⭐➡️ hide item in screens > 1010px
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 1011) {
+      if (window.innerWidth >= 900) {
         setShouldShowButton(false);
       } else {
         setShouldShowButton(true);
@@ -162,15 +162,17 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   return (
     <>
-      <div className='header sticky bg-white top-0 left-0 z-[100] mt-4'>
+      <div className='header sticky bg-white top-0 left-0 z-[100] '>
         <div className='container px-4 mx-auto'>
-          <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0'>
+          <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0 py-[5px]'>
             {/* dynamic navigation */}
             <div className='flex items-center nav-link ms-[-0.3rem] drop-down-menu-navbar'>
-              <Link to={`/`} className='mx-2 font-bold'>
-                Home
-              </Link>
-              {/* {shouldShowButton || (
+              {shouldShowButton || (
+                <>
+                  <Link to={`/`} className='mx-2 font-bold'>
+                    Home
+                  </Link>
+                  {/* {shouldShowButton || (
                 <>
                   <Menu
                     key={''}
@@ -199,10 +201,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                 </>
               )} */}
 
-              <DynamicNavbar />
+                  <DynamicNavbar />
+                </>
+              )}
 
               {!shouldShowButton || (
-                <div className='flex gap-4 '>
+                <div className='flex  '>
                   <button
                     className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
                     onClick={open}
@@ -210,7 +214,10 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                     <Hamburger_ic />
                   </button>
 
-                  <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                  <button
+                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    onClick={openSearch}
+                  >
                     <Search_IC />
                   </button>
                 </div>
@@ -219,7 +226,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
             <a
               href='/'
-              className='w-[12rem] max-h-18 grid items-center col-[2]'
+              className='w-[12rem] phone-screen:!w-[10rem] sm-m:!w-[7rem] max-h-18 grid items-center col-[2]'
             >
               <LogoSite_IC />
             </a>
@@ -376,7 +383,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           size='27%'
           className='drawer-search relative'
         >
-          <div className='flex flex-col gap-6  w-[30%] items-center'>
+          <div className='flex flex-col gap-6  w-[30%] mid-screen:w-[65%] phone-screen:!w-[95%] items-center'>
             <button
               className='w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]'
               onClick={closeSearch}
