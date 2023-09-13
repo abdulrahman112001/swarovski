@@ -218,5 +218,16 @@ body[scrolling='true'] {
     padding: 0;
   }
 }
+
+.drawer-search {
+  .mantine-Drawer-header {
+    display: none;
+  }
+  .mantine-Drawer-body {
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+  }
+}
 // media query
 @import 'media';

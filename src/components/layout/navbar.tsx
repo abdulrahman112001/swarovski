@@ -7,6 +7,8 @@ import {
   HoverCard,
   Menu,
   Popover,
+  Tabs,
+  TextInput,
   createStyles,
   rem,
 } from '@mantine/core';
@@ -92,6 +94,8 @@ const setScrollingAttribute = () => {
 const NavbarSection = ({ links }: HeaderSearchProps) => {
   // show sidebar in mid screen
   const [openedSideBar, { open, close }] = useDisclosure(false);
+  const [openedSearch, { open: openSearch, close: closeSearch }] =
+    useDisclosure(false);
   // show and hide items in page
   const [shouldShowButton, setShouldShowButton] = useState(true);
 
@@ -223,7 +227,10 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             <div className='flex justify-end items-center me-[-0.4rem]'>
               {shouldShowButton || (
                 <>
-                  <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                  <button
+                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    onClick={openSearch}
+                  >
                     <Search_IC />
                   </button>
 
@@ -349,6 +356,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           </Header>
         )} */}
 
+        {/* sideBar phone screen */}
         <Drawer
           opened={openedSideBar}
           onClose={close}
@@ -356,6 +364,68 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           size='100%'
         >
           hello
+        </Drawer>
+
+        {/* dropdown search */}
+
+        <Drawer
+          opened={openedSearch}
+          onClose={closeSearch}
+          position='top'
+          overlayProps={{ opacity: 0.5, blur: 4 }}
+          size='27%'
+          className='drawer-search relative'
+        >
+          <div className='flex flex-col gap-6  w-[30%] items-center'>
+            <button
+              className='w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+              onClick={closeSearch}
+            >
+              <CloseX_IC />
+            </button>
+            <a
+              href='/'
+              className='w-[14rem] max-h-18 grid items-center col-[2] '
+            >
+              <LogoSite_IC />
+            </a>
+
+            <Tabs color='dark' defaultValue='Jewelry' className='w-full'>
+              <Tabs.Panel value='Jewelry' pb='lg'>
+                <div>
+                  <TextInput
+                    placeholder='Search Jewelry'
+                    withAsterisk
+                    icon={<Search_IC fill='#b6b6b6' />}
+                  />
+                </div>
+              </Tabs.Panel>
+              <Tabs.Panel value='Silver' pb='lg'>
+                <div>
+                  <TextInput
+                    placeholder='Search Silver'
+                    withAsterisk
+                    icon={<Search_IC fill='#b6b6b6' />}
+                  />
+                </div>
+              </Tabs.Panel>
+              <Tabs.Panel value='Gifts' pb='lg'>
+                <div>
+                  <TextInput
+                    placeholder='Search Gifts'
+                    withAsterisk
+                    icon={<Search_IC fill='#b6b6b6' />}
+                  />
+                </div>
+              </Tabs.Panel>
+
+              <Tabs.List>
+                <Tabs.Tab value='Jewelry'>Jewelry</Tabs.Tab>
+                <Tabs.Tab value='Silver'>Silver</Tabs.Tab>
+                <Tabs.Tab value='Gifts'>Gifts</Tabs.Tab>
+              </Tabs.List>
+            </Tabs>
+          </div>
         </Drawer>
         <AuthinticationForm openedLogin={openedLogin} closeLogin={closeLogin} />
       </div>
