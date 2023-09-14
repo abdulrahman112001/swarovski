@@ -31,7 +31,7 @@ export default function Login() {
     formData: true,
     mutationKey: ["login"],
     onSuccess: (data: any) => {
-      console.log("🚀 ~ file: Login.tsx:34 ~ Login ~ data:", data)
+      console.log("🚀 ~ file: Login.tsx:34 ~ Login ~ data:", data);
       const token = data.data.data.token;
       console.log("🚀 ~ file: Login.tsx:37 ~ Login ~ token:", token);
 

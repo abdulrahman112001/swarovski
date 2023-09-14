@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
-import useFetch from "../hooks/UseFetch";
-import ProductCard from "../components/organisms/cardProduct";
+import useFetch from "./hooks/UseFetch";
+import ProductCard from "./components/organisms/cardProduct";
 
 export default function Pages() {
   const { id } = useParams();

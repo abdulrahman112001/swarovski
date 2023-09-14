@@ -19,7 +19,7 @@ type useFetchPops_TP = {
   const token = specificToken ? specificToken : useCompanyToken ? company_token : user_token;
   const authorizationHeader = `Bearer ${token}`;
   const config = {
-    headers: { Authorization: authorizationHeader },
+    headers: { Authorization: authorizationHeader , lang:"en" },
   };
   const query = useQuery<T>({
     queryKey,
