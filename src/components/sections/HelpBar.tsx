@@ -5,7 +5,7 @@ import QuestionMarkSVG from '../atoms/icons/questionMark';
 const HelpBar = () => {
   return (
     <div className='container mx-auto px-4'>
-      <section className='grid grid-cols-3 mt-[3.4625rem] mx-[1.125rem] mb-[1.5625rem] gap-[1.5625rem] '>
+      <section className='grid grid-cols-3 s-800:grid-cols-2 sm-m:grid-cols-1 mt-[3.4625rem] mx-[1.125rem] mb-[1.5625rem] gap-[1.5625rem] '>
         <a href='#'>
           <div className='border-[0.1rem] border-solid border-[#e6e6e6] py-6 px-4 hover:bg-hoverGray'>
             <HangerSVG />

@@ -24,7 +24,7 @@ const Newsletter = () => {
   };
   return (
     <div className='container mx-auto px-4'>
-      <section className='grid grid-cols-2 my-20'>
+      <section className='grid grid-cols-2 md-m:grid-cols-1 my-20 lg-m:gap-8'>
         <div>
           <p className='text-[33px] font-[nimbus,sans-serif] uppercase font-extrabold'>
             Get 10% off your first order

@@ -9,7 +9,16 @@ export default {
       screens: {
         'phone-screen': { max: '480px' },
         'mid-screen': { max: '1010px' },
-        'sm-m': { min: '0', max: '400px' },
+        's-500': { max: '500px' },
+        's-800': { max: '800px' },
+        's-900': { max: '900px' },
+
+        'xs-m': { min: '0', max: '400px' },
+        'sm-m': { max: '576px' },
+        'md-m': { max: '768px' },
+        'lg-m': { max: '992px' },
+        'xl-m': { max: '1279px' },
+        'xxl-m': { max: '1400px' },
       },
       colors: {
         mainBlue: '#1A3760',

@@ -230,5 +230,66 @@ body[scrolling='true'] {
   }
 }
 
+.navigation-accordion {
+  .mantine-Accordion-content,
+  .mantine-Accordion-control {
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+  }
+
+  .mantine-Accordion-control {
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+
+  .mantine-Accordion-chevron {
+    svg {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+}
+
+.sidebar-menu {
+  .mantine-Drawer-header {
+    display: none;
+  }
+  .mantine-Drawer-body {
+    padding: 10px;
+  }
+}
+
+.dropdown-user-info {
+  .mantine-Accordion-panel {
+    background-color: #fff !important;
+  }
+
+  .mantine-Accordion-content {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+.dropdown-language-info {
+  .mantine-Accordion-control {
+    padding: 0;
+  }
+
+  .mantine-Accordion-chevron {
+    svg {
+      width: 24px !important;
+      height: 24px !important;
+    }
+  }
+
+  .mantine-Accordion-item {
+    border-bottom: none;
+  }
+
+  .mantine-Accordion-content {
+    padding: 0;
+  }
+}
 // media query
 @import 'media';

@@ -11,7 +11,7 @@ const PaymentsArea = () => {
         <div className='container mx-auto px-4 grid gap-2'>
           <h2 className='font-bold'>Payment methods</h2>
 
-          <ul className='flex gap-4'>
+          <ul className='flex gap-4 flex-wrap'>
             <li className='border-solid border-[0.01rem] border-[#e6e6e6] rounded-[0.4rem] w-12 h-[30px]'>
               <AmericanExpress />
             </li>

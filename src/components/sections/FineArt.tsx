@@ -21,7 +21,7 @@ const FineArt = () => {
           </div>
         </div>
         {/* content product */}
-        <div className='newin-section grid grid-cols-4 gap-x-8 '>
+        <div className='newin-section grid grid-cols-4 lg-m:grid-cols-2 phone-screen:!grid-cols-1 gap-x-8 '>
           <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
           <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
           <ProductCard imageUrl='https://cdn-images.farfetch-contents.com/21/22/88/29/21228829_51104623_600.jpg' />
