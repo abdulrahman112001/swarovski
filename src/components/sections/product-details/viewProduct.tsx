@@ -10,7 +10,7 @@ import {
   Tabs,
 } from '@mantine/core';
 import { IconChevronDown } from '@tabler/icons-react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Image_details from '../../../assets/images/17505702_36312398_1000.webp';
 import { select_size, table_body, table_head } from '../../../helper/data';
 import WishlistButton from '../../atoms/WishlistButton';
@@ -33,6 +33,14 @@ import { notify } from '../../../utils/notify';
 const ViewProduct = () => {
   const { id } = useParams();
   console.log('🚀 ~ file: viewProduct.tsx:33 ~ ViewProduct ~ id:', id);
+
+  const focasRef = useRef(null);
+
+  useEffect(() => {
+    if (focasRef.current) {
+      focasRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
 
   const { data: Detailsproducts } = useFetch({
     endpoint: `products/${id}`,
@@ -141,6 +149,7 @@ const ViewProduct = () => {
   return (
     <>
       {/* product */}
+      <div className='focas' ref={focasRef} id='top'></div>
       <section className='container px-4 py-8 mx-auto view-product'>
         <div className='grid grid-cols-12 gap-8'>
           <div className='col-span-8'>
