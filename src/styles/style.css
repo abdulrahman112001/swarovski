@@ -211,6 +211,29 @@ body[scrolling=true] .header {
   padding: 0;
 }
 
+.sort-by-list {
+  z-index: 99;
+  position: relative;
+}
+.sort-by-list .mantine-Accordion-label {
+  text-align: center;
+  font-weight: bold;
+}
+.sort-by-list .mantine-Accordion-control,
+.sort-by-list .mantine-Accordion-content {
+  padding: 0 40px;
+}
+.sort-by-list .mantine-Accordion-content {
+  padding-bottom: 10px !important;
+  padding: 0 !important;
+}
+.sort-by-list .mantine-Accordion-item[data-active] {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 0.8rem 1.6rem 0.2rem;
+  background-color: #fff;
+  color: #222;
+  background-color: #fff !important;
+}
+
 @media (max-width: 1279px) {
   .mantine-Group-root {
     gap: 0 !important;
