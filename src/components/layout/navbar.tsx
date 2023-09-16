@@ -252,7 +252,12 @@ const NavbarSection = () => {
 
                         <ul className="w-full">
                           <li>
-                            <a href="#"> My Profile </a>
+                            <Link
+                              to='/profile'
+                              onClick={() => setOpenUserInfo(false)}
+                            >
+                              My Profile{' '}
+                            </Link>
                           </li>
                           <li>
                             <a href="#"> Store Credits </a>

@@ -1,5 +1,7 @@
+import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/UseFetch';
 import ProductCard from '../organisms/cardProduct';
+import { useHistory } from 'react-router-dom';
 
 const NewIn = () => {
   const { data: products } = useFetch({
@@ -7,6 +9,7 @@ const NewIn = () => {
     queryKey: [`all-products`],
   });
   console.log('🚀 ~ file: NewIn.tsx:9 ~ NewIn ~ products:', products);
+
   return (
     <div className='container px-4 mx-auto'>
       <section className='flex flex-col gap-4'>
@@ -21,12 +24,12 @@ const NewIn = () => {
 
           {/* button */}
           <div className='flex justify-end col-span-3 md-m:hidden'>
-            <a
-              href='#'
+            <Link
+              to='/show-product'
               className='rounded-[0.8rem] border-[1px] border-solid border-[#000] h-max px-[0.8rem] py-[0.4rem] text-[17px] font-bold'
             >
               Shop Now
-            </a>
+            </Link>
           </div>
         </div>
         {/* content product */}
