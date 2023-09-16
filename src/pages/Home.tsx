@@ -13,7 +13,7 @@ const Home = () => {
       <FirstSection />
       <NewIn />
       <TrendingWeek />
-      <FineArt />
+      {/* <FineArt /> */}
       <HelpBar />
       <Newsletter />
       <PaymentsArea />

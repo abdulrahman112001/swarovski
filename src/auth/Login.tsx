@@ -11,7 +11,7 @@ import { useAuth } from "../utils/auth/AuthProvider";
 import { notify } from "../utils/notify";
 import { useNavigate } from "react-router-dom";
 
-export default function Login() {
+export default function Login({ closeLogin }) {
   const form = useForm({
     initialValues: {
       email: "",
@@ -23,7 +23,7 @@ export default function Login() {
     },
   });
 
-  const { login } = useAuth();
+  const { login  } = useAuth();
   const navigate = useNavigate();
 
   const { mutate: postData, data } = useMutate({
@@ -31,15 +31,13 @@ export default function Login() {
     formData: true,
     mutationKey: ["login"],
     onSuccess: (data: any) => {
-      console.log("🚀 ~ file: Login.tsx:34 ~ Login ~ data:", data);
       const token = data.data.data.token;
-      console.log("🚀 ~ file: Login.tsx:37 ~ Login ~ token:", token);
 
       Cookies.set("user_token", token, { expires: 7 });
-
       notify("success", "_", `${t("Welcome")}`);
-      login(form.values);
+      login(data.data.data.user);
       navigate("/");
+      closeLogin(false);
       //   if (toggleModal)
       //     toggleModal()
     },

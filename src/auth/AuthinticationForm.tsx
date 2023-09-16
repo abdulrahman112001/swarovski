@@ -44,7 +44,7 @@ export default function AuthinticationForm({ openedLogin, closeLogin }: any) {
         )}
 
         <Tabs.Panel value="sign in" pt="xs">
-          <Login />
+          <Login  closeLogin={closeLogin}/>
         </Tabs.Panel>
 
         <Tabs.Panel value="im new here" pt="xs">

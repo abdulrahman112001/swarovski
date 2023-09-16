@@ -11,7 +11,7 @@ export default function DynamicNavbar() {
     <>
       {Navs?.data?.map((nav: any) => (
         <HoverCard
-          // width={280}
+          width={200}
           shadow="md"
           withArrow
           openDelay={200}
