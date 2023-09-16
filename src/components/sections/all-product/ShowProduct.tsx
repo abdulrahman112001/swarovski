@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useDisclosure } from '@mantine/hooks';
 import {
   Accordion,
@@ -23,7 +23,6 @@ const ShowProduct = () => {
   const [checked, setChecked] = useState(false);
 
   const [value, setValue] = useState(0);
-  const [endValue, setEndValue] = useState(80000);
 
   const { data: products } = useFetch({
     endpoint: `products`,
@@ -40,9 +39,17 @@ const ShowProduct = () => {
     </Anchor>
   ));
 
+  const focasRef = useRef(null);
+
+  useEffect(() => {
+    if (focasRef.current) {
+      focasRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, []);
+
   return (
     <>
-      <div className='container px-4 py-8 mx-auto'>
+      <div className='container px-4 py-8 mx-auto' ref={focasRef}>
         <div className='bread-crumbs-style'>
           <Breadcrumbs separator='>' mt='xs'>
             {items}
