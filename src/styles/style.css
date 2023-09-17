@@ -242,6 +242,14 @@ body[scrolling=true] .header {
   margin-bottom: 0.5rem;
 }
 
+.checkbox-payment-checkout .mantine-Checkbox-label {
+  font-size: 20px !important;
+}
+
+.next-button-stepper .mantine-1vzn4u4 {
+  border: 1px solid var(--mainColor);
+}
+
 @media (max-width: 1279px) {
   .mantine-Group-root {
     gap: 0 !important;
