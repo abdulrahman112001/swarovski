@@ -12,6 +12,7 @@ export default {
         's-500': { max: '500px' },
         's-800': { max: '800px' },
         's-900': { max: '900px' },
+        's-1023': { max: '1023px' },
 
         'xs-m': { min: '0', max: '400px' },
         'sm-m': { max: '576px' },

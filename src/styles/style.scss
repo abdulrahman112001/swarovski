@@ -322,5 +322,11 @@ body[scrolling='true'] {
 .profile-shadow {
   box-shadow: rgba(0, 0, 0, 0.12) 0px 0rem 1rem 0.05rem;
 }
+
+.contact-us-form {
+  label {
+    margin-bottom: 0.5rem;
+  }
+}
 // media query
 @import 'media';

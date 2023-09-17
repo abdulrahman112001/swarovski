@@ -22,6 +22,8 @@ import CheckOutProduct from './components/sections/checkout/checkout.tsx';
 import Pages from './Pages.tsx';
 import ProfileSettings from './components/sections/profile/ProfileSettings.tsx';
 import ShowProduct from './components/sections/all-product/ShowProduct.tsx';
+import ContactUsPage from './components/sections/contact-us/contactUs.tsx';
+import FaqsPage from './components/sections/faqs/faqsPage.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -36,6 +38,8 @@ const router = createBrowserRouter(
           <Route path='/checkout' element={<CheckOutProduct />} />
           <Route path='/profile' element={<ProfileSettings />} />
           <Route path='/show-product' element={<ShowProduct />} />
+          <Route path='/contact-us' element={<ContactUsPage />} />
+          <Route path='/faqs' element={<FaqsPage />} />
         </Route>
         <Route path='*' element={<UnAuthorized />} />
       </Route>
