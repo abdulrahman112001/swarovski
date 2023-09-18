@@ -1,5 +1,5 @@
 import { Carousel } from '@mantine/carousel';
-import { CloseButton, Input, Popover } from '@mantine/core';
+import { CloseButton, Input, Modal, Popover } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconChevronDown } from '@tabler/icons-react';
 import { useState } from 'react';
@@ -15,11 +15,15 @@ import useProductStore, {
   calculateTotalPrice,
 } from '../../../store/productStore';
 import { Link } from 'react-router-dom';
+import Deposit from '../../molecules/Deposit';
+import ModalCOmp from '../../molecules/Modal2';
 
 const CheckOutProduct = () => {
   const [opened, { close, open }] = useDisclosure(false);
   const [changeQuantity, setChangeQuantity] = useState(false);
   const [changeSize, setChangeSize] = useState(false);
+  const [openedCheckOut, { open: openCheckOut, close: closeCheckOut }] =
+    useDisclosure(false);
 
   const changeQuantityHandler = () => {
     setChangeQuantity(!changeQuantity);
@@ -248,7 +252,21 @@ const CheckOutProduct = () => {
 
             {/* button check out */}
             <div className='mt-8'>
-              <MainButton title='Go To Checkout' className='w-full' />
+              <MainButton
+                title='Go To Checkout'
+                className='w-full'
+                action={openCheckOut}
+              />
+
+              <Modal
+                opened={openedCheckOut}
+                onClose={closeCheckOut}
+                centered
+                size='lg'
+                radius={'md'}
+              >
+                <Deposit closeModal={closeCheckOut} />
+              </Modal>
             </div>
           </div>
         </div>
