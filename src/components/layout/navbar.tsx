@@ -1,70 +1,64 @@
 import {
   Accordion,
-  Autocomplete,
-  Center,
   Drawer,
-  Group,
-  Header,
-  HoverCard,
-  Menu,
   Popover,
   Tabs,
   TextInput,
   createStyles,
   rem,
-} from '@mantine/core';
-import { useDisclosure } from '@mantine/hooks';
-import Cookies from 'js-cookie';
-import { IconChevronDown, IconSearch } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import useProductStore from '../../store/productStore';
-import GlobalSVG from '../atoms/icons/Global';
-import HeartSVG from '../atoms/icons/Heart';
-import PersonSVG from '../atoms/icons/Person';
-import ShopSVG from '../atoms/icons/Shop';
-import Hamburger_ic from '../atoms/icons/hamburger';
-import Search_IC from '../atoms/icons/search';
-import DropDownNavBar from '../organisms/dropDownNavBar';
-import DynamicNavbar from './DynamicNavbar';
-import AuthinticationForm from '../../auth/AuthinticationForm';
-import LogoSite_IC from '../atoms/image/LogoSite';
-import CloseX_IC from '../atoms/icons/closeX';
-import MainButton from '../atoms/mainButton';
-import SecondaryButton from '../atoms/secondaryButton';
+} from "@mantine/core";
+import { useDisclosure } from "@mantine/hooks";
+import Cookies from "js-cookie";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import AuthinticationForm from "../../auth/AuthinticationForm";
+import useProductStore from "../../store/productStore";
+import GlobalSVG from "../atoms/icons/Global";
+import HeartSVG from "../atoms/icons/Heart";
+import PersonSVG from "../atoms/icons/Person";
+import ShopSVG from "../atoms/icons/Shop";
+import CloseX_IC from "../atoms/icons/closeX";
+import Hamburger_ic from "../atoms/icons/hamburger";
+import Search_IC from "../atoms/icons/search";
+import LogoSite_IC from "../atoms/image/LogoSite";
+import MainButton from "../atoms/mainButton";
+import SecondaryButton from "../atoms/secondaryButton";
+import DynamicNavbar from "./DynamicNavbar";
+import { useAuth } from "../../utils/auth/AuthProvider";
+import useFetch from "../../hooks/UseFetch";
 
 const useStyles = createStyles((theme) => ({
   inner: {
     height: rem(56),
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    display: "flex",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
 
   links: {
-    [theme.fn.smallerThan('sm')]: {
-      display: 'none',
+    [theme.fn.smallerThan("sm")]: {
+      display: "none",
     },
   },
 
   burger: {
-    [theme.fn.largerThan('sm')]: {
-      display: 'none',
+    [theme.fn.largerThan("sm")]: {
+      display: "none",
     },
   },
 
   search: {
-    [theme.fn.smallerThan('xs')]: {
-      display: 'none',
+    [theme.fn.smallerThan("xs")]: {
+      display: "none",
     },
   },
 
   link: {
-    display: 'block',
+    display: "block",
     lineHeight: 1,
     padding: `${rem(8)} ${rem(12)}`,
     borderRadius: theme.radius.sm,
-    textDecoration: 'none',
+    textDecoration: "none",
     color: theme.black,
     fontSize: theme.fontSizes.sm,
     fontWeight: 500,
@@ -87,13 +81,13 @@ const setScrollingAttribute = () => {
   const scrolling = window.scrollY >= 10;
 
   if (scrolling) {
-    document.body.setAttribute('scrolling', 'true');
+    document.body.setAttribute("scrolling", "true");
   } else {
-    document.body.removeAttribute('scrolling');
+    document.body.removeAttribute("scrolling");
   }
 };
 
-const NavbarSection = ({ links }: HeaderSearchProps) => {
+const NavbarSection = () => {
   // show sidebar in mid screen
   const [openedSideBar, { open, close }] = useDisclosure(false);
   const [openedSearch, { open: openSearch, close: closeSearch }] =
@@ -101,28 +95,28 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
   // show and hide items in page
   const [shouldShowButton, setShouldShowButton] = useState(true);
 
-  const [opened, { toggle }] = useDisclosure(false);
-
   const [openUserInfo, setOpenUserInfo] = useState(false);
 
   // get cookie
-  const user_token = Cookies.get('user_token');
+  const user_token = Cookies.get("user_token");
+  console.log(
+    "🚀 ~ file: navbar.tsx:102 ~ NavbarSection ~ user_token:",
+    user_token
+  );
 
   // login
   const [openedLogin, { open: openLogin, close: closeLogin }] =
     useDisclosure(false);
 
-  const { classes } = useStyles();
+  // const [isChecked, setIsChecked] = useState(true);
 
-  const [isChecked, setIsChecked] = useState(true);
-
-  useEffect(() => {
-    if (isChecked) {
-      document.body.setAttribute('input-check', 'true');
-    } else {
-      document.body.removeAttribute('input-check');
-    }
-  }, [isChecked]);
+  // useEffect(() => {
+  //   if (isChecked) {
+  //     document.body.setAttribute('input-check', 'true');
+  //   } else {
+  //     document.body.removeAttribute('input-check');
+  //   }
+  // }, [isChecked]);
 
   // Check the scrolling position when entering the page
   useEffect(() => {
@@ -132,10 +126,10 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       setScrollingAttribute();
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
@@ -149,12 +143,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
       }
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("resize", handleResize);
 
     handleResize();
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -162,62 +156,40 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
 
   const { products } = useProductStore();
 
+  const { logout, user } = useAuth();
+  const { data: Navs } = useFetch({
+    endpoint: `categories`,
+    queryKey: [`Navbar_dynamic`],
+  });
+
   return (
     <>
-      <div className='header sticky bg-white top-0 left-0 z-[100] '>
-        <div className='container px-4 mx-auto'>
-          <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0 py-[5px]'>
+      <div className="header sticky bg-white top-0 left-0 z-[100] ">
+        <div className="container px-4 mx-auto">
+          <nav className="grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0 py-[5px]">
             {/* dynamic navigation */}
-            <div className='flex items-center nav-link ms-[-0.3rem] drop-down-menu-navbar'>
+            <div className="flex items-center nav-link ms-[-0.3rem] drop-down-menu-navbar">
               {shouldShowButton || (
                 <>
-                  <Link to={`/`} className='mx-2 font-bold'>
+                  <Link to={`/`} className="mx-2 font-bold">
                     Home
                   </Link>
-                  {/* {shouldShowButton || (
-                <>
-                  <Menu
-                    key={''}
-                    trigger='hover'
-                    transitionProps={{ exitDuration: 0 }}
-                    withinPortal
-                    openDelay={200}
-                    closeDelay={230}
-                  >
-                    <Menu.Target>
-                      <a
-                        href='#'
-                        className={classes.link}
-                        onClick={(event) => event.preventDefault()}
-                      >
-                        <Center>
-                          <DynamicNavbar />
-                       
-                        </Center>
-                      </a>
-                    </Menu.Target>
-                    <Menu.Dropdown>
-                      <DropDownNavBar />
-                    </Menu.Dropdown>
-                  </Menu>
-                </>
-              )} */}
 
                   <DynamicNavbar />
                 </>
               )}
 
               {!shouldShowButton || (
-                <div className='flex '>
+                <div className="flex ">
                   <button
-                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
                     onClick={open}
                   >
                     <Hamburger_ic />
                   </button>
 
                   <button
-                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
                     onClick={openSearch}
                   >
                     <Search_IC />
@@ -227,23 +199,23 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </div>
 
             <a
-              href='/'
-              className='w-[12rem] phone-screen:!w-[10rem] xs-m:!w-[7rem] max-h-18 grid items-center col-[2]'
+              href="/"
+              className="w-[12rem] phone-screen:!w-[10rem] xs-m:!w-[7rem] max-h-18 grid items-center col-[2]"
             >
               <LogoSite_IC />
             </a>
 
-            <div className='flex justify-end items-center me-[-0.4rem]'>
+            <div className="flex justify-end items-center me-[-0.4rem]">
               {shouldShowButton || (
                 <>
                   <button
-                    className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                    className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
                     onClick={openSearch}
                   >
                     <Search_IC />
                   </button>
 
-                  <button className='w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
+                  <button className="w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray ">
                     <GlobalSVG />
                   </button>
 
@@ -252,58 +224,61 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                   {user_token && (
                     <Popover
                       width={300}
-                      position='bottom'
+                      position="bottom"
                       withArrow
-                      shadow='md'
+                      shadow="md"
                       opened={openUserInfo}
                       onChange={setOpenUserInfo}
                     >
                       <Popover.Target>
                         <div
-                          className='flex  justify-center items-center cursor-pointer rounded-[0.8rem] hover:bg-hoverGray'
+                          className="flex  justify-center items-center cursor-pointer rounded-[0.8rem] hover:bg-hoverGray"
                           onClick={() => setOpenUserInfo((o) => !o)}
                         >
-                          <button className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'>
+                          <button className="w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray">
                             <PersonSVG />
                           </button>
-                          <span> Abdo elsk...</span>
+                          <span> {user?.username?.split(" ")[0]}</span>
                         </div>
                       </Popover.Target>
                       <Popover.Dropdown>
-                        <div className='flex justify-between'>
-                          <h2 className='text-[20px] font-medium'>
-                            Abdo elsheikh
+                        <div className="flex justify-between">
+                          <h2 className="text-[16px] font-bold">
+                            {user?.username}
                           </h2>
                           <button
-                            className='w-8 h-8 p-[6px] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+                            className="w-8 h-8 p-[6px] rounded-[0.4rem] hover:bg-[#f5f5f5]"
                             onClick={() => setOpenUserInfo(false)}
                           >
                             <CloseX_IC />
                           </button>
                         </div>
 
-                        <ul className='w-full'>
+                        <ul className="w-full">
                           <li>
                             <Link
-                              to='/profile'
+                              to="/profile"
                               onClick={() => setOpenUserInfo(false)}
                             >
-                              My Profile{' '}
+                              My Profile{" "}
                             </Link>
                           </li>
                           <li>
-                            <a href='#'> Store Credits </a>
+                            <a href="#"> Store Credits </a>
                           </li>
                           <li>
-                            <a href='#'> My Orders </a>
+                            <a href="#"> My Orders </a>
                           </li>
                           <li>
-                            <a href='#'> Returns </a>
+                            <a href="#"> Returns </a>
                           </li>
                         </ul>
 
-                        <div className='flex justify-end'>
-                          <MainButton title='Sign Out' />
+                        <div className="flex justify-end">
+                          <MainButton
+                            title="Sign Out"
+                            action={() => logout()}
+                          />
                         </div>
                       </Popover.Dropdown>
                     </Popover>
@@ -314,7 +289,7 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                   {!user_token && (
                     <button
                       onClick={openLogin}
-                      className='w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                      className="w-11 h-11  flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
                     >
                       <PersonSVG />
                     </button>
@@ -324,14 +299,14 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
               )}
 
               <a
-                href='#'
-                className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                href="#"
+                className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
               >
                 <HeartSVG />
               </a>
               <Link
-                to='/checkout'
-                className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                to="/checkout"
+                className="w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray"
               >
                 <ShopSVG />
                 {products.length}
@@ -339,239 +314,112 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
             </div>
           </nav>
         </div>
-        {/* hide navbar in > 1010px */}
-        {/*
-         */}
 
-        {/* header and search */}
-        {/*          
-        {shouldShowButton || (
-          <Header height={56} className={classes?.header} mb={120}>
-            <div className='container px-4 mx-auto'>
-              <div className={classes.inner}>
-                <Group spacing={1} className={classes.links}></Group>
-                
-                <Autocomplete
-                  className={classes.search}
-                  placeholder='Search'
-                  icon={<IconSearch size='1rem' stroke={1.5} />}
-                  data={[
-                    'React',
-                    'Angular',
-                    'Vue',
-                    'Next.js',
-                    'Riot.js',
-                    'Svelte',
-                    'Blitz.js',
-                  ]}
-                />
-              </div>
-            </div>
-          </Header>
-        )} */}
-
-        {/* sideBar phone screen */}
         <Drawer
           opened={openedSideBar}
           onClose={close}
-          position='left'
-          size='45%'
-          className='sidebar-menu relative'
+          position="left"
+          size="45%"
+          className="relative sidebar-menu"
         >
-          <div className='relative flex items-center'>
+          <div className="relative flex items-center">
             <button
-              className='w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+              className="w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]"
               onClick={close}
             >
               <CloseX_IC />
             </button>
 
             <a
-              href='/'
-              className='w-full max-w-[8rem] max-h-18 grid items-center col-[2] '
+              href="/"
+              className="w-full max-w-[8rem] max-h-18 grid items-center col-[2] "
             >
               <LogoSite_IC />
             </a>
           </div>
 
-          <div className='mt-4'>
-            <Tabs color='dark' defaultValue='Gifts'>
+          <div className="mt-4">
+            <Tabs color="dark" defaultValue={Navs?.data[0].name}>
               <Tabs.List>
-                <Tabs.Tab value='Gifts'>Gifts</Tabs.Tab>
-                <Tabs.Tab value='Silver'>Silver</Tabs.Tab>
-                <Tabs.Tab value='All'>All</Tabs.Tab>
-                <Tabs.Tab value='Jewelry'>Jewelry & Accessories</Tabs.Tab>
+                {Navs?.data?.map((nav: any) => (
+                  <Tabs.Tab value={nav?.name}>
+                    <Link
+                      to={{ pathname: `/${nav?.name}/${nav.id}` }}
+                      className="mx-2"
+                    >
+                      {nav?.name}
+                    </Link>
+                  </Tabs.Tab>
+                ))}
               </Tabs.List>
-
-              <Tabs.Panel value='Gifts' pt='xs'>
-                <h2 className='pt-[10px] px-[5px] text-[20px]'>
+              {Navs?.data?.map((nav: any) => (
+                
+              <Tabs.Panel value={nav?.name} pt="xs">
+                <h2 className="pt-[10px] px-[5px] text-[20px]">
                   Gifts category
                 </h2>
-                <ul className=' grid gap-1 mt-2'>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#' className='text-[#222]'>
-                      Anniversary Jewels
-                    </a>
+                <ul className="grid gap-1 mt-2 ">
+                {nav.childreen.map((item: any) => (
+                  
+                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                    <Link to={`/${item?.name}/${item?.id}`}>{item?.name}</Link>
                   </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Kids Jewels </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Engagement Ring </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Wedding Jewelry </a>
-                  </li>
+                ))}
+                 
                 </ul>
               </Tabs.Panel>
+              ))}
 
-              <Tabs.Panel value='Silver' pt='xs'>
-                <h2 className='pt-[10px] px-[5px] text-[20px]'>
-                  Jewelry category
-                </h2>
-                <ul className=' grid gap-1 mt-2'>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#' className='text-[#222]'>
-                      Rings
-                    </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Bracelets </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Necklaces </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Silver Set </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Accessories </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Rosary </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
-
-              <Tabs.Panel value='All' pt='xs'>
-                <h2 className='pt-[10px] px-[5px] text-[20px]'>
-                  Silver category
-                </h2>
-                <ul className=' grid gap-1 mt-2'>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#' className='text-[#222]'>
-                      Rings
-                    </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Bracelets </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Necklaces </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Silver Set </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Accessories </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Rosary </a>
-                  </li>
-
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#' className='text-[#222]'>
-                      Anniversary Jewels
-                    </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Kids Jewels </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Engagement Ring </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Wedding Jewelry </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
-
-              <Tabs.Panel value='Jewelry' pt='xs'>
-                <h2 className='pt-[10px] px-[5px] text-[20px]'>
-                  Accessories category
-                </h2>
-                <ul className=' grid gap-1 mt-2'>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#' className='text-[#222]'>
-                      Rings
-                    </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Bracelets </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Necklaces </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Silver Set </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Accessories </a>
-                  </li>
-                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                    <a href='#'> Rosary </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
+              
             </Tabs>
           </div>
 
-          <div className='mt-8'>
-            <h2 className='pt-[10px] px-[5px] text-[20px]'>My Account</h2>
+          <div className="mt-8">
+            <h2 className="pt-[10px] px-[5px] text-[20px]">My Account</h2>
             {user_token && (
               <>
-                <Accordion variant='filled' className='dropdown-user-info'>
-                  <Accordion.Item value='customization'>
+                <Accordion variant="filled" className="dropdown-user-info">
+                  <Accordion.Item value="customization">
                     <Accordion.Control>
-                      {' '}
-                      <h2 className='text-[20px] font-medium flex gap-2'>
+                      {" "}
+                      <h2 className="text-[20px] font-medium flex gap-2">
                         <PersonSVG />
                         Abdo elsheikh
                       </h2>
                     </Accordion.Control>
                     <Accordion.Panel>
-                      <ul className='w-full'>
-                        <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                          <a href='#'> My Profile </a>
+                      <ul className="w-full">
+                        <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                          <a href="#"> My Profile </a>
                         </li>
-                        <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                          <a href='#'> Store Credits </a>
+                        <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                          <a href="#"> Store Credits </a>
                         </li>
-                        <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                          <a href='#'> My Orders </a>
+                        <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                          <a href="#"> My Orders </a>
                         </li>
-                        <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                          <a href='#'> Returns </a>
+                        <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                          <a href="#"> Returns </a>
                         </li>
                       </ul>
                     </Accordion.Panel>
                   </Accordion.Item>
                 </Accordion>
 
-                <div className='flex justify-end'>
-                  <SecondaryButton title='Sign Out' className='w-full' />
+                <div className="flex justify-end">
+                  <SecondaryButton title="Sign Out" className="w-full" />
                 </div>
               </>
             )}
 
             {!user_token && (
               <>
-                <div className='flex flex-col gap-4 py-4'>
-                  <div className='flex justify-end'>
-                    <MainButton title='Sign In' className='w-full' />
+                <div className="flex flex-col gap-4 py-4">
+                  <div className="flex justify-end">
+                    <MainButton title="Sign In" className="w-full" />
                   </div>
-                  <div className='flex justify-end'>
-                    <SecondaryButton title='Register' className='w-full' />
+                  <div className="flex justify-end">
+                    <SecondaryButton title="Register" className="w-full" />
                   </div>
                 </div>
               </>
@@ -579,15 +427,15 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
           </div>
 
           <div>
-            <h2 className='pt-[10px] px-[5px] text-[20px] mb-2'>
+            <h2 className="pt-[10px] px-[5px] text-[20px] mb-2">
               Language and region
             </h2>
 
-            <Accordion className='dropdown-language-info'>
-              <Accordion.Item value='customization'>
+            <Accordion className="dropdown-language-info">
+              <Accordion.Item value="customization">
                 <Accordion.Control>
-                  {' '}
-                  <h2 className='text-[15px]  flex gap-2'>
+                  {" "}
+                  <h2 className="text-[15px]  flex gap-2">
                     <GlobalSVG />
                     <div>
                       <h3>English (American)</h3>
@@ -596,12 +444,12 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
                   </h2>
                 </Accordion.Control>
                 <Accordion.Panel>
-                  <ul className='w-full'>
-                    <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                      <a href='#'>English (American)</a>
+                  <ul className="w-full">
+                    <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                      <a href="#">English (American)</a>
                     </li>
-                    <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
-                      <a href='#'>العربية</a>
+                    <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
+                      <a href="#">العربية</a>
                     </li>
                   </ul>
                 </Accordion.Panel>
@@ -615,58 +463,58 @@ const NavbarSection = ({ links }: HeaderSearchProps) => {
         <Drawer
           opened={openedSearch}
           onClose={closeSearch}
-          position='top'
+          position="top"
           overlayProps={{ opacity: 0.5, blur: 4 }}
-          size='27%'
-          className='relative drawer-search'
+          size="27%"
+          className="relative drawer-search"
         >
-          <div className='flex flex-col gap-6  w-[30%] mid-screen:w-[65%] phone-screen:!w-[95%] items-center'>
+          <div className="flex flex-col gap-6  w-[30%] mid-screen:w-[65%] phone-screen:!w-[95%] items-center">
             <button
-              className='w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+              className="w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]"
               onClick={closeSearch}
             >
               <CloseX_IC />
             </button>
             <a
-              href='/'
-              className='w-[14rem] max-h-18 grid items-center col-[2] '
+              href="/"
+              className="w-[14rem] max-h-18 grid items-center col-[2] "
             >
               <LogoSite_IC />
             </a>
 
-            <Tabs color='dark' defaultValue='Jewelry' className='w-full'>
-              <Tabs.Panel value='Jewelry' pb='lg'>
+            <Tabs color="dark" defaultValue="Jewelry" className="w-full">
+              <Tabs.Panel value="Jewelry" pb="lg">
                 <div>
                   <TextInput
-                    placeholder='Search Jewelry'
+                    placeholder="Search Jewelry"
                     withAsterisk
-                    icon={<Search_IC fill='#b6b6b6' />}
+                    icon={<Search_IC fill="#b6b6b6" />}
                   />
                 </div>
               </Tabs.Panel>
-              <Tabs.Panel value='Silver' pb='lg'>
+              <Tabs.Panel value="Silver" pb="lg">
                 <div>
                   <TextInput
-                    placeholder='Search Silver'
+                    placeholder="Search Silver"
                     withAsterisk
-                    icon={<Search_IC fill='#b6b6b6' />}
+                    icon={<Search_IC fill="#b6b6b6" />}
                   />
                 </div>
               </Tabs.Panel>
-              <Tabs.Panel value='Gifts' pb='lg'>
+              <Tabs.Panel value="Gifts" pb="lg">
                 <div>
                   <TextInput
-                    placeholder='Search Gifts'
+                    placeholder="Search Gifts"
                     withAsterisk
-                    icon={<Search_IC fill='#b6b6b6' />}
+                    icon={<Search_IC fill="#b6b6b6" />}
                   />
                 </div>
               </Tabs.Panel>
 
               <Tabs.List>
-                <Tabs.Tab value='Jewelry'>Jewelry</Tabs.Tab>
-                <Tabs.Tab value='Silver'>Silver</Tabs.Tab>
-                <Tabs.Tab value='Gifts'>Gifts</Tabs.Tab>
+                <Tabs.Tab value="Jewelry">Jewelry</Tabs.Tab>
+                <Tabs.Tab value="Silver">Silver</Tabs.Tab>
+                <Tabs.Tab value="Gifts">Gifts</Tabs.Tab>
               </Tabs.List>
             </Tabs>
           </div>

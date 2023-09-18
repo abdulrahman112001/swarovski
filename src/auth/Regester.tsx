@@ -100,9 +100,9 @@ export default function Regester() {
 
       <p className='text-center uppercase'>or</p>
 
-      <SecondaryButton title='Continue With Google' className='w-full' />
+      {/* <SecondaryButton title='Continue With Google' className='w-full' />
       <SecondaryButton title='Continue With Apple' className='w-full' />
-      <SecondaryButton title='Continue With Facebook' className='w-full' />
+      <SecondaryButton title='Continue With Facebook' className='w-full' /> */}
     </div>
   );
 }
