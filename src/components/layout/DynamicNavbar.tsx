@@ -18,11 +18,8 @@ export default function DynamicNavbar() {
           closeDelay={200}
         >
           <HoverCard.Target>
-            <Link
-              to={{ pathname: `/${nav?.name}/${nav.id}` }}
-              className="mx-2"
-            >
-              {nav?.name}
+            <Link to={{ pathname: `/${nav?.name}/${nav.id}` }} className="mx-2">
+              { nav?.name}
             </Link>
           </HoverCard.Target>
           {nav.childreen.length > 0 && (
@@ -30,7 +27,7 @@ export default function DynamicNavbar() {
               <ul>
                 {nav.childreen.map((item: any) => (
                   <li className="text-center hover:opacity-[0.7]">
-                    <Link to={`/${item?.name}`}>{item?.name}</Link>
+                    <Link to={`/${item?.name}/${item?.id}`}>{item?.name}</Link>
                   </li>
                 ))}
               </ul>

@@ -25,6 +25,7 @@ import MainButton from "../atoms/mainButton";
 import SecondaryButton from "../atoms/secondaryButton";
 import DynamicNavbar from "./DynamicNavbar";
 import { useAuth } from "../../utils/auth/AuthProvider";
+import useFetch from "../../hooks/UseFetch";
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -156,7 +157,10 @@ const NavbarSection = () => {
   const { products } = useProductStore();
 
   const { logout, user } = useAuth();
-  console.log("🚀 ~ file: navbar.tsx:159 ~ NavbarSection ~ user:", user);
+  const { data: Navs } = useFetch({
+    endpoint: `categories`,
+    queryKey: [`Navbar_dynamic`],
+  });
 
   return (
     <>
@@ -253,10 +257,10 @@ const NavbarSection = () => {
                         <ul className="w-full">
                           <li>
                             <Link
-                              to='/profile'
+                              to="/profile"
                               onClick={() => setOpenUserInfo(false)}
                             >
-                              My Profile{' '}
+                              My Profile{" "}
                             </Link>
                           </li>
                           <li>
@@ -310,38 +314,7 @@ const NavbarSection = () => {
             </div>
           </nav>
         </div>
-        {/* hide navbar in > 1010px */}
-        {/*
-         */}
 
-        {/* header and search */}
-        {/*          
-        {shouldShowButton || (
-          <Header height={56} className={classes?.header} mb={120}>
-            <div className='container px-4 mx-auto'>
-              <div className={classes.inner}>
-                <Group spacing={1} className={classes.links}></Group>
-                
-                <Autocomplete
-                  className={classes.search}
-                  placeholder='Search'
-                  icon={<IconSearch size='1rem' stroke={1.5} />}
-                  data={[
-                    'React',
-                    'Angular',
-                    'Vue',
-                    'Next.js',
-                    'Riot.js',
-                    'Svelte',
-                    'Blitz.js',
-                  ]}
-                />
-              </div>
-            </div>
-          </Header>
-        )} */}
-
-        {/* sideBar phone screen */}
         <Drawer
           opened={openedSideBar}
           onClose={close}
@@ -366,134 +339,38 @@ const NavbarSection = () => {
           </div>
 
           <div className="mt-4">
-            <Tabs color="dark" defaultValue="Gifts">
+            <Tabs color="dark" defaultValue={Navs?.data[0].name}>
               <Tabs.List>
-                <Tabs.Tab value="Gifts">Gifts</Tabs.Tab>
-                <Tabs.Tab value="Silver">Silver</Tabs.Tab>
-                <Tabs.Tab value="All">All</Tabs.Tab>
-                <Tabs.Tab value="Jewelry">Jewelry & Accessories</Tabs.Tab>
+                {Navs?.data?.map((nav: any) => (
+                  <Tabs.Tab value={nav?.name}>
+                    <Link
+                      to={{ pathname: `/${nav?.name}/${nav.id}` }}
+                      className="mx-2"
+                    >
+                      {nav?.name}
+                    </Link>
+                  </Tabs.Tab>
+                ))}
               </Tabs.List>
-
-              <Tabs.Panel value="Gifts" pt="xs">
+              {Navs?.data?.map((nav: any) => (
+                
+              <Tabs.Panel value={nav?.name} pt="xs">
                 <h2 className="pt-[10px] px-[5px] text-[20px]">
                   Gifts category
                 </h2>
                 <ul className="grid gap-1 mt-2 ">
+                {nav.childreen.map((item: any) => (
+                  
                   <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#" className="text-[#222]">
-                      Anniversary Jewels
-                    </a>
+                    <Link to={`/${item?.name}/${item?.id}`}>{item?.name}</Link>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Kids Jewels </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Engagement Ring </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Wedding Jewelry </a>
-                  </li>
+                ))}
+                 
                 </ul>
               </Tabs.Panel>
+              ))}
 
-              <Tabs.Panel value="Silver" pt="xs">
-                <h2 className="pt-[10px] px-[5px] text-[20px]">
-                  Jewelry category
-                </h2>
-                <ul className="grid gap-1 mt-2 ">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#" className="text-[#222]">
-                      Rings
-                    </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Bracelets </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Necklaces </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Silver Set </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Accessories </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Rosary </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
-
-              <Tabs.Panel value="All" pt="xs">
-                <h2 className="pt-[10px] px-[5px] text-[20px]">
-                  Silver category
-                </h2>
-                <ul className="grid gap-1 mt-2 ">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#" className="text-[#222]">
-                      Rings
-                    </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Bracelets </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Necklaces </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Silver Set </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Accessories </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Rosary </a>
-                  </li>
-
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#" className="text-[#222]">
-                      Anniversary Jewels
-                    </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Kids Jewels </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Engagement Ring </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Wedding Jewelry </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
-
-              <Tabs.Panel value="Jewelry" pt="xs">
-                <h2 className="pt-[10px] px-[5px] text-[20px]">
-                  Accessories category
-                </h2>
-                <ul className="grid gap-1 mt-2 ">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#" className="text-[#222]">
-                      Rings
-                    </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Bracelets </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Necklaces </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Silver Set </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Accessories </a>
-                  </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <a href="#"> Rosary </a>
-                  </li>
-                </ul>
-              </Tabs.Panel>
+              
             </Tabs>
           </div>
 
