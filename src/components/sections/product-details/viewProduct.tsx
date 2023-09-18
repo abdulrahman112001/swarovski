@@ -151,17 +151,21 @@ const ViewProduct = () => {
       {/* product */}
       <div className='focas' ref={focasRef} id='top'></div>
       <section className='container px-4 py-8 mx-auto view-product'>
-        <div className='grid grid-cols-12 gap-8'>
-          <div className='col-span-8'>
+        <div className='grid grid-cols-12 gap-8 s-380:!flex s-380:!flex-col'>
+          <div className='col-span-8 s-1140:col-span-6 md-m:!col-span-12'>
             <div className='product-container grid grid-cols-12 gap-[0.8rem]'>
               {Detailsproducts?.data?.images?.map((img) => (
-                <div>
-                  <img src={img?.original} alt='pro1' />
+                <div className='md-m:max-h-[300px] s-380:!col-span-12'>
+                  <img
+                    className='md-m:h-full s-380:w-full'
+                    src={img?.original}
+                    alt='pro1'
+                  />
                 </div>
               ))}
             </div>
           </div>
-          <div className='col-span-4'>
+          <div className='col-span-4 s-1140:col-span-6 md-m:!col-span-12'>
             <div className='grid gap-6 product-details-right'>
               {/* first */}
               <div className='flex gap-3'>
@@ -253,10 +257,10 @@ const ViewProduct = () => {
                 value={selectedSize}
                 onChange={handleSelectChange}
               /> */}
-              <div className='grid items-baseline grid-cols-12 gap-4'>
+              <div className='grid items-baseline grid-cols-12 gap-4 lg-m:!flex lg-m:!flex-col'>
                 <MainButton
                   title=' Add To Bag'
-                  className='col-span-8'
+                  className='col-span-8 lg-m:!w-full'
                   action={() => {
                     addProduct({
                       id: Detailsproducts?.data?.id,
@@ -275,7 +279,7 @@ const ViewProduct = () => {
                 />
                 <WishlistButton
                   title='Wishlist'
-                  className='col-span-4'
+                  className='col-span-4 lg-m:!w-full lg-m:justify-center'
                   icon={<HeartUnFill />}
                   hoverIcon={<HeartFill />}
                 />
@@ -310,8 +314,8 @@ const ViewProduct = () => {
           </Tabs.List>
 
           <Tabs.Panel value='The Details' pt='xs'>
-            <div className='grid grid-cols-3 py-[1.25rem] gap-28'>
-              <div>
+            <div className='grid grid-cols-12 py-[1.25rem] gap-10 s-500:!flex s-500:!flex-col'>
+              <div className='col-span-4 s-900:col-span-6 s-500:!col-span-12'>
                 <span className='text-[#727272] '>New Season</span>
                 <h2 className='text-[#222] text-[24px] font-bold '>KHAITE</h2>
                 <p>The Marfa 40mm slingback pumps</p>
@@ -357,7 +361,7 @@ const ViewProduct = () => {
                 </ul>
               </div>
 
-              <div className='flex flex-col gap-8'>
+              <div className='flex flex-col gap-8 col-span-4 s-900:col-span-6 s-900:order-2 s-500:!col-span-12'>
                 <div>
                   <h2 className='text-[#222] font-bold mb-[10px]'>
                     Composition
@@ -381,15 +385,19 @@ const ViewProduct = () => {
                 </div>
               </div>
 
-              <div>
-                <img src={Image_details} alt='pro' />
+              <div className='col-span-4 s-900:order-1 s-500:!col-span-12'>
+                <img
+                  src={Image_details}
+                  alt='pro'
+                  className='max-h-[530px] s-500:!w-full'
+                />
               </div>
             </div>
           </Tabs.Panel>
 
           <Tabs.Panel value='Delivery & Returns' pt='xs'>
-            <div className='grid grid-cols-3 py-[1.25rem] gap-28'>
-              <div>
+            <div className='grid grid-cols-12 s-500:flex s-500:flex-col  py-[1.25rem] gap-10'>
+              <div className=' col-span-4 s-800:!col-span-6 '>
                 <h2 className='text-[#222] font-bold mb-[10px]'>
                   We've got your back
                 </h2>
@@ -427,7 +435,7 @@ const ViewProduct = () => {
                 </div>
               </div>
 
-              <div className='flex flex-col gap-8'>
+              <div className='flex flex-col gap-8 col-span-4 s-800:!col-span-6'>
                 <div>
                   <h2 className='text-[#222] font-bold mb-[10px]'>
                     Estimated delivery
@@ -440,7 +448,7 @@ const ViewProduct = () => {
                 </div>
               </div>
 
-              <div>
+              <div className=' col-span-4 s-800:!col-span-6'>
                 <div>
                   <h2 className='text-[#222] font-bold mb-[10px]'>
                     Need more information?
@@ -474,7 +482,7 @@ const ViewProduct = () => {
         <div className='mt-4 mb-10'>
           <h2 className='text-[24px]'>Complete the look</h2>
         </div>
-        <div className='grid grid-cols-4 newin-section gap-x-8 '>
+        <div className='grid grid-cols-4 s-900:grid-cols-2 phone-screen:!grid-cols-1 newin-section gap-x-8 '>
           {Detailsproducts?.data?.relatedProducts?.map((item) => (
             <ProductCard
               imageUrl={item?.images[0]?.original}

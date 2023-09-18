@@ -3,6 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
+
 import {
   Route,
   RouterProvider,
@@ -24,7 +25,6 @@ import ProfileSettings from './components/sections/profile/ProfileSettings.tsx';
 import ShowProduct from './components/sections/all-product/ShowProduct.tsx';
 import ContactUsPage from './components/sections/contact-us/contactUs.tsx';
 import FaqsPage from './components/sections/faqs/faqsPage.tsx';
-import PaymentCheckouts from './components/sections/payment-checkouts/paymentCheckouts.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -41,7 +41,6 @@ const router = createBrowserRouter(
           <Route path='/show-product' element={<ShowProduct />} />
           <Route path='/contact-us' element={<ContactUsPage />} />
           <Route path='/faqs' element={<FaqsPage />} />
-          <Route path='/payment-checkouts' element={<PaymentCheckouts />} />
         </Route>
         <Route path='*' element={<UnAuthorized />} />
       </Route>

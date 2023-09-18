@@ -269,4 +269,11 @@ body[scrolling=true] .header {
   .sidebar-menu .mantine-Drawer-content {
     flex: 0 0 100%;
   }
+}
+@media (max-width: 570px) {
+  .bread-crumbs-style .mantine-Breadcrumbs-root {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 1rem;
+  }
 }/*# sourceMappingURL=style.css.map */

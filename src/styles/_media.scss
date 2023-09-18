@@ -25,3 +25,13 @@
     }
   }
 }
+
+@media (max-width: 570px) {
+  .bread-crumbs-style {
+    .mantine-Breadcrumbs-root {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 1rem;
+    }
+  }
+}

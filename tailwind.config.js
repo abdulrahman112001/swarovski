@@ -9,10 +9,14 @@ export default {
       screens: {
         'phone-screen': { max: '480px' },
         'mid-screen': { max: '1010px' },
+        's-380': { max: '380px' },
         's-500': { max: '500px' },
+        's-600': { max: '600px' },
+        's-680': { max: '680px' },
         's-800': { max: '800px' },
         's-900': { max: '900px' },
         's-1023': { max: '1023px' },
+        's-1140': { max: '1140px' },
 
         'xs-m': { min: '0', max: '400px' },
         'sm-m': { max: '576px' },

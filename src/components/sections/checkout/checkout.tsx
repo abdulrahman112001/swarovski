@@ -51,7 +51,7 @@ const CheckOutProduct = () => {
     <>
       <section className='container px-4 mx-auto'>
         <div className='grid grid-cols-2 py-8'>
-          <h1 className='font-[nimbus,sans-serif] font-extrabold uppercase'>
+          <h1 className='font-[nimbus,sans-serif] s-680:text-[22px] s-380:!text-[18px] font-extrabold uppercase'>
             Shopping Bag
           </h1>
           <a
@@ -62,8 +62,8 @@ const CheckOutProduct = () => {
           </a>
         </div>
 
-        <div className='grid grid-cols-12 gap-8 pb-12'>
-          <div className='grid grid-cols-12 col-span-8 '>
+        <div className='grid grid-cols-12 gap-8 pb-12 s-380:flex s-380:flex-col'>
+          <div className='grid grid-cols-12 s-380:flex s-380:flex-col s-380:gap-4 col-span-8 s-680:!col-span-12'>
             <div className='col-span-8'>
               <h2>Sending from Italy</h2>
             </div>
@@ -101,38 +101,40 @@ const CheckOutProduct = () => {
 
             {/* Product CheckOut */}
             {products?.map((product) => (
-              <div className='grid grid-cols-12 col-span-12 relative mt-2 pt-4 pb-8 border-solid border-t-[0.01rem] !border-[#b6b6b6]'>
+              <div className='grid grid-cols-12 col-span-12 relative mt-2 pt-4 pb-8 border-solid border-t-[0.01rem] !border-[#b6b6b6] s-380:flex s-380:flex-col s-380:gap-4'>
                 {/* img */}
-                <div className='col-span-2 flex flex-col max-w-[120px] max-h-[160px] w-[120px] h-[160px]'>
+                <div className='col-span-2 s-900:col-span-3 phone-screen:!col-span-4 flex flex-col max-w-[120px] max-h-[160px] w-[120px] h-[160px]'>
                   <img src={product?.image} alt='product' />
                 </div>
 
                 {/* product info */}
-                <div className='col-span-3'>
-                  <p className='text-[#727272]'>New Sesson</p>
-                  <Link
-                    to={`/product-details/${product?.id}`}
-                    className='font-bold'
-                  >
-                    {product?.name}
-                  </Link>
-                  {/* <a href='#'>Letter leather crossbody bag</a> */}
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: product?.desc?.slice(0, 40),
-                    }}
-                  ></p>
-                </div>
+                <div className='col-span-10  grid grid-cols-10 phone-screen:!col-span-8 s-900:gap-4 s-900:col-span-9'>
+                  <div className='col-span-3 px-2 s-900:col-span-5 phone-screen:!col-span-12'>
+                    <p className='text-[#727272]'>New Sesson</p>
+                    <Link
+                      to={`/product-details/${product?.id}`}
+                      className='font-bold'
+                    >
+                      {product?.name}
+                    </Link>
+                    {/* <a href='#'>Letter leather crossbody bag</a> */}
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: product?.desc?.slice(0, 40),
+                      }}
+                      className='break-words'
+                    ></p>
+                  </div>
 
-                {/* product price */}
-                <div className='col-span-3'>
-                  <p className='font-bold'> {product?.price}</p>
-                  <p>Import duties included</p>
-                </div>
+                  {/* product price */}
+                  <div className='col-span-3 s-900:col-span-5 px-2 phone-screen:!col-span-12'>
+                    <p className='font-bold'> {product?.price}</p>
+                    <p className='break-words'>Import duties included</p>
+                  </div>
 
-                {/* product details */}
-                <div className='grid col-span-4 gap-4'>
-                  {/* <div>
+                  {/* product details */}
+                  <div className='grid col-span-4 s-900:col-span-12 s-900:grid-cols-2   gap-4 px-2'>
+                    {/* <div>
                     <p>Size</p>
                     <div className="flex gap-2">
                       {!changeSize || (
@@ -158,47 +160,48 @@ const CheckOutProduct = () => {
                     </div>
                   </div> */}
 
-                  <div>
-                    <p>Quantity</p>
-                    <div className='flex gap-2'>
-                      {/* select Quantity */}
-                      {!changeQuantity || (
-                        <Input
-                          component='select'
-                          rightSection={
-                            <IconChevronDown size={10} stroke={1.5} />
-                          }
+                    <div className='phone-screen:!col-span-12'>
+                      <p>Quantity</p>
+                      <div className='flex gap-2'>
+                        {/* select Quantity */}
+                        {!changeQuantity || (
+                          <Input
+                            component='select'
+                            rightSection={
+                              <IconChevronDown size={10} stroke={1.5} />
+                            }
+                          >
+                            <option value='1'>1</option>
+                            <option value='2'>2</option>
+                          </Input>
+                        )}
+
+                        {/* Number Quantity */}
+                        {changeQuantity || (
+                          <span className='font-bold'>{product?.count}</span>
+                        )}
+
+                        {/* switch between Change Count  */}
+                        <button
+                          className='underline cursor-pointer text-[14px]'
+                          onClick={changeQuantityHandler}
                         >
-                          <option value='1'>1</option>
-                          <option value='2'>2</option>
-                        </Input>
-                      )}
+                          {!changeQuantity ? 'Change' : 'Cancel'}
+                        </button>
+                      </div>
+                    </div>
 
-                      {/* Number Quantity */}
-                      {changeQuantity || (
-                        <span className='font-bold'>{product?.count}</span>
-                      )}
-
-                      {/* switch between Change Count  */}
-                      <button
-                        className='underline cursor-pointer text-[14px]'
-                        onClick={changeQuantityHandler}
-                      >
-                        {!changeQuantity ? 'Change' : 'Cancel'}
+                    <div className='phone-screen:!col-span-12'>
+                      <button className='wishlist-button flex bg-transparent gap-2 hover:opacity-50 py-3 rounded-[.4rem] '>
+                        <i className=' icon-hide flex w-[24px] h-[20px]'>
+                          <HeartFill />{' '}
+                        </i>
+                        <i className=' icon-show flex w-[24px]  h-[20px]'>
+                          <HeartUnFill />
+                        </i>
+                        <p className='underline mt-[2px]'> Move to wishlist</p>
                       </button>
                     </div>
-                  </div>
-
-                  <div>
-                    <button className='wishlist-button flex bg-transparent gap-2 hover:opacity-50 py-3 rounded-[.4rem] '>
-                      <i className=' icon-hide flex w-[24px] h-[20px]'>
-                        <HeartFill />{' '}
-                      </i>
-                      <i className=' icon-show flex w-[24px]  h-[20px]'>
-                        <HeartUnFill />
-                      </i>
-                      <p className='underline mt-[2px]'> Move to wishlist</p>
-                    </button>
                   </div>
                 </div>
 
@@ -217,7 +220,7 @@ const CheckOutProduct = () => {
             ))}
           </div>
 
-          <div className='col-span-4'>
+          <div className='col-span-4  s-680:!col-span-12'>
             <h3 className='text-[24px] mb-6'>Summary</h3>
 
             <div className='grid gap-1'>
