@@ -367,7 +367,10 @@ const NavbarSection = () => {
                       </h2>
                       <ul className='grid gap-1 mt-2 '>
                         {nav.childreen.map((item: any) => (
-                          <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                          <li
+                            className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'
+                            onClick={close}
+                          >
                             <Link to={`/${item?.name}/${item?.id}`}>
                               {item?.name}
                             </Link>
