@@ -28,6 +28,8 @@ import { useAuth } from '../../utils/auth/AuthProvider';
 import useFetch from '../../hooks/UseFetch';
 import NavbarSkeleton from '../sections/Skeleton/NavbarSkeleton';
 import SidebarSkeleton from '../sections/Skeleton/SidebarSkeleton';
+import SaudiArabia_IC from '../atoms/icons/saudiArabia';
+import EuropeFlag_IC from '../atoms/icons/EuropeFlag';
 
 const useStyles = createStyles((theme) => ({
   inner: {
@@ -98,6 +100,7 @@ const NavbarSection = () => {
   const [shouldShowButton, setShouldShowButton] = useState(true);
 
   const [openUserInfo, setOpenUserInfo] = useState(false);
+  const [openLanguage, setOpenLanguage] = useState(false);
 
   // get cookie
   const user_token = Cookies.get('user_token');
@@ -220,9 +223,56 @@ const NavbarSection = () => {
                       <Search_IC />
                     </button>
 
-                    <button className='w-11 h-11   flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
-                      <GlobalSVG />
-                    </button>
+                    {/* Change Language */}
+                    <Popover
+                      width={300}
+                      position='bottom'
+                      withArrow
+                      shadow='md'
+                      opened={openLanguage}
+                      onChange={setOpenLanguage}
+                    >
+                      <Popover.Target>
+                        <div
+                          className='flex  justify-center items-center cursor-pointer rounded-[0.8rem] hover:bg-hoverGray'
+                          onClick={() => setOpenLanguage((o) => !o)}
+                        >
+                          <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
+                            <GlobalSVG />
+                          </button>
+                          <span> {user?.username?.split(' ')[0]}</span>
+                        </div>
+                      </Popover.Target>
+                      <Popover.Dropdown>
+                        <div className='flex justify-between'>
+                          <h2 className='text-[14px] font-bold'>
+                            Choose Language
+                          </h2>
+                          <button
+                            className='w-8 h-8 p-[6px] rounded-[0.4rem] hover:bg-[#f5f5f5]'
+                            onClick={() => setOpenLanguage(false)}
+                          >
+                            <CloseX_IC />
+                          </button>
+                        </div>
+
+                        <ul className='w-full'>
+                          <li
+                            className='text-center font-bold cursor-pointer hover:bg-[#f5f5f5]'
+                            onClick={() => setOpenLanguage(false)}
+                          >
+                            العربية
+                          </li>
+                          <hr />
+                          <li
+                            className='text-center font-bold cursor-pointer hover:bg-[#f5f5f5]'
+                            onClick={() => setOpenLanguage(false)}
+                          >
+                            English
+                          </li>
+                        </ul>
+                      </Popover.Dropdown>
+                    </Popover>
 
                     {/* start after login */}
 
