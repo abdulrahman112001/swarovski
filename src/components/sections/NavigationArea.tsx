@@ -1,12 +1,17 @@
-import { Accordion } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { Accordion, Modal } from '@mantine/core';
 import Facebook_ic from '../atoms/icons/facebookicon';
 import Insta_ic from '../atoms/icons/instaIcon';
 import Pinterest_ic from '../atoms/icons/pinteresticon';
 import Snap_ic from '../atoms/icons/snapchaticon';
 import Twitter_ic from '../atoms/icons/twittericon';
 import YouTube_ic from '../atoms/icons/youtubeicon';
+import ModalCOmp from '../molecules/Modal2';
+import { useState } from 'react';
 
 const NavigationArea = () => {
+  const [openModalApp, setOpenModalApp] = useState(false);
+
   return (
     <>
       <section className=' bg-bgGray'>
@@ -18,43 +23,19 @@ const NavigationArea = () => {
               </h2>
               <ul className='grid gap-[8px]'>
                 <li>
-                  <a href='#' className='hover:underline'>
+                  <a href='/contact-us' className='hover:underline'>
                     Contact us
                   </a>
                 </li>
                 <li>
-                  <a href='#' className='hover:underline'>
+                  <a href='/faqs' className='hover:underline'>
                     FAQs
                   </a>
                 </li>
+
                 <li>
-                  <a href='#' className='hover:underline'>
-                    Orders and delivery
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
+                  <a href='/refund-policy' className='hover:underline'>
                     Returns and refunds
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Payment and pricing
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Cryptocurrency payments
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Promotion terms and conditions
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    FARFETCH Customer Promise
                   </a>
                 </li>
               </ul>
@@ -70,67 +51,58 @@ const NavigationArea = () => {
                     About us
                   </a>
                 </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Investors
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    FARFETCH partner boutiques
-                  </a>
-                </li>
+
                 <li>
                   <a href='#' className='hover:underline'>
                     Careers
                   </a>
                 </li>
                 <li>
-                  <a href='#' className='hover:underline'>
-                    FARFETCH app
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Modern slavery statement
-                  </a>
+                  <ModalCOmp
+                    isOpen={openModalApp}
+                    onClose={() => setOpenModalApp(false)}
+                    size={450}
+                    btnText={
+                      <span
+                        className='hover:underline'
+                        onClick={() => setOpenModalApp(true)}
+                      >
+                        FARFETCH app
+                      </span>
+                    }
+                  >
+                    <h2 className='text-center text-[28px] mb-10'>
+                      Application coming soon
+                    </h2>
+                    <p className='text-center'>
+                      The mobile app will be available very soon. Stay tuned
+                    </p>
+                  </ModalCOmp>
                 </li>
               </ul>
             </div>
 
             <div className='s-500:hidden'>
-              <h2 className='text-[#222] font-bold mb-[10px]'>
-                Discounts and membership
-              </h2>
+              <h2 className='text-[#222] font-bold mb-[10px]'>Legal</h2>
               <ul className='grid gap-[8px]'>
                 <li>
                   <a href='#' className='hover:underline'>
-                    Affiliate program
+                    Terms Of Use
                   </a>
                 </li>
                 <li>
                   <a href='#' className='hover:underline'>
-                    Refer a friend
+                    Terms & Conditions
                   </a>
                 </li>
                 <li>
                   <a href='#' className='hover:underline'>
-                    FARFETCH membership
+                    Privacy Policy
                   </a>
                 </li>
                 <li>
                   <a href='#' className='hover:underline'>
-                    Student discount UNiDAYS
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Student Beans and Graduates
-                  </a>
-                </li>
-                <li>
-                  <a href='#' className='hover:underline'>
-                    Student and Youth discount
+                    Cookie Consent
                   </a>
                 </li>
               </ul>
@@ -331,43 +303,6 @@ const NavigationArea = () => {
                 </Accordion.Panel>
               </Accordion.Item>
             </Accordion>
-
-            <div>
-              <span className='text-[#222] font-bold'>Follow us</span>
-
-              <ul className='flex gap-[0.3rem] my-1'>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <Insta_ic />
-                  </a>
-                </li>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <Facebook_ic />
-                  </a>
-                </li>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <Pinterest_ic />
-                  </a>
-                </li>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <Twitter_ic />
-                  </a>
-                </li>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <Snap_ic />
-                  </a>
-                </li>
-                <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                  <a href='#'>
-                    <YouTube_ic />
-                  </a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </section>

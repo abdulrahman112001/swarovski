@@ -32,7 +32,7 @@ export default function ModalCOmp({
       >
         {children}
       </Modal>
-      <div className='flex justify-center items-center' onClick={action}>
+      <div className='flex justify-start items-center' onClick={action}>
         {btnText}
       </div>
     </>
