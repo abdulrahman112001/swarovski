@@ -17,9 +17,9 @@ export default function AuthinticationForm({ openedLogin, closeLogin }: any) {
     },
   });
 
-  const HandleForgotPassword = () => {
-    setForgotTab(true);
-  };
+  // const HandleForgotPassword = () => {
+  //   setForgotTab(true);
+  // };
 
   // ChangeState When Click Forget => hide item
   const [forgotTab, setForgotTab] = useState(false);

@@ -278,7 +278,7 @@ const ViewProduct = () => {
                   }}
                 />
                 <WishlistButton
-                  title='Wishlist'
+                  title='Favorit'
                   className='col-span-4 lg-m:!w-full lg-m:justify-center'
                   icon={<HeartUnFill />}
                   hoverIcon={<HeartFill />}
