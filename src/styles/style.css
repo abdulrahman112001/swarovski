@@ -168,6 +168,9 @@ body[scrolling=true] .header {
   display: flex;
   justify-content: center;
 }
+.drawer-search .mantine-Drawer-content {
+  padding-bottom: 1rem;
+}
 
 .navigation-accordion .mantine-Accordion-content,
 .navigation-accordion .mantine-Accordion-control {

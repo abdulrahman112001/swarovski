@@ -524,8 +524,8 @@ const NavbarSection = () => {
             onClose={closeSearch}
             position='top'
             overlayProps={{ opacity: 0.5, blur: 4 }}
-            size='27%'
-            className='relative drawer-search'
+            size='max-content'
+            className='relative drawer-search '
           >
             <div className='flex flex-col gap-6  w-[30%] mid-screen:w-[65%] phone-screen:!w-[95%] items-center'>
               <button
