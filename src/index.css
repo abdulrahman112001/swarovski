@@ -177,3 +177,7 @@ body {
 .mantine-w37pz:hover {
   background-color: transparent !important;
 }
+
+.lightbox-title-content {
+  display: none !important;
+}

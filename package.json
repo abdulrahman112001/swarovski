@@ -34,6 +34,7 @@
     "react-i18next": "^12.3.1",
     "react-image-gallery": "^1.2.12",
     "react-jss": "^10.10.0",
+    "react-lightbox-component": "^1.2.1",
     "react-router-dom": "^6.11.2",
     "swiper": "^9.3.2",
     "zustand": "^4.4.1"

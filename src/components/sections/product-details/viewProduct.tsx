@@ -30,6 +30,9 @@ import ProductCard from '../../organisms/cardProduct';
 import useProductStore from '../../../store/productStore';
 import { notify } from '../../../utils/notify';
 
+import Lightbox from 'react-lightbox-component';
+import 'react-lightbox-component/build/css/index.css';
+
 const ViewProduct = () => {
   const { id } = useParams();
   console.log('🚀 ~ file: viewProduct.tsx:33 ~ ViewProduct ~ id:', id);
@@ -69,6 +72,25 @@ const ViewProduct = () => {
       </th>
     </tr>
   ));
+
+  var images = [
+    {
+      src: 'http://revlis.tech/storage/49/ExXKVU9ihctCn3wFftCRLoNQTzh0GF-metaMjE0MTUyNDhfNTEzMTE1NDRfNjAwLmpwZw==-.jpg',
+      title: 'Ropy pahoehoe',
+      description:
+        'By Tari Noelani Mattox. Licensed under Public Domain via Commons',
+    },
+    {
+      src: 'http://revlis.tech/storage/48/oFFf56JGyWbVndjg4S8VFz3tX42Bdg-metaMjE0MTUyNDhfNTEzMTE1NDNfNjAwLndlYnA=-.webp"',
+      title: 'Pyroclastic flows at Mayon Volcano',
+      description: 'By C.G. Newhall. Licensed under Public Domain via Commons',
+    },
+    {
+      src: 'https://upload.wikimedia.org/wikipedia/commons/f/f3/Okataina.jpg',
+      title: 'Okataina',
+      description: 'By Richard Waitt. Licensed under Public Domain via Commons',
+    },
+  ];
 
   // Table body in Size guide
   const TableContent = table_body.map((ele) => (
@@ -156,10 +178,16 @@ const ViewProduct = () => {
             <div className='product-container grid grid-cols-12 gap-[0.8rem]'>
               {Detailsproducts?.data?.images?.map((img) => (
                 <div className='md-m:max-h-[300px] s-380:!col-span-12'>
-                  <img
-                    className='md-m:h-full s-380:w-full'
-                    src={img?.original}
-                    alt='pro1'
+                  <img className='' src={img?.original} alt='pro1' />
+
+                  <Lightbox
+                    images={[
+                      {
+                        src: img?.original,
+                        title: 'abdelrahman',
+                        description: 'hello',
+                      },
+                    ]}
                   />
                 </div>
               ))}

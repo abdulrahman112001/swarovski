@@ -228,6 +228,10 @@ body[scrolling='true'] {
     display: flex;
     justify-content: center;
   }
+
+  .mantine-Drawer-content {
+    padding-bottom: 1rem;
+  }
 }
 
 .navigation-accordion {
@@ -340,5 +344,6 @@ body[scrolling='true'] {
     border: 1px solid var(--mainColor);
   }
 }
+
 // media query
 @import 'media';
