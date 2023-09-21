@@ -118,10 +118,19 @@ body[scrolling=true] .header {
   display: none;
 }
 
-.view-product .product-container > div:nth-of-type(n + 1) {
+.view-product .product-container .lightbox-container {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+.view-product .product-container .lightbox-container img {
+  height: 100% !important;
+  width: 100% !important;
+}
+.view-product .product-container .lightbox-container img:nth-of-type(n + 1) {
   grid-column: span 6;
 }
-.view-product .product-container > div:nth-of-type(n + 3) {
+.view-product .product-container .lightbox-container img:nth-of-type(n + 3) {
   grid-column: span 4;
 }
 .view-product .product-details-right {
