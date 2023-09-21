@@ -31,6 +31,8 @@ import SidebarSkeleton from '../sections/Skeleton/SidebarSkeleton';
 import SaudiArabia_IC from '../atoms/icons/saudiArabia';
 import EuropeFlag_IC from '../atoms/icons/EuropeFlag';
 
+import ImageCheckOut from '../../assets/images/20996106_51004058_170.webp';
+
 const useStyles = createStyles((theme) => ({
   inner: {
     height: rem(56),
@@ -101,6 +103,7 @@ const NavbarSection = () => {
 
   const [openUserInfo, setOpenUserInfo] = useState(false);
   const [openLanguage, setOpenLanguage] = useState(false);
+  const [openCartShopping, setOpenCartShopping] = useState(false);
 
   // get cookie
   const user_token = Cookies.get('user_token');
@@ -240,7 +243,6 @@ const NavbarSection = () => {
                           <button className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray '>
                             <GlobalSVG />
                           </button>
-                          <span> {user?.username?.split(' ')[0]}</span>
                         </div>
                       </Popover.Target>
                       <Popover.Dropdown>
@@ -359,13 +361,75 @@ const NavbarSection = () => {
                 >
                   <HeartSVG />
                 </a>
-                <Link
-                  to='/checkout'
-                  className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+
+                <Popover
+                  width={350}
+                  position='bottom'
+                  withArrow
+                  shadow='md'
+                  opened={openCartShopping}
+                  onChange={setOpenCartShopping}
                 >
-                  <ShopSVG />
-                  {products.length}
-                </Link>
+                  <Popover.Target>
+                    <div
+                      className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
+                      onClick={() => setOpenCartShopping((o) => !o)}
+                    >
+                      <ShopSVG />
+                      {products.length}
+                    </div>
+                  </Popover.Target>
+                  <Popover.Dropdown>
+                    <div className='flex flex-col gap-6'>
+                      <div className='grid grid-cols-2'>
+                        <h2 className='text-[14px] '>
+                          total: <span className='font-bold'>35.045.00 </span>
+                        </h2>
+
+                        <h2 className='text-[14px] flex justify-end'>
+                          total:{' '}
+                          <span className='font-bold px-[5px]'> 5 items</span>
+                        </h2>
+                      </div>
+
+                      <div className='w-full'>
+                        <MainButton
+                          title='go to checkout'
+                          className='w-full uppercase'
+                        />
+                      </div>
+
+                      <div className='grid grid-cols-12 gap-2'>
+                        <span className='col-span-3'>
+                          <img src={ImageCheckOut} alt='bag' />
+                        </span>
+                        <div className='col-span-9'>
+                          <h5>Bag bag 8 - Midnight Black</h5>
+                          <div className='grid grid-cols-12'>
+                            <h4 className='font-bold col-span-11'>
+                              SA 2,090.00
+                            </h4>
+                            <span className='cursor-pointer font-bold text-red-600'>
+                              X
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className='w-full'>
+                        <Link
+                          to='/checkout'
+                          onClick={() => setOpenCartShopping(false)}
+                        >
+                          <SecondaryButton
+                            title='view and edit cart'
+                            className='uppercase w-full'
+                          />
+                        </Link>
+                      </div>
+                    </div>
+                  </Popover.Dropdown>
+                </Popover>
               </div>
             </nav>
           </div>
