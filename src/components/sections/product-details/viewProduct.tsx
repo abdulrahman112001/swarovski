@@ -8,28 +8,26 @@ import {
   Select,
   Table,
   Tabs,
-} from '@mantine/core';
-import { IconChevronDown } from '@tabler/icons-react';
-import { useEffect, useRef, useState } from 'react';
-import Image_details from '../../../assets/images/17505702_36312398_1000.webp';
-import { select_size, table_body, table_head } from '../../../helper/data';
-import WishlistButton from '../../atoms/WishlistButton';
-import HeartFill from '../../atoms/icons/HeartFill';
-import HeartUnFill from '../../atoms/icons/HeartUnFill';
+} from "@mantine/core";
+import { IconChevronDown } from "@tabler/icons-react";
+import { useEffect, useRef, useState } from "react";
+import Image_details from "../../../assets/images/17505702_36312398_1000.webp";
+import { select_size, table_body, table_head } from "../../../helper/data";
+import WishlistButton from "../../atoms/WishlistButton";
+import HeartFill from "../../atoms/icons/HeartFill";
+import HeartUnFill from "../../atoms/icons/HeartUnFill";
 
-import MainButton from '../../atoms/mainButton';
-import SecondaryButton from '../../atoms/secondaryButton';
-import Newsletter from '../Newsletter';
-import useFetch from '../../../hooks/UseFetch';
-import { useParams } from 'react-router-dom';
-import ProductCard from '../../organisms/cardProduct';
-import useProductStore from '../../../store/productStore';
-import { notify } from '../../../utils/notify';
-
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-expect-error
-import Lightbox from 'react-lightbox-component';
-import 'react-lightbox-component/build/css/index.css';
+import MainButton from "../../atoms/mainButton";
+import SecondaryButton from "../../atoms/secondaryButton";
+import Newsletter from "../Newsletter";
+import useFetch from "../../../hooks/UseFetch";
+import { useParams } from "react-router-dom";
+import ProductCard from "../../organisms/cardProduct";
+import useProductStore from "../../../store/productStore";
+import { notify } from "../../../utils/notify";
+//@ts-ignore
+import Lightbox from "react-lightbox-component";
+import "react-lightbox-component/build/css/index.css";
 
 const ViewProduct = () => {
   const { id } = useParams();
@@ -49,10 +47,7 @@ const ViewProduct = () => {
       queryKey: [`details-products/${id}`],
     }
   );
-  console.log(
-    "🚀 ~ file: viewProduct.tsx:37 ~ ViewProduct ~ Detailsproducts:",
-    Detailsproducts
-  );
+
   // popup size guide
   const [opened, { open, close }] = useDisclosure(false);
 
@@ -144,26 +139,23 @@ const ViewProduct = () => {
 
   const [selectedSize, setSelectedSize] = useState(null);
 
-  const handleSelectChange = (value) => {
-    setSelectedSize(value);
-  };
   const { products, addProduct } = useProductStore();
 
   return (
     <>
       {/* product */}
-      <div className='focas' ref={focasRef} id='top'></div>
-      <section className='container px-4 py-8 mx-auto view-product'>
-        <div className='grid grid-cols-12 gap-8 s-380:!flex s-380:!flex-col'>
-          <div className='col-span-8 s-1140:col-span-6 md-m:!col-span-12'>
-            <div className='product-container'>
+      <div className="focas" ref={focasRef} id="top"></div>
+      <section className="container px-4 py-8 mx-auto view-product">
+        <div className="grid grid-cols-12 gap-8 s-380:!flex s-380:!flex-col">
+          <div className="col-span-8 s-1140:col-span-6 md-m:!col-span-12">
+            <div className="product-container">
               {!DetailsproductsLoading && (
                 <>
                   <Lightbox
                     images={Detailsproducts?.data?.images?.map((img) => ({
                       src: img?.original,
-                      title: 'abdelrahman',
-                      description: 'hello',
+                      title: "abdelrahman",
+                      description: "hello",
                     }))}
                   />
                 </>
@@ -322,19 +314,15 @@ const ViewProduct = () => {
             <div className="grid grid-cols-12 py-[1.25rem] gap-10 s-500:!flex s-500:!flex-col">
               <div className="col-span-4 s-900:col-span-6 s-500:!col-span-12">
                 <span className="text-[#727272] ">New Season</span>
-                <h2 className="text-[#222] text-[24px] font-bold ">KHAITE</h2>
+                <h2 className="text-[#222] text-[24px] font-bold ">{Detailsproducts?.data?.name}</h2>
                 <p>The Marfa 40mm slingback pumps</p>
 
                 <div className="my-6">
-                  <p>
-                    KHAITE’s The Marfa collection takes its name and inspiration
-                    from the West Texas town – specifically its mysterious
-                    lights and artist Donald Judd’s installations that fuse
-                    ‘art, architecture and landscape’. These black
-                    patent-leather pumps echo those influences with their draped
-                    gold-tone chains, narrow square toe and angular sculpted
-                    heel.{" "}
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: Detailsproducts?.data?.description,
+                    }}
+                  ></p>
                 </div>
 
                 <h4 className="mb-3 font-bold">Highlights</h4>
@@ -392,7 +380,7 @@ const ViewProduct = () => {
 
               <div className="col-span-4 s-900:order-1 s-500:!col-span-12">
                 <img
-                  src={Image_details}
+                  src={Detailsproducts?.data?.hover_image}
                   alt="pro"
                   className="max-h-[530px] s-500:!w-full"
                 />
