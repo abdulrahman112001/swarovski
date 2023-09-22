@@ -8,24 +8,28 @@ import {
   Select,
   Table,
   Tabs,
-} from "@mantine/core";
-import { IconChevronDown } from "@tabler/icons-react";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom";
-import Image_details from "../../../assets/images/17505702_36312398_1000.webp";
-import { select_size, table_body, table_head } from "../../../helper/data";
-import useFetch from "../../../hooks/UseFetch";
-import useProductStore from "../../../store/productStore";
-import { notify } from "../../../utils/notify";
-import WishlistButton from "../../atoms/WishlistButton";
-import HeartFill from "../../atoms/icons/HeartFill";
-import HeartUnFill from "../../atoms/icons/HeartUnFill";
-import MainButton from "../../atoms/mainButton";
-import SecondaryButton from "../../atoms/secondaryButton";
-import ProductCard from "../../organisms/cardProduct";
-import Newsletter from "../Newsletter";
-import Lightbox from "react-lightbox-component";
-import "react-lightbox-component/build/css/index.css";
+} from '@mantine/core';
+import { IconChevronDown } from '@tabler/icons-react';
+import { useEffect, useRef, useState } from 'react';
+import Image_details from '../../../assets/images/17505702_36312398_1000.webp';
+import { select_size, table_body, table_head } from '../../../helper/data';
+import WishlistButton from '../../atoms/WishlistButton';
+import HeartFill from '../../atoms/icons/HeartFill';
+import HeartUnFill from '../../atoms/icons/HeartUnFill';
+
+import MainButton from '../../atoms/mainButton';
+import SecondaryButton from '../../atoms/secondaryButton';
+import Newsletter from '../Newsletter';
+import useFetch from '../../../hooks/UseFetch';
+import { useParams } from 'react-router-dom';
+import ProductCard from '../../organisms/cardProduct';
+import useProductStore from '../../../store/productStore';
+import { notify } from '../../../utils/notify';
+
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+//@ts-expect-error
+import Lightbox from 'react-lightbox-component';
+import 'react-lightbox-component/build/css/index.css';
 
 const ViewProduct = () => {
   const { id } = useParams();
@@ -39,10 +43,12 @@ const ViewProduct = () => {
     }
   }, []);
 
-  const { data: Detailsproducts } = useFetch({
-    endpoint: `products/${id}`,
-    queryKey: [`details-products/${id}`],
-  });
+  const { data: Detailsproducts, isLoading: DetailsproductsLoading } = useFetch(
+    {
+      endpoint: `products/${id}`,
+      queryKey: [`details-products/${id}`],
+    }
+  );
   console.log(
     "🚀 ~ file: viewProduct.tsx:37 ~ ViewProduct ~ Detailsproducts:",
     Detailsproducts
@@ -66,25 +72,6 @@ const ViewProduct = () => {
       </th>
     </tr>
   ));
-
-  var images = [
-    {
-      src: "http://revlis.tech/storage/49/ExXKVU9ihctCn3wFftCRLoNQTzh0GF-metaMjE0MTUyNDhfNTEzMTE1NDRfNjAwLmpwZw==-.jpg",
-      title: "Ropy pahoehoe",
-      description:
-        "By Tari Noelani Mattox. Licensed under Public Domain via Commons",
-    },
-    {
-      src: 'http://revlis.tech/storage/48/oFFf56JGyWbVndjg4S8VFz3tX42Bdg-metaMjE0MTUyNDhfNTEzMTE1NDNfNjAwLndlYnA=-.webp"',
-      title: "Pyroclastic flows at Mayon Volcano",
-      description: "By C.G. Newhall. Licensed under Public Domain via Commons",
-    },
-    {
-      src: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Okataina.jpg",
-      title: "Okataina",
-      description: "By Richard Waitt. Licensed under Public Domain via Commons",
-    },
-  ];
 
   // Table body in Size guide
   const TableContent = table_body.map((ele) => (
@@ -165,26 +152,22 @@ const ViewProduct = () => {
   return (
     <>
       {/* product */}
-      <div className="focas" ref={focasRef} id="top"></div>
-      <section className="container px-4 py-8 mx-auto view-product">
-        <div className="grid grid-cols-12 gap-8 s-380:!flex s-380:!flex-col">
-          <div className="col-span-8 s-1140:col-span-6 md-m:!col-span-12">
-            <div className="product-container grid grid-cols-12 gap-[0.8rem]">
-              {Detailsproducts?.data?.images?.map((img) => (
-                <div className="md-m:max-h-[300px] s-380:!col-span-12">
-                  {/* <img className="" src={img?.original} alt="pro1" /> */}
-
+      <div className='focas' ref={focasRef} id='top'></div>
+      <section className='container px-4 py-8 mx-auto view-product'>
+        <div className='grid grid-cols-12 gap-8 s-380:!flex s-380:!flex-col'>
+          <div className='col-span-8 s-1140:col-span-6 md-m:!col-span-12'>
+            <div className='product-container'>
+              {!DetailsproductsLoading && (
+                <>
                   <Lightbox
-                    images={[
-                      {
-                        src: img?.original,
-                        title: "abdelrahman",
-                        description: "hello",
-                      },
-                    ]}
+                    images={Detailsproducts?.data?.images?.map((img) => ({
+                      src: img?.original,
+                      title: 'abdelrahman',
+                      description: 'hello',
+                    }))}
                   />
-                </div>
-              ))}
+                </>
+              )}
             </div>
           </div>
           <div className="col-span-4 s-1140:col-span-6 md-m:!col-span-12">
