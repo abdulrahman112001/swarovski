@@ -1,14 +1,15 @@
-import { Modal, Tabs, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { useState } from "react";
-import MainButton from "../components/atoms/mainButton";
-import Login from "./Login";
-import Regester from "./Regester";
+import { Modal, Tabs, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { useState } from 'react';
+import MainButton from '../components/atoms/mainButton';
+import Login from './Login';
+import Regester from './Regester';
+import { t } from 'i18next';
 
 export default function AuthinticationForm({ openedLogin, closeLogin }: any) {
   const form = useForm({
     initialValues: {
-      email: "",
+      email: '',
       //   termsOfService: false,
     },
 
@@ -27,32 +28,34 @@ export default function AuthinticationForm({ openedLogin, closeLogin }: any) {
     <Modal
       opened={openedLogin}
       onClose={closeLogin}
-      title={forgotTab ? "Forgot your password?" : `Come on in`}
+      title={forgotTab ? t('Forgot your password?') : t('Come on in')}
       centered
-      size="md"
+      size='md'
+      radius={10}
+      className='grid-direction'
     >
-      <Tabs color="dark" defaultValue="sign in">
+      <Tabs color='dark' defaultValue='sign in'>
         {forgotTab || (
           <Tabs.List>
-            <Tabs.Tab value="sign in">
-              <h2 className="uppercase text-[17px]">sign in</h2>
+            <Tabs.Tab value='sign in'>
+              <h2 className='uppercase text-[17px]'>{t('sign in')}</h2>
             </Tabs.Tab>
-            <Tabs.Tab value="im new here">
-              <h2 className="uppercase text-[17px]">i&#39;m new here</h2>
+            <Tabs.Tab value='im new here'>
+              <h2 className='uppercase text-[17px]'>{t("i'm new here")}</h2>
             </Tabs.Tab>
           </Tabs.List>
         )}
 
-        <Tabs.Panel value="sign in" pt="xs">
-          <Login  closeLogin={closeLogin}/>
+        <Tabs.Panel value='sign in' pt='xs'>
+          <Login closeLogin={closeLogin} />
         </Tabs.Panel>
 
-        <Tabs.Panel value="im new here" pt="xs">
+        <Tabs.Panel value='im new here' pt='xs'>
           <Regester />
         </Tabs.Panel>
 
-        <Tabs.Panel value="forgot password" pt="xs">
-          <div className="grid gap-6">
+        <Tabs.Panel value='forgot password' pt='xs'>
+          <div className='grid gap-6'>
             <div>
               <p>
                 Enter your email address and we'll send you a link to reset your
@@ -61,14 +64,14 @@ export default function AuthinticationForm({ openedLogin, closeLogin }: any) {
             </div>
 
             <div>
-              <TextInput placeholder="Email address" label="Email address" />
+              <TextInput placeholder='Email address' label='Email address' />
             </div>
 
-            <div className="grid gap-4">
-              <MainButton title="Reset Password" className="w-full" />
-              <Tabs.Tab value="sign in" className="w-full border-none">
+            <div className='grid gap-4'>
+              <MainButton title='Reset Password' className='w-full' />
+              <Tabs.Tab value='sign in' className='w-full border-none'>
                 <h2
-                  className="uppercase text-[17px]"
+                  className='uppercase text-[17px]'
                   onClick={() => setForgotTab(false)}
                 >
                   Back to Sigh In

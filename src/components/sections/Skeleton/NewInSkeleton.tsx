@@ -1,5 +1,6 @@
 import { Skeleton } from '@mantine/core';
 import SecondaryButton from '../../atoms/secondaryButton';
+import { t } from 'i18next';
 
 const NewInSkeleton = () => {
   return (
@@ -119,7 +120,7 @@ const NewInSkeleton = () => {
               href='#'
               className='rounded-[0.4rem] border-[1px] border-solid border-[#000] h-max phone-screen:w-full phone-screen:px-[0.8rem] phone-screen:py-[0.6rem]  text-[17px] font-bold px-10 py-3 text-center'
             >
-              Shop Now
+              {t('Shop Now')}
             </a>
           </div>
         </section>

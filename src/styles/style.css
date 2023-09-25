@@ -28,6 +28,13 @@
   font-weight: 700;
   font-style: normal;
 }
+@font-face {
+  font-family: "arabic Basis";
+  src: url(../assets/fonts/Tajawal-Regular.ttf) format("ttf"), url(../assets/fonts/Tajawal-Regular.ttf) format("woff");
+  font-display: swap;
+  font-weight: 400;
+  font-style: normal;
+}
 :root {
   --fontNormal: "Farfetch Basis", "Helvetica Neue", Arial, sans-serif;
 }
@@ -260,6 +267,43 @@ body[scrolling=true] .header {
 
 .next-button-stepper .mantine-1vzn4u4 {
   border: 1px solid var(--mainColor);
+}
+
+[dir=rtl] .grid-direction {
+  direction: rtl !important;
+}
+[dir=rtl] .grid-direction .mantine-Modal-close {
+  margin-left: 0;
+  margin-right: auto;
+}
+[dir=rtl] .grid-direction input {
+  text-align: start !important;
+  padding-right: 10px;
+}
+[dir=rtl] .grid-direction .mantine-PasswordInput-rightSection {
+  right: unset;
+  left: 5px;
+}
+
+.grid-direction .mantine-Modal-content {
+  padding: 1rem 0.5rem;
+}
+.grid-direction .mantine-Modal-header {
+  margin-bottom: 1.2rem;
+}
+.grid-direction label {
+  margin-bottom: 3px;
+  margin-top: 7px;
+}
+.grid-direction .forgot-password {
+  padding: 0;
+  margin: 20px 0 25px;
+}
+.grid-direction .new-user {
+  border: transparent !important;
+}
+.grid-direction .new-user:hover {
+  opacity: 0.8;
 }
 
 @media (max-width: 1279px) {

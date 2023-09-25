@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import useFetch from '../../hooks/UseFetch';
 import ProductCard from '../organisms/cardProduct';
 import NewInSkeleton from './Skeleton/NewInSkeleton';
+import { t } from 'i18next';
 
 const NewIn = () => {
   const { data: products, isLoading: productsLoading } = useFetch({
@@ -35,7 +36,7 @@ const NewIn = () => {
                   to='/show-product'
                   className='rounded-[0.8rem] border-[1px] border-solid border-[#000] h-max px-[0.8rem] py-[0.4rem] text-[17px] font-bold'
                 >
-                  Shop Now
+                  {t('Shop Now')}
                 </Link>
               </div>
             </div>
@@ -52,7 +53,7 @@ const NewIn = () => {
                 href='#'
                 className='rounded-[0.4rem] border-[1px] border-solid border-[#000] h-max phone-screen:w-full phone-screen:px-[0.8rem] phone-screen:py-[0.6rem]  text-[17px] font-bold px-10 py-3 text-center'
               >
-                Shop Now
+                {t('Shop Now')}
               </a>
             </div>
           </section>

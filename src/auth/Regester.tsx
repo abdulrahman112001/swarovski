@@ -47,34 +47,33 @@ export default function Regester() {
     <div className='grid gap-2'>
       <form onSubmit={form.onSubmit((values: any) => postData(values))}>
         <TextInput
-          placeholder='Your Name'
-          label='Name'
+          placeholder={t('Your Name')}
+          label={t('Your Name')}
           {...form.getInputProps('username')}
         />
         <TextInput
-          placeholder='Email address'
-          label='Email address'
+          placeholder={t('Email address')}
+          label={t('Email address')}
           {...form.getInputProps('email')}
         />
         <TextInput
-          placeholder='Your mobile'
-          label='mobile'
+          placeholder={t('Phone Number')}
+          label={t('Phone Number')}
           {...form.getInputProps('mobile')}
         />
         <PasswordInput
           withAsterisk
-          label='Your password'
-          placeholder='Your password'
+          label={t('Your password')}
+          placeholder={t('Your password')}
           {...form.getInputProps('password')}
         />
 
-        <div className='mt-5'>
+        <div className='my-5'>
           <p className='text-[14px]'>
-            By registering, you agree to our{' '}
+            {t('By registering, you agree to our')}{' '}
             <a href='#' className='underline'>
-              Terms & Conditions, Privacy and Cookie Policy,
+              {t('Terms & Conditions, Privacy and Cookie Policy.')}
             </a>
-            and to join our loyalty programme
           </p>
         </div>
         <div className='flex'>
@@ -87,9 +86,10 @@ export default function Regester() {
             <CheckTrue />
           </div>
 
-          <p className='text-[14px] '>
-            Sign up and never miss out on exclusive member rewards, tailored new
-            arrivals and new launches. Unsubscribe at the bottom of our emails.
+          <p className='text-[14px] mb-5'>
+            {t(
+              'Sign up and never miss out on exclusive member rewards, tailored new arrivals and new launches. Unsubscribe at the bottom of our emails.'
+            )}
           </p>
         </div>
 
@@ -98,7 +98,7 @@ export default function Regester() {
         </div>
       </form>
 
-      <p className='text-center uppercase'>or</p>
+      {/* <p className='text-center uppercase'>or</p> */}
 
       {/* <SecondaryButton title='Continue With Google' className='w-full' />
       <SecondaryButton title='Continue With Apple' className='w-full' />

@@ -1,20 +1,20 @@
-import { PasswordInput, Tabs, TextInput } from "@mantine/core";
-import { useForm } from "@mantine/form";
-import { t } from "i18next";
-import Cookies from "js-cookie";
-import CheckFalse from "../components/atoms/icons/checkFalse";
-import CheckTrue from "../components/atoms/icons/checkTrue";
-import MainButton from "../components/atoms/mainButton";
-import SecondaryButton from "../components/atoms/secondaryButton";
-import { useMutate } from "../hooks/useMutate";
-import { useAuth } from "../utils/auth/AuthProvider";
-import { notify } from "../utils/notify";
-import { useNavigate } from "react-router-dom";
+import { PasswordInput, Tabs, TextInput } from '@mantine/core';
+import { useForm } from '@mantine/form';
+import { t } from 'i18next';
+import Cookies from 'js-cookie';
+import CheckFalse from '../components/atoms/icons/checkFalse';
+import CheckTrue from '../components/atoms/icons/checkTrue';
+import MainButton from '../components/atoms/mainButton';
+import SecondaryButton from '../components/atoms/secondaryButton';
+import { useMutate } from '../hooks/useMutate';
+import { useAuth } from '../utils/auth/AuthProvider';
+import { notify } from '../utils/notify';
+import { useNavigate } from 'react-router-dom';
 
 export default function Login({ closeLogin }) {
   const form = useForm({
     initialValues: {
-      email: "",
+      email: '',
       //   termsOfService: false,
     },
 
@@ -23,73 +23,74 @@ export default function Login({ closeLogin }) {
     },
   });
 
-  const { login  } = useAuth();
+  const { login } = useAuth();
   const navigate = useNavigate();
 
   const { mutate: postData, data } = useMutate({
-    endpoint: "auth/login",
+    endpoint: 'auth/login',
     formData: true,
-    mutationKey: ["login"],
+    mutationKey: ['login'],
     onSuccess: (data: any) => {
       const token = data.data.data.token;
 
-      Cookies.set("user_token", token, { expires: 7 });
-      notify("success", "_", `${t("Welcome")}`);
+      Cookies.set('user_token', token, { expires: 7 });
+      notify('success', '_', `${t('Welcome')}`);
       login(data.data.data.user);
-      navigate("/");
+      navigate('/');
       closeLogin(false);
       //   if (toggleModal)
       //     toggleModal()
     },
     onError: (err) => {
-      notify("error");
+      notify('error');
     },
   });
 
   return (
-    <div className="grid gap-2">
+    <div className='grid gap-2'>
       <form onSubmit={form.onSubmit((values: any) => postData(values))}>
         <TextInput
-          placeholder="Email address"
-          label="Email address"
-          {...form.getInputProps("email")}
+          placeholder={t('Email address')}
+          label={t('Email address')}
+          className='grid-direction'
+          {...form.getInputProps('email')}
         />
         <PasswordInput
-          placeholder="Password"
-          label="Password"
-          {...form.getInputProps("password")}
+          placeholder={t('Password')}
+          label={t('Password')}
+          {...form.getInputProps('password')}
         />
 
-        <div className="relative flex w-fit New-input-checked">
+        <div className='relative flex w-fit New-input-checked mt-5 mb-3'>
           <input
-            type="checkbox"
-            className="absolute opacity-0 cursor-pointer"
+            type='checkbox'
+            className='absolute opacity-0 cursor-pointer'
           />
           <CheckFalse />
           <CheckTrue />
 
-          <p>Keep me signed in.</p>
+          <p>{t('Keep me signed in.')}</p>
         </div>
 
         <div>
-          <Tabs.Tab value="forgot password" pt="xs">
-            <p className="underline" onClick={"HandleForgotPassword"}>
-              Forgot your password?
+          <Tabs.Tab value='forgot password' pt='xs' className='forgot-password'>
+            <p className='underline' onClick={'HandleForgotPassword'}>
+              {t('Forgot your password?')}
             </p>
           </Tabs.Tab>
 
-          <MainButton title="Sign In" className="w-full" />
+          <MainButton title={t('sign in')} className='w-full' />
         </div>
       </form>
-      <p className="text-center uppercase">or</p>
+      <p className='text-center uppercase'>{t('or')}</p>
 
       {/* <SecondaryButton title="Continue With Google" className="w-full" />
       <SecondaryButton title="Continue With Apple" className="w-full" />
       <SecondaryButton title="Continue With Facebook" className="w-full" /> */}
 
-      <Tabs.Tab value="im new here">
-        <h2 className="uppercase text-[17px] underline">
-          New to FarFETCH? Register.
+      <Tabs.Tab value='im new here' className='new-user'>
+        <h2 className='uppercase text-[17px] underline'>
+          {t('New user? register')}
         </h2>
       </Tabs.Tab>
     </div>

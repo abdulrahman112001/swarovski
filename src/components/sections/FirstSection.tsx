@@ -1,6 +1,7 @@
 import Images from '../../assets/images/data.jpeg';
 import useFetch from '../../hooks/UseFetch';
 import HeaderSkeleton from './Skeleton/HeaderSkeleton';
+import { t } from 'i18next';
 const FirstSection = () => {
   const { data: banners, isLoading: bannersLoading } = useFetch({
     endpoint: `banners`,
@@ -37,7 +38,7 @@ const FirstSection = () => {
                     href='#'
                     className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[1.2rem] py-[0.7rem] text-[17px] font-bold'
                   >
-                    Explore More
+                    {t('Explore More')}
                   </a>
                 </div>
               </div>
@@ -80,7 +81,7 @@ const FirstSection = () => {
                     href='#'
                     className='rounded-[0.8rem] border-[1px] border-solid border-[#000] px-[1.2rem] py-[0.7rem] text-[17px] font-bold'
                   >
-                    Explore More
+                    {t('Explore More')}
                   </a>
                 </div>
               </div>
