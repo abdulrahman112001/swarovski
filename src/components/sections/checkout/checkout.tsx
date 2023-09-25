@@ -215,7 +215,7 @@ const CheckOutProduct = () => {
                 </div>
 
                 {/* close */}
-                <div className='absolute right-0 top-4'>
+                <div className='absolute ltr:right-0 top-4 rtl:left-0'>
                   <CloseButton
                     title='Close popover'
                     size='xl'
