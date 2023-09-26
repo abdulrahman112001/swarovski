@@ -29,6 +29,8 @@ import { notify } from '../../../utils/notify';
 import Lightbox from 'react-lightbox-component';
 import 'react-lightbox-component/build/css/index.css';
 
+import { t } from 'i18next';
+
 const ViewProduct = () => {
   const { id } = useParams();
   console.log('🚀 ~ file: viewProduct.tsx:33 ~ ViewProduct ~ id:', id);
@@ -104,10 +106,9 @@ const ViewProduct = () => {
 
   // bread crumbs
   const items = [
-    { title: 'Women Home', href: '#' },
-    { title: 'Balmain', href: '#' },
-    { title: 'Clothing', href: '#' },
-    { title: 'T-Shirts & Jersey Shirts', href: '#' },
+    { title: 'الرئيسية', href: '#' },
+    { title: 'الذهب', href: '#' },
+    { title: 'خواتم', href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}
@@ -256,7 +257,7 @@ const ViewProduct = () => {
               /> */}
               <div className='grid items-baseline grid-cols-12 gap-4 lg-m:!flex lg-m:!flex-col'>
                 <MainButton
-                  title=' Add To Bag'
+                  title={t('Add To Bag')}
                   className='col-span-8 lg-m:!w-full'
                   action={() => {
                     addProduct({
@@ -275,7 +276,7 @@ const ViewProduct = () => {
                   }}
                 />
                 <WishlistButton
-                  title='Favorit'
+                  title={t('Favorit')}
                   className='col-span-4 lg-m:!w-full lg-m:justify-center'
                   icon={<HeartUnFill />}
                   hoverIcon={<HeartFill />}
@@ -291,7 +292,7 @@ const ViewProduct = () => {
 
           {/* bread crumbs */}
           <div className='bread-crumbs-style'>
-            <Breadcrumbs separator='→' mt='xs'>
+            <Breadcrumbs separator={t('→')} mt='xs'>
               {items}
             </Breadcrumbs>
           </div>
@@ -303,10 +304,10 @@ const ViewProduct = () => {
         <Tabs color='dark' defaultValue='The Details'>
           <Tabs.List>
             <Tabs.Tab value='The Details' className='uppercase'>
-              The Details
+              {t('The Details')}
             </Tabs.Tab>
             <Tabs.Tab value='Delivery & Returns' className='uppercase'>
-              Delivery & Returns
+              {t('Delivery & Returns')}
             </Tabs.Tab>
           </Tabs.List>
 
@@ -475,7 +476,7 @@ const ViewProduct = () => {
       {/* complete the look */}
       <div className='container px-4 mx-auto'>
         <div className='mt-4 mb-10'>
-          <h2 className='text-[24px]'>Complete the look</h2>
+          <h2 className='text-[24px]'>{t('Complete the look')}</h2>
         </div>
         <div className='grid grid-cols-4 s-900:grid-cols-2 phone-screen:!grid-cols-1 newin-section gap-x-8 '>
           {Detailsproducts?.data?.relatedProducts?.map((item) => (

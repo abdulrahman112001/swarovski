@@ -61,13 +61,13 @@ const CheckOutProduct = () => {
       <section className='container px-4 mx-auto'>
         <div className='grid grid-cols-2 py-8'>
           <h1 className='font-[nimbus,sans-serif] s-680:text-[22px] s-380:!text-[18px] font-extrabold uppercase'>
-            Shopping Bag
+            {t('Shopping Bag')}
           </h1>
           <a
             href='#'
             className='flex items-center justify-end underline text-[15px] hover:text-[#727272]'
           >
-            Continue Shopping
+            {t('Continue Shopping')}
           </a>
         </div>
 
@@ -170,7 +170,7 @@ const CheckOutProduct = () => {
                   </div> */}
 
                     <div className='phone-screen:!col-span-12'>
-                      <p>Quantity</p>
+                      <p>{t('Quantity')}</p>
                       <div className='flex gap-2'>
                         {/* select Quantity */}
                         {!changeQuantity || (
@@ -195,7 +195,7 @@ const CheckOutProduct = () => {
                           className='underline cursor-pointer text-[14px]'
                           onClick={changeQuantityHandler}
                         >
-                          {!changeQuantity ? 'Change' : 'Cancel'}
+                          {!changeQuantity ? t('Change') : t('Cancel')}
                         </button>
                       </div>
                     </div>
@@ -208,7 +208,9 @@ const CheckOutProduct = () => {
                         <i className=' icon-show flex w-[24px]  h-[20px]'>
                           <HeartUnFill />
                         </i>
-                        <p className='underline mt-[2px]'> Move to wishlist</p>
+                        <p className='underline mt-[2px]'>
+                          {t('Move to wishlist')}
+                        </p>
                       </button>
                     </div>
                   </div>
@@ -230,15 +232,15 @@ const CheckOutProduct = () => {
           </div>
 
           <div className='col-span-4  s-680:!col-span-12'>
-            <h3 className='text-[24px] mb-6'>Summary</h3>
+            <h3 className='text-[24px] mb-6'>{t('Summary')}</h3>
 
             <div className='grid gap-1'>
               <p className='flex justify-between'>
-                <span>Subtotal</span>
+                <span>{t('Subtotal')}</span>
                 <span>{totalPrice}</span>
               </p>
               <p className='flex justify-between'>
-                <span>Delivery</span>
+                <span>{t('Delivery')}</span>
                 <span>$24.00</span>
               </p>
             </div>
@@ -246,19 +248,19 @@ const CheckOutProduct = () => {
             <hr className='my-4  border-t-[#e6e6e6] border-[#b6b6b6]' />
 
             <div className='flex justify-between'>
-              <span className='font-bold'>Total</span>
+              <span className='font-bold'>{t('Total')}</span>
               <div>
                 <p className='flex justify-end'>
                   USD <span className='mx-2 font-bold'> {totalPrice + 24}</span>
                 </p>
-                <span>Import duties included</span>
+                <span>{t('Import duties included')}</span>
               </div>
             </div>
 
             {/* button check out */}
             <div className='mt-8'>
               <MainButton
-                title='Go To Checkout'
+                title={t('go to checkout')}
                 className='w-full'
                 action={() =>
                   user ? openCheckOut(true) : setOpenedLogin(true)
@@ -304,7 +306,7 @@ const CheckOutProduct = () => {
           <div className='flex justify-between'>
             {/* title */}
             <div>
-              <p className='text-[1.4rem]'>Recommendations</p>
+              <p className='text-[1.4rem]'>{t('Recommendations')}</p>
             </div>
 
             {/* button */}
@@ -391,7 +393,7 @@ const CheckOutProduct = () => {
           <div className='flex justify-between'>
             {/* title */}
             <div>
-              <p className='text-[1.4rem]'>Recently viewed</p>
+              <p className='text-[1.4rem]'>{t('Recently viewed')}</p>
             </div>
 
             {/* button */}

@@ -1,6 +1,7 @@
 import EnterBox_IC from '../../atoms/icons/enterBox';
 import StarShine_IC from '../../atoms/icons/starShine';
 import PersonSVG from '../../atoms/icons/Person';
+import { t } from 'i18next';
 
 const Recommendation = () => {
   return (
@@ -14,12 +15,13 @@ const Recommendation = () => {
               </span>
 
               <h2 className='font-bold'>
-                Free global returns collection service
+                {t('Free global returns collection service')}
               </h2>
 
               <p className='text-center'>
-                We offer a free returns collection service on all orders
-                worldwide
+                {t(
+                  'We offer a free returns collection service on all orders worldwide'
+                )}
               </p>
             </div>
             <div className='grid justify-items-center gap-2 col-span-4 lg-m:col-span-6 '>
@@ -27,11 +29,14 @@ const Recommendation = () => {
                 <StarShine_IC />
               </span>
 
-              <h2 className='font-bold'>4.7/5 stars and 25,000+ reviews</h2>
+              <h2 className='font-bold'>
+                {t('4.7/5 stars and 25,000+ reviews')}
+              </h2>
 
               <p className='text-center'>
-                100% authentic brands and original styles. You know you can
-                trust us.
+                {t(
+                  '100% authentic brands and original styles. You know you can trust us.'
+                )}
               </p>
             </div>
             <div className='grid justify-items-center gap-2 col-span-4  lg-m:col-span-12 '>
@@ -39,11 +44,12 @@ const Recommendation = () => {
                 <PersonSVG />
               </span>
 
-              <h2 className='font-bold'>Not ready to commit?</h2>
+              <h2 className='font-bold'>{t('Not ready to commit?')}</h2>
 
               <p className='text-center lg-m:w-[60%] md-m:!w-[100%]'>
-                No worries, you can place an order without an account. Head to
-                checkout and continue as a guest.
+                {t(
+                  'No worries, you can place an order without an account. Head to checkout and continue as a guest.'
+                )}
               </p>
             </div>
           </div>

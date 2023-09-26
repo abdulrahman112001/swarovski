@@ -8,6 +8,7 @@ import SecondaryButton from '../atoms/secondaryButton';
 import { Link } from 'react-router-dom';
 import useProductStore from '../../store/productStore';
 import { notify } from '../../utils/notify';
+import { t } from 'i18next';
 
 const ProductCard = ({ imageUrl, item, size, buy }: any) => {
   console.log('🚀 ~ file: cardProduct.tsx:10 ~ ProductCard ~ item:', item);
@@ -96,7 +97,7 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
             <div className='grid gap-4 mt-4'>
               <div>
                 <SecondaryButton
-                  title='Add To Bag'
+                  title={t('Add To Bag')}
                   className='w-full font-bold'
                   action={() => {
                     addProduct({
