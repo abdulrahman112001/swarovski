@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import CheckFalse from '../atoms/icons/checkFalse';
 import CheckTrue from '../atoms/icons/checkTrue';
+import { t } from 'i18next';
 
 const Newsletter = () => {
   const [isCheckedEmail, setIsCheckedEmail] = useState(true);
@@ -27,18 +28,19 @@ const Newsletter = () => {
       <section className='grid grid-cols-2 md-m:grid-cols-1 my-20 lg-m:gap-8'>
         <div>
           <p className='text-[33px] font-[nimbus,sans-serif] uppercase font-extrabold'>
-            Get 10% off your first order
+            {t('Get 10% off your first order')}
           </p>
           <p>
-            Sign up for promotions, tailored new arrivals, stock updates and
-            more – straight to your inbox
+            {t(
+              'Sign up for promotions, tailored new arrivals, stock updates and more – straight to your inbox'
+            )}
           </p>
         </div>
 
         <div className='grid gap-4'>
           {/* handle this form after */}
           <form className='grid gap-4'>
-            <p>Get updates by</p>
+            <p>{t('Get updates by')}</p>
 
             {/* email input */}
             <div className='grid gap-3'>
@@ -54,7 +56,7 @@ const Newsletter = () => {
                     <CheckFalse />
                     <CheckTrue />
                   </div>
-                  Email
+                  {t('Email')}
                 </label>
               </div>
               {!isCheckedEmail || (
@@ -65,7 +67,7 @@ const Newsletter = () => {
                     aria-invalid='false'
                     autoComplete='email'
                     type='email'
-                    placeholder='Your email address'
+                    placeholder={t('Email')}
                     name='email'
                     className=' border-solid border-[0.01rem] border-[#727272] ps-3 p-[0.8rem] rounded-[0.8rem] w-full max-w-[18rem]'
                   />
@@ -87,7 +89,7 @@ const Newsletter = () => {
                     <CheckFalse />
                     <CheckTrue />
                   </div>
-                  SMS
+                  {t('SMS')}
                 </label>
               </div>
               {!isCheckedSMS || (
@@ -98,7 +100,7 @@ const Newsletter = () => {
                     aria-invalid='false'
                     autoComplete='email'
                     type='email'
-                    placeholder='Your phone number'
+                    placeholder={t('phone number')}
                     name='email'
                     className=' border-solid border-[0.01rem] border-[#727272] ps-3 p-[0.8rem] rounded-[0.8rem] w-full max-w-[18rem]'
                   />
@@ -110,21 +112,23 @@ const Newsletter = () => {
 
             <div>
               <button className='bg-[#333] hover:bg-[#727272] px-[1.2rem] py-[0.7rem] text-white'>
-                Sign Up
+                {t('Sign Up')}
               </button>
             </div>
           </form>
 
           <p>
-            By signing up, you consent to receiving marketing by email and/or
-            SMS and acknowledge you have read our{' '}
+            {t(
+              'By signing up, you consent to receiving marketing by email and/or SMS and acknowledge you have read our'
+            )}{' '}
             <a target='_blank' href='#' className='underline'>
-              Privacy Policy
+              {t('Privacy Policy')}
             </a>
             .
             <span className='m-1'>
-              Unsubscribe anytime at the bottom of our emails or by replying
-              STOP to any of our SMS.
+              {t(
+                'Unsubscribe anytime at the bottom of our emails or by replying STOP to any of our SMS.'
+              )}
             </span>
           </p>
         </div>

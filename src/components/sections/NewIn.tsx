@@ -22,11 +22,12 @@ const NewIn = () => {
               {/* title */}
               <div className='col-span-9 md-m:col-span-12'>
                 <p className='text-[1.4rem] xs-m:text-[1.2rem] font-bold'>
-                  New in Gold:
+                  {t('New in Gold:')}
                 </p>
                 <p>
-                  handpicked daily from the world&#39;s best brands and
-                  boutiques
+                  {t(
+                    "handpicked daily from the world's best brands and boutiques"
+                  )}
                 </p>
               </div>
 

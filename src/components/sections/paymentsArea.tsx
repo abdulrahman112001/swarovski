@@ -3,13 +3,13 @@ import Ideal_ic from '../atoms/icons/ideal';
 import MasterCard_icon from '../atoms/icons/mastercard';
 import Paypal_ic from '../atoms/icons/paypal';
 import Visa_ic from '../atoms/icons/visa';
-
+import { t } from 'i18next';
 const PaymentsArea = () => {
   return (
     <>
       <div className='border-t-[1px] border-solid border-[#e6e6e6] py-[1rem]'>
         <div className='container mx-auto px-4 grid gap-2'>
-          <h2 className='font-bold'>Payment methods</h2>
+          <h2 className='font-bold'>{t('Payment methods')}</h2>
 
           <ul className='flex gap-4 flex-wrap'>
             <li className='border-solid border-[0.01rem] border-[#e6e6e6] rounded-[0.4rem] w-12 h-[30px]'>

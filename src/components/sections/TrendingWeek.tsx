@@ -1,3 +1,4 @@
+import { t } from 'i18next';
 import CardTrending from '../organisms/cardTrending';
 
 const TrendingWeek = () => {
@@ -5,7 +6,7 @@ const TrendingWeek = () => {
     <div className='container mx-auto px-4'>
       <section>
         <h2 className='text-center text-[2rem] mt-12 mb-8'>
-          Trending this week
+          {t('Trending this week')}
         </h2>
         <div className='grid grid-cols-3 md-m:grid-cols-2 sm-m:!grid-cols-1 gap-8'>
           <CardTrending

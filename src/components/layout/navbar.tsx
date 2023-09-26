@@ -425,29 +425,33 @@ const NavbarSection = () => {
                           There are no products
                         </p>
                       ) : (
-                        products.map((item) => (
-                          <div className='grid grid-cols-12 gap-2'>
-                            <span className='col-span-3'>
-                              <img src={item?.image} alt='bag' />
-                            </span>
-                            <div className='col-span-9'>
-                              <h5>{item?.name}</h5>
-                              <div className='grid grid-cols-12'>
-                                <h4 className='col-span-11 font-bold'>
-                                  SA {item?.price}
-                                </h4>
-                                <span
-                                  className='font-bold text-red-600 cursor-pointer'
-                                  onClick={() =>
-                                    removeSingleProductAndLocalStorage(item?.id)
-                                  }
-                                >
-                                  X
-                                </span>
+                        <div className='max-h-[18rem] overflow-y-scroll grid gap-4'>
+                          {products.map((item) => (
+                            <div className='grid grid-cols-12 gap-2'>
+                              <span className='col-span-3'>
+                                <img src={item?.image} alt='bag' />
+                              </span>
+                              <div className='col-span-9'>
+                                <h5>{item?.name}</h5>
+                                <div className='grid grid-cols-12'>
+                                  <h4 className='col-span-11 font-bold'>
+                                    SA {item?.price}
+                                  </h4>
+                                  <span
+                                    className='font-bold text-red-600 cursor-pointer'
+                                    onClick={() =>
+                                      removeSingleProductAndLocalStorage(
+                                        item?.id
+                                      )
+                                    }
+                                  >
+                                    X
+                                  </span>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        ))
+                          ))}
+                        </div>
                       )}
 
                       <div className='w-full'>

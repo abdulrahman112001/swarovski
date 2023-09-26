@@ -6,35 +6,35 @@ import {
   Checkbox,
   Drawer,
   Slider,
-} from "@mantine/core";
-import { useDisclosure } from "@mantine/hooks";
-import { useEffect, useRef, useState } from "react";
-import useFetch from "../../../hooks/UseFetch";
-import CloseX_IC from "../../atoms/icons/closeX";
-import Filter_IC from "../../atoms/icons/filter";
-import SecondaryButton from "../../atoms/secondaryButton";
-import ProductCard from "../../organisms/cardProduct";
+} from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { useEffect, useRef, useState } from 'react';
+import useFetch from '../../../hooks/UseFetch';
+import CloseX_IC from '../../atoms/icons/closeX';
+import Filter_IC from '../../atoms/icons/filter';
+import SecondaryButton from '../../atoms/secondaryButton';
+import ProductCard from '../../organisms/cardProduct';
 
 const ShowProduct = () => {
   const [openFilter, { open, close }] = useDisclosure(false);
   const [checked, setChecked] = useState(false);
   const [value, setValue] = useState(0);
-  const [sort, setSort] = useState("");
-  console.log("🚀 ~ file: ShowProduct.tsx:23 ~ ShowProduct ~ sort:", sort);
+  const [sort, setSort] = useState('');
+  console.log('🚀 ~ file: ShowProduct.tsx:23 ~ ShowProduct ~ sort:', sort);
 
-  console.log("🚀 ~ file: ShowProduct.tsx:23 ~ ShowProduct ~ value:", value);
+  console.log('🚀 ~ file: ShowProduct.tsx:23 ~ ShowProduct ~ value:', value);
 
   const { data: products } = useFetch({
     endpoint: `products?filter[price_range]=${
-      value > 0 ? 0 - value : ""
-    }&sort=${sort ? sort : ""}`,
+      value > 0 ? 0 - value : ''
+    }&sort=${sort ? sort : ''}`,
     queryKey: [`all-products`, value, sort],
   });
 
   // bread crumbs
   const items = [
-    { title: "Home", href: "#" },
-    { title: "New In", href: "#" },
+    { title: 'Home', href: '#' },
+    { title: 'New In', href: '#' },
   ].map((item, index) => (
     <Anchor href={item.href} key={index}>
       {item.title}
@@ -45,53 +45,53 @@ const ShowProduct = () => {
 
   useEffect(() => {
     if (focasRef.current) {
-      focasRef.current.scrollIntoView({ behavior: "smooth" });
+      focasRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   }, []);
 
   return (
     <>
-      <div className="container px-4 py-8 mx-auto" ref={focasRef}>
-        <div className="bread-crumbs-style">
-          <Breadcrumbs separator=">" mt="xs">
+      <div className='container px-4 py-8 mx-auto' ref={focasRef}>
+        <div className='bread-crumbs-style'>
+          <Breadcrumbs separator='>' mt='xs'>
             {items}
           </Breadcrumbs>
         </div>
 
         {/* Name Category */}
-        <div className="mt-6 mb-10">
-          <h1 className="font-bold uppercase">New In</h1>
+        <div className='mt-6 mb-10'>
+          <h1 className='font-bold uppercase'>New In</h1>
         </div>
 
         {/* filter */}
-        <div className="relative flex">
-          <div className="flex gap-4">
+        <div className='relative flex'>
+          <div className='flex gap-4'>
             <SecondaryButton
-              title={<div className="flex items-center">All Filters</div>}
+              title={<div className='flex items-center'>All Filters</div>}
               icon={<Filter_IC />}
-              className="flex gap-2 px-4 py-2 font-semibold"
+              className='flex gap-2 px-4 py-2 font-semibold'
               action={open}
             />
             <SecondaryButton
-              title="Jewelry"
-              className="gap-2 px-4 py-2 md-m:hidden"
+              title='Jewelry'
+              className='gap-2 px-4 py-2 md-m:hidden'
             />
             <SecondaryButton
-              title="Silver"
-              className="gap-2 px-4 py-2 md-m:hidden"
+              title='Silver'
+              className='gap-2 px-4 py-2 md-m:hidden'
             />
             <SecondaryButton
-              title="Accessories"
-              className="gap-2 px-4 py-2 md-m:hidden"
+              title='Accessories'
+              className='gap-2 px-4 py-2 md-m:hidden'
             />
           </div>
 
-          <div className="absolute right-0 ">
-            <Accordion variant="filled" className="sort-by-list">
-              <Accordion.Item value="sort-product">
+          <div className='absolute right-0 rtl:right-[unset] rtl:left-0'>
+            <Accordion variant='filled' className='sort-by-list'>
+              <Accordion.Item value='sort-product'>
                 <Accordion.Control>Sort By</Accordion.Control>
                 <Accordion.Panel>
-                  <ul className="grid ">
+                  <ul className='grid '>
                     {/* <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer' >
                       Top Match
                     </li>
@@ -100,14 +100,14 @@ const ShowProduct = () => {
                       New Arrivals
                     </li> */}
                     <li
-                      className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer"
-                      onClick={() => setSort("-price")}
+                      className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'
+                      onClick={() => setSort('-price')}
                     >
                       Price: Low to High
                     </li>
                     <li
-                      className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer  "
-                      onClick={() => setSort("price")}
+                      className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer  '
+                      onClick={() => setSort('price')}
                     >
                       Price: High to Low
                     </li>
@@ -118,7 +118,7 @@ const ShowProduct = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-4 lg-m:grid-cols-2 phone-screen:!grid-cols-1 newin-section gap-x-12 mt-12">
+        <div className='grid grid-cols-4 lg-m:grid-cols-2 phone-screen:!grid-cols-1 newin-section gap-x-12 mt-12'>
           {products?.data?.products?.map((item) => (
             <ProductCard imageUrl={item?.main_image} item={item} />
           ))}
@@ -128,31 +128,31 @@ const ShowProduct = () => {
       <Drawer
         opened={openFilter}
         onClose={close}
-        position="left"
-        size="20%"
-        className="relative sidebar-menu"
+        position='left'
+        size='20%'
+        className='relative sidebar-menu'
       >
-        <div className="relative flex items-center">
+        <div className='relative flex items-center'>
           <button
-            className="w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]"
+            className='w-8 h-8 p-[6px] absolute right-[2%] rounded-[0.4rem] hover:bg-[#f5f5f5]'
             onClick={close}
           >
             <CloseX_IC />
           </button>
 
-          <h2 className="pt-[10px] px-[5px] text-[20px] mb-2">All Filters</h2>
+          <h2 className='pt-[10px] px-[5px] text-[20px] mb-2'>All Filters</h2>
         </div>
 
-        <div className="mt-8">
-          <Accordion className="grid gap-2 dropdown-language-info">
-            <Accordion.Item value="metal">
+        <div className='mt-8'>
+          <Accordion className='grid gap-2 dropdown-language-info'>
+            <Accordion.Item value='metal'>
               <Accordion.Control>
                 <h3>Metal</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="w-full">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                <ul className='w-full'>
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -162,8 +162,8 @@ const ShowProduct = () => {
                       14k White Gold
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -174,8 +174,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -186,8 +186,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -197,8 +197,8 @@ const ShowProduct = () => {
                       Sterling Silver
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -212,12 +212,12 @@ const ShowProduct = () => {
               </Accordion.Panel>
             </Accordion.Item>
 
-            <Accordion.Item value="price">
+            <Accordion.Item value='price'>
               <Accordion.Control>
                 <h3>Price</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="w-full">
+                <ul className='w-full'>
                   {/* <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
                     <h4 className='flex items-center gap-2'>
                       <Checkbox
@@ -277,15 +277,15 @@ const ShowProduct = () => {
                   </li> */}
 
                   <li>
-                    <Box maw={400} mx="auto">
+                    <Box maw={400} mx='auto'>
                       <Slider
-                        color="indigo"
+                        color='indigo'
                         value={value}
                         onChange={setValue}
                         min={0}
                         max={10000}
                       />
-                      <div className="flex items-center justify-between">
+                      <div className='flex items-center justify-between'>
                         <p>
                           Low: <b>0 SR</b>
                         </p>
@@ -299,14 +299,14 @@ const ShowProduct = () => {
               </Accordion.Panel>
             </Accordion.Item>
 
-            <Accordion.Item value="gender">
+            <Accordion.Item value='gender'>
               <Accordion.Control>
                 <h3>Gender</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="w-full">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                <ul className='w-full'>
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -316,8 +316,8 @@ const ShowProduct = () => {
                       Women's
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -328,8 +328,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -343,14 +343,14 @@ const ShowProduct = () => {
               </Accordion.Panel>
             </Accordion.Item>
 
-            <Accordion.Item value="type">
+            <Accordion.Item value='type'>
               <Accordion.Control>
                 <h3>Type</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="w-full">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                <ul className='w-full'>
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -360,8 +360,8 @@ const ShowProduct = () => {
                       Jewelry
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -372,8 +372,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -387,14 +387,14 @@ const ShowProduct = () => {
               </Accordion.Panel>
             </Accordion.Item>
 
-            <Accordion.Item value="size">
+            <Accordion.Item value='size'>
               <Accordion.Control>
                 <h3>Size</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="grid grid-cols-4">
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                <ul className='grid grid-cols-4'>
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -404,8 +404,8 @@ const ShowProduct = () => {
                       3
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -415,8 +415,8 @@ const ShowProduct = () => {
                       4
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -426,8 +426,8 @@ const ShowProduct = () => {
                       4.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -437,8 +437,8 @@ const ShowProduct = () => {
                       5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -448,8 +448,8 @@ const ShowProduct = () => {
                       5.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -459,8 +459,8 @@ const ShowProduct = () => {
                       6
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -470,8 +470,8 @@ const ShowProduct = () => {
                       6.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -481,8 +481,8 @@ const ShowProduct = () => {
                       7
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -492,8 +492,8 @@ const ShowProduct = () => {
                       7.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -503,8 +503,8 @@ const ShowProduct = () => {
                       8
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -514,8 +514,8 @@ const ShowProduct = () => {
                       8.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -525,8 +525,8 @@ const ShowProduct = () => {
                       9
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -536,8 +536,8 @@ const ShowProduct = () => {
                       9.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -547,8 +547,8 @@ const ShowProduct = () => {
                       10
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -558,8 +558,8 @@ const ShowProduct = () => {
                       10.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -569,8 +569,8 @@ const ShowProduct = () => {
                       11
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -580,8 +580,8 @@ const ShowProduct = () => {
                       11.5
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px]  cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px]  cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -595,14 +595,14 @@ const ShowProduct = () => {
               </Accordion.Panel>
             </Accordion.Item>
 
-            <Accordion.Item value="category">
+            <Accordion.Item value='category'>
               <Accordion.Control>
                 <h3>Category</h3>
               </Accordion.Control>
               <Accordion.Panel>
-                <ul className="w-full">
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                <ul className='w-full'>
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -612,8 +612,8 @@ const ShowProduct = () => {
                       Necklaces
                     </h4>
                   </li>
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -624,8 +624,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -636,8 +636,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -648,8 +648,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -660,8 +660,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -672,8 +672,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -684,8 +684,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -696,8 +696,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>
@@ -708,8 +708,8 @@ const ShowProduct = () => {
                     </h4>
                   </li>
 
-                  <li className="py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer">
-                    <h4 className="flex items-center gap-2">
+                  <li className='py-[10px] px-[16px] hover:bg-[#f5f5f5] cursor-pointer'>
+                    <h4 className='flex items-center gap-2'>
                       <Checkbox
                         checked={checked}
                         onChange={(event) =>

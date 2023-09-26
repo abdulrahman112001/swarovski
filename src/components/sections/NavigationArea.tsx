@@ -118,43 +118,6 @@ const NavigationArea = () => {
                   Second Life: sell your designer bags
                 </a>
               </div>
-
-              <div>
-                <span className='text-[#222] font-bold'>Follow us</span>
-
-                <ul className='flex gap-[0.3rem] my-1'>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <Insta_ic />
-                    </a>
-                  </li>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <Facebook_ic />
-                    </a>
-                  </li>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <Pinterest_ic />
-                    </a>
-                  </li>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <Twitter_ic />
-                    </a>
-                  </li>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <Snap_ic />
-                    </a>
-                  </li>
-                  <li className='flex justify-center items-center w-11 h-11 hover:bg-[#f5f5f5] rounded-[0.8rem]'>
-                    <a href='#'>
-                      <YouTube_ic />
-                    </a>
-                  </li>
-                </ul>
-              </div>
             </div>
 
             <Accordion

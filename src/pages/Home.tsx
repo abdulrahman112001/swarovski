@@ -17,7 +17,7 @@ const Home = () => {
       <HelpBar />
       <Newsletter />
       <PaymentsArea />
-      <NavigationArea />
+      {/* <NavigationArea /> */}
     </>
   );
 };
