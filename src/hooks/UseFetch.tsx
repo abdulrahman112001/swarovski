@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import Cookies from 'js-cookie';
+import { useIsRTL } from "./useIsRTL";
 
 type useFetchPops_TP = {
   queryKey: [string]
@@ -18,8 +19,9 @@ type useFetchPops_TP = {
   const company_token = Cookies.get('company_token')
   const token = specificToken ? specificToken : useCompanyToken ? company_token : user_token;
   const authorizationHeader = `Bearer ${token}`;
+  const isRTL = useIsRTL()
   const config = {
-    headers: { Authorization: authorizationHeader , lang:"en" },
+    headers: { Authorization: authorizationHeader , lang:isRTL ? "ar" : "en" },
   };
   const query = useQuery<T>({
     queryKey,

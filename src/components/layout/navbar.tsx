@@ -174,6 +174,8 @@ const NavbarSection = () => {
   const toggleLang = () => {
     i18n.changeLanguage(isRTL ? 'en' : 'ar');
     setOpenLanguage(false);
+    window.location.reload(); // إعادة تحميل الصفحة
+
   };
   const removeSingleProductAndLocalStorage = (productId) => {
     // استدعاء دالة removeProduct من مخزن السلة لإزالة المنتج
@@ -197,7 +199,7 @@ const NavbarSection = () => {
                 {shouldShowButton || (
                   <>
                     <Link to={`/`} className='mx-2 font-bold'>
-                      Home
+                      {t("Home")}
                     </Link>
 
                     <DynamicNavbar />
@@ -371,12 +373,12 @@ const NavbarSection = () => {
                   </>
                 )}
 
-                <a
-                  href='#'
+                <Link
+                  to='/favorite'
                   className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
                 >
                   <HeartSVG />
-                </a>
+                </Link>
 
                 <Popover
                   width={350}
