@@ -29,6 +29,9 @@ import { notify } from '../../../utils/notify';
 import Lightbox from 'react-lightbox-component';
 import 'react-lightbox-component/build/css/index.css';
 
+import { Carousel } from '@mantine/carousel';
+import { Image, Card, Text, Group, Button, rem } from '@mantine/core';
+
 import { t } from 'i18next';
 
 const ViewProduct = () => {
@@ -142,14 +145,28 @@ const ViewProduct = () => {
 
   const { products, addProduct } = useProductStore();
 
+  const images = [
+    'https://images.unsplash.com/photo-1598928506311-c55ded91a20c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1605774337664-7a846e9cdf17?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1554995207-c18c203602cb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
+    'https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=720&q=80',
+  ];
+
+  const slides = images.map((image) => (
+    <Carousel.Slide key={image}>
+      <Image src={image} height={220} />
+    </Carousel.Slide>
+  ));
+
   return (
     <>
       {/* product */}
       <div className='focas' ref={focasRef} id='top'></div>
       <section className='container px-4 py-8 mx-auto view-product'>
-        <div className='grid grid-cols-12 gap-12 s-380:!flex s-380:!flex-col'>
+        <div className='grid grid-cols-12 gap-12 s-600:!flex s-600:!flex-col'>
           <div className='col-span-8 s-1140:col-span-6 md-m:!col-span-12'>
-            <div className='product-container'>
+            <div className='product-container  s-600:hidden'>
               {!DetailsproductsLoading && (
                 <>
                   <Lightbox
@@ -161,6 +178,20 @@ const ViewProduct = () => {
                   />
                 </>
               )}
+            </div>
+
+            <div className='product-container hidden s-600:block'>
+              <Card radius='md' withBorder padding='xl'>
+                <Card.Section>
+                  <Carousel withIndicators loop>
+                    {Detailsproducts?.data?.images?.map((image, index) => (
+                      <Carousel.Slide key={index}>
+                        <Image src={image.original} height={550} />
+                      </Carousel.Slide>
+                    ))}
+                  </Carousel>
+                </Card.Section>
+              </Card>
             </div>
           </div>
           <div className='col-span-4 s-1140:col-span-6 md-m:!col-span-12'>

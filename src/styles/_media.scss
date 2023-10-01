@@ -18,6 +18,12 @@
   }
 }
 
+@media (max-width: 600px) {
+  [dir='rtl'] .product-container {
+    direction: ltr !important;
+  }
+}
+
 @media (max-width: 570px) {
   .sidebar-menu {
     .mantine-Drawer-content {

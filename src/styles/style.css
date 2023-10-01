@@ -356,6 +356,11 @@ body[scrolling=true] .header {
     flex: 0 0 65%;
   }
 }
+@media (max-width: 600px) {
+  [dir=rtl] .product-container {
+    direction: ltr !important;
+  }
+}
 @media (max-width: 570px) {
   .sidebar-menu .mantine-Drawer-content {
     flex: 0 0 100%;
