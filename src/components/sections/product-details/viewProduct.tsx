@@ -146,7 +146,9 @@ const ViewProduct = () => {
   const [selectedSize, setSelectedSize] = useState(null);
 
   const { products, addProduct } = useProductStore();
-  const [isFavorited, setFavorited] = useState(Detailsproducts?.data?.isFavourite);
+  const [isFavorited, setFavorited] = useState(
+    Detailsproducts?.data?.isFavourite
+  );
 
   const { mutate: postData } = useMutate({
     endpoint: "product/favorite-unfavorite",
@@ -154,13 +156,9 @@ const ViewProduct = () => {
     mutationKey: ["product_favorit"],
     onSuccess: () => {
       notify(
-        !isFavorited ? "info": "success",
+        !isFavorited ? "info" : "success",
         "_",
-        `${
-          !isFavorited
-            ? t("Remove from favorites")
-            : t("Added to favorites")
-        }`
+        `${!isFavorited ? t("Remove from favorites") : t("Added to favorites")}`
       );
     },
     onError: () => {
@@ -184,7 +182,7 @@ const ViewProduct = () => {
                       src: img?.original,
                       title: "abdelrahman",
                       description: "hello",
-                    }))}
+                    }))}  
                   />
                 </>
               )}

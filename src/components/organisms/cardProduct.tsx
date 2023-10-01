@@ -13,6 +13,7 @@ import HeartFill from "../atoms/icons/HeartFill";
 import HeartUnFill from "../atoms/icons/HeartUnFill";
 import SecondaryButton from "../atoms/secondaryButton";
 import { useMutate } from "../../hooks/useMutate";
+import { QueryClient, useQueryClient } from "@tanstack/react-query";
 
 const ProductCard = ({ imageUrl, item, size, buy }: any) => {
   const [selectedSize, setSelectedSize] = useState(null);
@@ -47,7 +48,7 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
   const [openedLogin, setOpenedLogin] = useState(false);
   const { user } = useAuth();
   const [isFavorited, setFavorited] = useState(item?.isFavourite);
-
+  const queryClient = useQueryClient();
   const { mutate: postData } = useMutate({
     endpoint: "product/favorite-unfavorite",
     formData: true,
@@ -62,10 +63,13 @@ const ProductCard = ({ imageUrl, item, size, buy }: any) => {
             : t("Added to favorites")
         }`
       );
+      queryClient.invalidateQueries('all_favourites');
     },
     onError: () => {
       notify("error");
     },
+
+    // Query
   });
   // useEffect(() => {
   //   setFavorited(!isFavorited)

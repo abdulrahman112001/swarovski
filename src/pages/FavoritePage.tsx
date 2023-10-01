@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 export default function FavoritePage() {
   const { data: favourites } = useFetch({
     endpoint: `user/products/all-favourites`,
-    queryKey: [`all-favourites`],
+    queryKey: [`all_favourites`],
   });
  
   
