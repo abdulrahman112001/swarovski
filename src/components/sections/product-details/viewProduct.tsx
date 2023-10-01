@@ -34,9 +34,11 @@ import { Image, Card, Text, Group, Button, rem } from '@mantine/core';
 
 import { t } from 'i18next';
 
+import { useMutate } from '../../../hooks/useMutate';
+import { useAuth } from '../../../utils/auth/AuthProvider';
+
 const ViewProduct = () => {
   const { id } = useParams();
-  console.log('🚀 ~ file: viewProduct.tsx:33 ~ ViewProduct ~ id:', id);
 
   const focasRef = useRef(null);
 
@@ -51,6 +53,10 @@ const ViewProduct = () => {
       endpoint: `products/${id}`,
       queryKey: [`details-products/${id}`],
     }
+  );
+  console.log(
+    '🚀 ~ file: viewProduct.tsx:46 ~ ViewProduct ~ Detailsproducts:',
+    Detailsproducts
   );
 
   // popup size guide
@@ -144,6 +150,26 @@ const ViewProduct = () => {
   const [selectedSize, setSelectedSize] = useState(null);
 
   const { products, addProduct } = useProductStore();
+  const [isFavorited, setFavorited] = useState(
+    Detailsproducts?.data?.isFavourite
+  );
+
+  const { mutate: postData } = useMutate({
+    endpoint: 'product/favorite-unfavorite',
+    formData: true,
+    mutationKey: ['product_favorit'],
+    onSuccess: () => {
+      notify(
+        !isFavorited ? 'info' : 'success',
+        '_',
+        `${!isFavorited ? t('Remove from favorites') : t('Added to favorites')}`
+      );
+    },
+    onError: () => {
+      notify('error');
+    },
+  });
+  const { user } = useAuth();
 
   return (
     <>
@@ -295,8 +321,13 @@ const ViewProduct = () => {
                 <WishlistButton
                   title={t('Favorit')}
                   className='col-span-4 lg-m:!w-full lg-m:justify-center'
-                  icon={<HeartUnFill />}
-                  hoverIcon={<HeartFill />}
+                  icon={isFavorited ? <HeartFill /> : <HeartUnFill />}
+                  action={() => {
+                    if (user) {
+                      setFavorited(!isFavorited);
+                      postData({ product_id: Detailsproducts?.data?.id });
+                    }
+                  }}
                 />
               </div>
 

@@ -174,6 +174,7 @@ const NavbarSection = () => {
   const toggleLang = () => {
     i18n.changeLanguage(isRTL ? 'en' : 'ar');
     setOpenLanguage(false);
+    window.location.reload(); // إعادة تحميل الصفحة
   };
   const removeSingleProductAndLocalStorage = (productId) => {
     // استدعاء دالة removeProduct من مخزن السلة لإزالة المنتج
@@ -191,13 +192,13 @@ const NavbarSection = () => {
       ) : (
         <div className='header sticky bg-white top-0 left-0 z-[100] '>
           <div className='container px-4 mx-auto'>
-            <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 mx-0 py-[5px]'>
+            <nav className='grid grid-cols-[1fr,auto,1fr] items-center gap-[1.6rem] w-full h-11 mb-5 s-500:!mb-0 mx-0 py-[5px] s-500:flex s-500:justify-between s-500:h-max'>
               {/* dynamic navigation */}
               <div className='flex items-center nav-link ms-[-0.3rem] drop-down-menu-navbar'>
                 {shouldShowButton || (
                   <>
                     <Link to={`/`} className='mx-2 font-bold'>
-                      Home
+                      {t('Home')}
                     </Link>
 
                     <DynamicNavbar />
@@ -225,7 +226,7 @@ const NavbarSection = () => {
 
               <a
                 href='/'
-                className='w-[12rem] phone-screen:!w-[10rem] xs-m:!w-[7rem] max-h-18 grid items-center col-[2]'
+                className='w-[9.5rem] s-500:!w-[9rem] phone-screen:!w-[10rem] xs-m:!w-[7rem] max-h-18 grid items-center col-[2]'
               >
                 <LogoSite_IC />
               </a>
@@ -371,12 +372,12 @@ const NavbarSection = () => {
                   </>
                 )}
 
-                <a
-                  href='#'
+                <Link
+                  to='/favorite'
                   className='w-11 h-11 flex justify-center items-center rounded-[0.8rem] hover:bg-hoverGray'
                 >
                   <HeartSVG />
-                </a>
+                </Link>
 
                 <Popover
                   width={350}

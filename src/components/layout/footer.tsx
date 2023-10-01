@@ -14,8 +14,8 @@ const FooterSection = () => {
     <>
       <section className='bg-bgGray border-t-[1px] border-solid border-[#fff]'>
         <div className='container mx-auto px-4'>
-          <div className='grid grid-cols-12 '>
-            <div className='grid col-span-9 py-[1.2rem] gap-5 '>
+          <div className='grid grid-cols-12 s-600:flex s-600:flex-col '>
+            <div className='grid col-span-9 py-[1.2rem] gap-5 order-2'>
               <ul className='flex gap-5 lg-m:grid lg-m:grid-cols-2 s-500:!grid-cols-1'>
                 <li>
                   <a
@@ -74,7 +74,7 @@ const FooterSection = () => {
               </div>
             </div>
 
-            <div className='col-span-3 py-[1.2rem]'>
+            <div className='col-span-3 py-[1.2rem] order-1'>
               <span className='text-[#222] font-bold'>{t('Follow us')}</span>
 
               <ul className='flex gap-[0.3rem] my-1'>

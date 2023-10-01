@@ -26,6 +26,7 @@ import ShowProduct from './components/sections/all-product/ShowProduct.tsx';
 import ContactUsPage from './components/sections/contact-us/contactUs.tsx';
 import FaqsPage from './components/sections/faqs/faqsPage.tsx';
 import ReturnsAndRefunds from './components/sections/Returns-refunds/ReturnsRefund.tsx';
+import FavoritePage from './pages/FavoritePage.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -43,6 +44,8 @@ const router = createBrowserRouter(
           <Route path='/contact-us' element={<ContactUsPage />} />
           <Route path='/faqs' element={<FaqsPage />} />
           <Route path='/refund-policy' element={<ReturnsAndRefunds />} />
+          <Route path='/favorite' element={<FavoritePage />} />
+
         </Route>
         <Route path='*' element={<UnAuthorized />} />
       </Route>

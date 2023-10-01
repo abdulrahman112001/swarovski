@@ -1,4 +1,4 @@
-const CardTrending = ({ title, desc, image }: unknown) => {
+const CardTrending = ({ title, desc, image }: any) => {
   return (
     <>
       <div className='card-trending'>
@@ -7,7 +7,11 @@ const CardTrending = ({ title, desc, image }: unknown) => {
         </div>
         <div className='mt-4'>
           <h3>{title}</h3>
-          <p>{desc}</p>
+          <p
+                dangerouslySetInnerHTML={{
+                  __html: desc?.slice(0, 40),
+                }}
+              ></p>
         </div>
       </div>
     </>

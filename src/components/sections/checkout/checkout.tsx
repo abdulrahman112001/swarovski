@@ -283,16 +283,6 @@ const CheckOutProduct = () => {
                 />
               )}
 
-              {/* 
-              <Modal
-                opened={openedCheckOut}
-                onClose={closeCheckOut}
-                centered
-                size="lg"
-                radius={"md"}
-              >
-                <Deposit closeModal={closeCheckOut} />
-              </Modal> */}
             </div>
           </div>
         </div>
